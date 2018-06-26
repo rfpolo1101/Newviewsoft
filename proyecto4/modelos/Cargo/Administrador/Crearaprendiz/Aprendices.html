@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" type="text/css" href="Aprendices.css"  >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../MenuAdmin/css/estilos.css">
+    <link rel="stylesheet" href="../MenuAdmin/css/font-awesome.css">
+ <link rel="stylesheet" type="text/css" href="\proyecto4/bootstrap/css/bootstrap.min.css">
+
+
+    <script src="../MenuAdmin/js/jquery-3.2.1.js"></script>
+    <script src="../MenuAdmin/js/main.js"></script>
+<title>Aprendices</title>
+</head>
+
+<body><br><br><br><br>
+<div class="formulario" align="center" >
+
+<form name="formulario" action="\proyecto4\Verificasiones\Novedades\CrearA.php" method="post">
+<div class="titulo" align="center"><strong>Registro aprendices </strong></div><br>
+     <label for="documento">  </label> 
+    <select name="Tdocumento" id="documento" >
+      <option  selected="true" disabled="disabled">Tipo de documento</option>
+          <option value="T.I">Tarjeta de identidad</option>
+    <option value="C.C">Cedula ciudadania</option>
+    <option value="C.E">Cedula extranjería</option> </select>
+
+    <input type="text" name="Ndocumento" id="id_aprendiz" placeholder="Documento" required="" autocomplete="OFF">
+    
+    <input type="text" name="pri_nom" id="pri_nom" placeholder="Nombre" required="" autocomplete="OFF"> 
+    
+    <input type="text" name="segu_nom" id="segu_nom" placeholder="Nombre" required="" autocomplete="OFF"> 
+    
+    <input type="text" name="pri_apell" id="pri_apel" placeholder="Apellido" required="" autocomplete="OFF"> 
+    
+    <input type="text" name="segu_apell" id="segu_apel" placeholder="Apellido"  required="" autocomplete="OFF"> 
+    
+    <input type="text" name="edad" id="edad" placeholder="Edad" maxlength="2"  required="" autocomplete="OFF">
+    <input type="text" name="pri_tele" id="pri_tele" placeholder="Teléfono fijo" required="" autocomplete="OFF"> 
+    
+    <input type="text" name="segu_tele" id="segu_tele" placeholder="Teléfono movil" required="" autocomplete="OFF"> 
+    
+    <input type="text" name="formacion" id="formacion" placeholder="Formación" required="" autocomplete="OFF"> 
+    
+    <input type="text" name="trimestre" id="trimestre" placeholder="Trimestre" required="" autocomplete="OFF"> 
+        <input type="text" name="Ficha" id="Ficha" placeholder="Ficha" required="" autocomplete="OFF"> 
+
+    
+    <input type="text" name="grupo" id="grupo" placeholder="Grupo" required="" autocomplete="OFF">  
+     
+    <input type="text" name="jornada" id="jornada" placeholder="Jornada" required="" autocomplete="OFF">  <br>
+    <br>
+    <input type="submit" name="boton" id="boton" value="Guardar">   
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

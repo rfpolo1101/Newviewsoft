@@ -1,0 +1,124 @@
+<!-- 
+* Copyright 2016 Carlos Eduardo Alfaro Orellana
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Derser-Thor</title>
+
+     <!-- Materialize CSS -->
+	<link rel="stylesheet" href="css/materialize.min.css">
+
+    <!-- MaterialDark CSS -->
+	<link rel="stylesheet" href="css/style.css">
+
+
+    <script>
+
+function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}    
+
+</script>
+</head>
+
+
+
+
+<body class="font-cover" id="login">
+
+
+
+
+    <a href=""><button  type="submit" class="waves-effect waves-teal btn-flat" onclick="inicio()"> iniciar sesion</button></form></a>
+
+<a href="modelos\Registro\registro.html"><button type="button"  class="waves-effect waves-teal btn-flat"  onclick="registrar()"> registrarse</button></a>
+
+<a href="\proyecto4\modelos\olvidoC\olvido.html"><button type="button"  class="waves-effect waves-teal btn-flat"  onclick="registrar()"> Olvido tu codigo?</button></a>
+
+    <div class="container-login center-align">
+
+        <div  id="letra"style="margin:0px 0;">
+
+
+            <strong><p >Inicia sesión con tu cuenta</p></strong>  
+
+
+        </div>
+
+
+        <!--iNICIO FROM-->
+        <form action="\proyecto4\Verificasiones\sesion\BDlogin\login.php">
+<div>
+    <div class="select">
+                <p>Tipo de documento<p>
+
+    
+
+                <input type="radio" name="Tdocumento" id="tarjeta" value="T.I" required="" required="">
+                <label for="tarjeta">Tarjeta de identidad</label>
+
+                <input type="radio" name="Tdocumento" id="cedulac" value="C.C" required="" required="">
+                <label for="cedulac">Cedula ciudadania</label>
+        
+                <input type="radio" name="Tdocumento" id="cedulae" value="C.E" required="">
+                <label for="cedulae">Cedula de extranjeria</label>
+    
+    </div>
+    
+
+    <div class="input-group">
+        <input type="text" id="nombre" name="Ndocumento"  pattern="[A-Za-z0-9_-]{1,15}" autocomplete="OFF" placeholder="Numero Documento" onkeypress="return numeros(event)" required="" />
+        <label class="label active" for="nombre">Ingrese documento:</label>
+    </div>
+    
+    <div class="radio">
+                <p>Tipo usuario<p>
+
+                <input type="radio" name="rol" id="invitado" value="1824" required="">
+                <label for="invitado">Invitado</label>
+                
+                 <input type="radio" name="rol" id="apoyo administrador" value="5461" required=""> 
+                <label for="apoyo administrador">Apoyo administrador</label>
+
+                <input type="radio" name="rol" id="Administrador"  value="2456" required="">
+                <label for="Administrador">Administrador</label>
+        
+        
+                
+            </div>
+    <div class="input-group">
+        <input type="password" id="nombre" name="codigo"  pattern="[A-Za-z0-9_-]{1,15}" required autocomplete="OFF"  />
+        <label class="label active" for="nombre">Ingrese codigo:</label>
+    </div><br>
+
+            <button class="waves-effect waves-teal btn-flat">Ingresar</button>
+      </div> </form>
+</div>
+
+
+
+
+                    
+</div>  
+
+
+<body>
+</body>
+</html>

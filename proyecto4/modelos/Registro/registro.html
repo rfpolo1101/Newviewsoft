@@ -1,0 +1,113 @@
+<!-- 
+* Copyright 2016 Carlos Eduardo Alfaro Orellana
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Derser-Thor</title>
+
+     <!-- Materialize CSS -->
+	<link rel="stylesheet" href="\proyecto4\css\materialize.min.css">
+
+    <!-- MaterialDark CSS -->
+	<link rel="stylesheet" href="\proyecto4\css\style.css">
+
+
+    <script>
+
+function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];  
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}    
+
+</script>
+</head>
+
+<a href="\proyecto4\index.html"><button  type="submit" class="waves-effect waves-teal btn-flat" onclick="inicio()"> iniciar sesion</button></form></a>
+
+<a href=""><button type="button"  class="waves-effect waves-teal btn-flat"  onclick="registrar()"> registrarse</button></a>
+
+<a href="\proyecto4\modelos\olvidoC\olvido.html"><button type="button"  class="waves-effect waves-teal btn-flat"  onclick="registrar()"> Olvidaste tu codigo?</button></a>
+    <div class="container-login center-align">
+
+
+<body class="font-cover" id="login">
+
+    
+
+        <div  id="letra"style="margin:0px 0;">
+            <strong><p >Registrarse</p></strong>  
+        </div>
+
+
+
+        <form action="\proyecto4\Verificasiones\sesion\Rgistro\Registro.php">
+
+<div class="radio">
+                    <strong> <p>Tipo de documento<p></strong>   
+
+                <input type="radio" name="Tdocumento" id="tarjeta" value="T.I"  required="" >
+                <label for="tarjeta">Tarjeta de identidad</label>
+
+                <input type="radio" name="Tdocumento" id="cedulac" value="C.C" required="">
+                <label for="cedulac">Cedula ciudadania</label>
+        
+                <input type="radio" name="Tdocumento" id="cedulae" value="C.E" required="">
+                <label for="cedulae">Cedula de extranjeria</label>
+    
+    </div>
+   <!--FIN TIPO DE DOCUMENTO-->
+
+      <!--INICIO NUMERO DE DOCUMENTO-->
+<div class="input-group">
+
+        <input type="text" id="Ndocumento" name="Ndocumento" autocomplete="OFF" required="" onkeypress="return numeros(event)" />
+        <label class="label active" for="nombre" >Numero de documento:</label>
+    </div> 
+    
+      <!--FIN NUMERO DE DE DOCUMENTO-->
+
+           <!--INICIO DATOS USUARIO-->
+
+        <div class="input-group">
+        <input type="text" id="Nombre" name="Nombre" autocomplete="OFF" required=""/>
+        <label class="label active" for="password">Nombre :</label>
+        </div>
+
+        <div class="input-group">
+        <input type="text" id="nombre" name="Apellido" autocomplete="OFF"/>
+        <label class="label active" for="nombre">Apellido :</label>
+    </div> 
+    <div class="input-group">
+        <input type="email" id="nombre" name="mail" autocomplete="OFF" required="" />
+        <label class="label active" for="nombre">Correo electronico :</label>
+    </div> 
+            <button class="waves-effect waves-teal btn-flat">Ingresar</button>
+
+    
+</td>
+</div>
+
+
+
+                    
+</div>  
+
+
+</body>
+</html>

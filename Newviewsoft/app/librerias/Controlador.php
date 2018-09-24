@@ -29,7 +29,7 @@
                 }else{
 
                     //si no existe
-                    die('la vista no existe');
+                    die('');
                 }
          }
 

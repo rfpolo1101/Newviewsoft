@@ -1,5 +1,14 @@
 <?php require RUTA_APP . '/views/inicio/header.php'; ?>
+<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER["crear"]==true){
+      echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+      <strong>Registrado: </strong> la novedad fue registrada </div></div>";    }
 
+      if ($_SERVER["crear"]==false){
+        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+        <strong>Error: </strong>el aprendiz ya tiene novedad</div></div>";      }
+
+    } ?>
 
 <!--**********************************FROM*************************************-->
   <form action="<?php echo RUTA_URL; ?>/aprendices/retiroVoluntario"  method="post">   

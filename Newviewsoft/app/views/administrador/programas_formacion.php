@@ -1,36 +1,28 @@
 <?php require RUTA_APP . '/views/inicio/header.php'; ?>
-<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if ($_SERVER["crear"]==true){
-      echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-      <strong>Registrado: </strong> la jornada fue registrada </div></div>";    }
 
-      if ($_SERVER["crear"]==false){
-        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>la jornada ya existe</div></div>";      }
 
-    } ?>
-<form action="<?php echo RUTA_URL; ?>/crear/tipo/jornada"  method="post"> 
+<form action="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"  method="post"> 
     <div class="col-md-12">
       <div class="col-md-3">
       </div>
    
       <div class="clase col-md-4">                               
           <div  class="titulo">
-              Jornada 
+              Programas formación 
           </div>          
-            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="col-md-12" style="padding-top: 40px; padding-bottom: 20px;">
                 <div class="col-md-12 col-sm-12 col-xs-12">  
                   <div class="form-group">
-                    <label  for="jornada" class="sr-only" >Jornada</label> 
+                    <label  for="programa_formacion" class="sr-only" >programa_formacion</label> 
                       <div class="">
-                      <input type="text" id="jornada" name="tipo" autocomplete="OFF" required="" placeholder="ejemplo: Diurna"  class="form-control">
+                      <input type="text" id="programa_formacion" name="tipo" autocomplete="OFF" required="" placeholder="Ejemplo: Programacion de Software"  class="form-control">
                       </div>
                   </div>
                 </div> 
             </div>
-              <div class="col-md-4 col-md-offset-4" style="padding-bottom: 20px;"> 
-                <input type="submit" name="enviar" id="enviar" value="Guardar"  class="btn btn-primary btn-block" >
-              </div>   
+            <div class="col-md-4 col-md-offset-4" style="padding-bottom: 40px;"> 
+              <input type="submit" name="enviar" id="enviar" value="Guardar"  class="btn btn-primary btn-block" >
+            </div>   
           </div>
 
         <div class="col-md-2">
@@ -52,6 +44,5 @@
       </div>
     </div>         
   </form>
-
 <?php require RUTA_APP . "/views/inicio/footer.php"; ?>
 

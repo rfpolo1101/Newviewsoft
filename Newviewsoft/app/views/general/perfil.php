@@ -1,34 +1,6 @@
 <?php require RUTA_APP . '/views/inicio/header.php' ?>
-<!--Nombre y Apellido usuario-->   
 
-   <nav class="navbar navbar-fixed-top navbar-inverse"  >
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span> 
-          </button>
-          <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="media-left">
-                <div class="media">
-                  <div class="input-group">
-                   <a href="#"><img src="<?php echo RUTA_URL; ?>/img/icono_perfil.jpg" class="img-rounded" style="width: 35px; height: 35px;"></a>
-                   <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary"><span><?php if (isset($_SESSION["Administrador"]))echo "Administrador:  " . $_SESSION ["Administrador"]; ?></span></button></a>
-                  </div> 
-                </div>
-            </li>  
-          </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-            </ul>
-        </div>
-      </div>
-  </nav>
-
-<form action=""  method="">   
+<form action="<?php RUTA_URL; ?>/usuario/perfil"  method="POST">   
     <div class="col-md-12">
       <div class="col-md-3">
       </div>

@@ -1,4 +1,14 @@
 <?php require RUTA_APP . '/views/inicio/header.php'; ?>
+<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER["crear"]==true){
+      echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+      <strong>Registrado: </strong> la sede fue registrada </div></div>";    }
+
+      if ($_SERVER["crear"]==false){
+        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+        <strong>Error: </strong>la sede ya existe</div></div>";      }
+
+    } ?>
 <form action="<?php echo RUTA_URL; ?>/crear/sede"  method="post"> 
     <div class="col-md-12">
       <div class="col-md-3">
@@ -13,7 +23,26 @@
                   <div class="form-group">
                     <label  for="sede" class="sr-only" >Sede</label> 
                       <div class="">
-                      <input type="text" id="sede" name="sede" autocomplete="OFF" required="" placeholder="Sede"  class="form-control">
+                      <input type="text" id="sede" name="sede" autocomplete="OFF" required="" placeholder="Ejemplo: Colombia"  class="form-control">
+                      </div>
+                  </div>
+                </div> 
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="ciudad" class="sr-only" >Ciudad</label> 
+                      <div class="">
+                      <select name="ciudad" id="ciudad" class="form-control" >
+                      <option value="0">Seleccione Sede</option>
+
+                      <?php foreach($datos["ciudad"] as $datos1):
+                            if($datos1->ciudad != "Null" ):
+                      ?>
+
+                        <option value="<?php echo $datos1->id_ciudad ?>"><?php echo $datos1->ciudad; ?></option>
+            
+                      <?php  endif; endforeach; ?> </select>    
                       </div>
                   </div>
                 </div> 

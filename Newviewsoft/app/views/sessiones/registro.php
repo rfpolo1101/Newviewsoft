@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/logeo.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/formato.css" /> 
+    <link href="<?php echo RUTA_URL ?>/img/logo1.png" rel="shortcut icon" type="image/x-icon" />
+
 
       <title>NewViewSoft</title>
 
@@ -70,7 +72,7 @@
 
       if ($_SERVER["inicio"]==false){
         echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>el documento ya existe</div></div>";      }
+        <strong>Error:</strong>  El documento ya existe o usted no tiene permiso para registrarse</div></div>";      }
 
     } ?>
     <div class="col-md-12">
@@ -85,15 +87,15 @@
                 <div class="formulario form-group" >
                   <div class="radio" style="padding-bottom: 50px;">                   
                     <div class="col-md-4 col-sm-4 col-xs-4">               
-                            <input type="radio" name="tip_doc" id="cedulac" value="2" required="">
+                            <input type="radio" name="tipo_documento" id="cedulac" value="CC" required="">
                             <label for="cedulac"  >Cédula Ciudadanía</label>
                     </div>                                         
                     <div class="col-md-4 col-sm-4 col-xs-4"> 
-                            <input type="radio" name="tip_doc" id="tarjeta" value="1"  required="">
+                            <input type="radio" name="tipo_documento" id="tarjeta" value="TI"  required="">
                             <label for="tarjeta"  >Tarjeta Identidad</label>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">                
-                            <input type="radio" name="tip_doc" id="cedulae" value="3" required="">
+                            <input type="radio" name="tipo_documento" id="cedulae" value="CE" required="">
                             <label for="cedulae">Cédula Extranjería</label>
                     </div>
                   </div>
@@ -102,13 +104,11 @@
                   <div class="col-md-12">
                     <div class="col-md-6 col-sm-6 col-xs-6">  
                         <div class="form-group">
-                        
-                          <label  for="docuUsu" class="sr-only" >Documento</label> 
+                          <label  for="documento" class="sr-only" >Documento</label> 
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" id="docuUsu" name="docuUsu" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control">
+                            <input type="text" id="documento" required="" name="documento" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control">
                             </div>
-                        
                         </div>
                     </div> 
                     <div class="col-md-6 col-sm-6 col-xs-6">  
@@ -116,25 +116,43 @@
                             <label  for="correo" class="sr-only" >Correo</label> 
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input type="text" id="correo" name="correo" autocomplete="OFF"  placeholder="example@correo"  class="form-control">
+                            <input type="email" id="correo" required="" name="correo" autocomplete="OFF"  placeholder="Correo Electronico"  class="form-control">
                             </div>
                         </div>
                     </div> 
                   </div>
-                   <div class="col-md-12">
+                  <div class="col-md-12">
                     <div class="col-md-6 col-sm-6 col-xs-6">  
                         <div class="form-group">
-                          <label  for="prinom" class="sr-only" >Nombre</label> 
+                          <label  for="primer_nombre" class="sr-only" >Primer Nombre</label> 
                             <div class="">
-                            <input type="text" id="prinom" name="prinom" autocomplete="OFF"  placeholder="Nombre"  class="form-control">
+                            <input type="text" id="primer_nombre" required="" name="primer_nombre" autocomplete="OFF"  placeholder="Primer Nombre"  class="form-control">
                             </div>
                         </div>
                     </div> 
                     <div class="col-md-6 col-sm-6 col-xs-6">  
-                        <div class="">
-                            <label  for="priapel" class="sr-only" >Apellido</label> 
-                            <div class="input-group">
-                            <input type="text" id="priapel" name="priapel" autocomplete="OFF"  placeholder="Apellido"  class="form-control">
+                        <div class="form-group">
+                            <label  for="segundo_nombre" class="sr-only" >Segundo Nombre</label> 
+                            <div class="">
+                            <input type="text" id="segundo_nombre" required="" name="segundo_nombre" autocomplete="OFF"  placeholder="Segundo Nombre"  class="form-control">
+                            </div>
+                        </div>
+                    </div> 
+                  </div>
+                  <div class="col-md-12">
+                    <div class="col-md-6 col-sm-6 col-xs-6">  
+                        <div class="form-group">
+                          <label  for="primer_apellido" class="sr-only" >Primer Apellido</label> 
+                            <div class="">
+                            <input type="text" id="primer_apellido" required="" name="primer_apellido" autocomplete="OFF"  placeholder="Primer Apellido"  class="form-control">
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-md-6 col-sm-6 col-xs-6">  
+                        <div class="form-group">
+                            <label  for="segundo_apellido" class="sr-only" >Segundo Apellido</label> 
+                            <div class="">
+                            <input type="text" id="segundo_apellido" required="" name="segundo_apellido" autocomplete="OFF"  placeholder="Segundo Apellido"  class="form-control">
                             </div>
                         </div>
                     </div> 

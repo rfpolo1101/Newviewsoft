@@ -10,21 +10,21 @@
         <strong>Error: </strong>el trimestre ya existe</div></div>";      }
 
     } ?>
-<form action="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"  method="post"> 
+<form action="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"  method="post"> 
     <div class="col-md-12">
       <div class="col-md-3">
       </div>
    
       <div class="clase col-md-4">                               
           <div  class="titulo">
-              Trimestre 
+              Modalidad 
           </div>          
               <div class="col-md-12" style="padding-top: 20px; padding-bottom: 20px;">
                 <div class="col-md-12 col-sm-6 col-xs-6">  
                   <div class="form-group">
-                    <label  for="trimestre" class="sr-only" >Trimestre</label> 
+                    <label  for="modalidad" class="sr-only" >Modalidad</label> 
                       <div class="">
-                      <input type="text" id="trimestre" name="tipo" autocomplete="OFF"  placeholder="Ejemplo: Seis"  class="form-control">
+                      <input type="text" id="modalidad" name="tipo" autocomplete="OFF"  placeholder="Ejemplo: Presencial"  class="form-control">
                       </div>
                   </div>
                 </div> 

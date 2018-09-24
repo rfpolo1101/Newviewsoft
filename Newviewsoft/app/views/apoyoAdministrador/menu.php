@@ -99,14 +99,15 @@
                 <ul class="dropdown-menu" >
               <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                   <li><a href="#"><span class="glyphicon glyphicon-question-sign "></span> Ayuda</a></li>
-                  <li><a href="../cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                  <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                 </ul>
         </li> 
       </ul>
 
-      <form class="navbar-form navbar-right" role="search">
+    <!--buscar usuarios-->
+    <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
         <div class="form-group">
-          <input type="search" id="buscador" name="buscador" placeholder="Buscador" class="form-control">
+          <input type="text" id="usuarios" name="usuarios" placeholder="usuarios" class="form-control">
         </div>
         <button type="sumit" class="btn btn-primary">
           <span class="glyphicon glyphicon-search"></span>

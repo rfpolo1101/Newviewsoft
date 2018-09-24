@@ -94,9 +94,9 @@
         </li> 
       </ul>
 
-      <form class="navbar-form navbar-right" role="search">
+       <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
         <div class="form-group">
-          <input type="search" id="buscador" name="buscador" placeholder="Buscador" class="form-control">
+          <input type="text" id="usuarios" name="usuarios" placeholder="usuarios" class="form-control">
         </div>
         <button type="sumit" class="btn btn-primary">
           <span class="glyphicon glyphicon-search"></span>
@@ -192,6 +192,8 @@
    <!--BOOTSTRAP JQUERY-->
    <script type="text/javascript" src="<?php echo RUTA_URL; ?>/bootstrap/js/jquery.js"></script>
       <script type="text/javascript" src="<?php echo RUTA_URL; ?>/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/reloj.js"></script>
+
     </div>
 </body>
 </html>

@@ -11,191 +11,149 @@ class Crear extends Controlador
 
     public function index()
     {
-       
-            $this->vista('/inicio/admtd');    
-        
+        $this->vista('/inicio/admtd');    
     }
 
-    public function formacion()
+    /*********************Insertar datos (tipo)************************************/
+    public function tipo($datos_ficha)
     {
         session_start();
         
         if(!isset($_SESSION['Administrador']))
         {
-            header("Location:" .  RUTA_URL . "/inicio");    
-        }else{
+            header("Location:" .  RUTA_URL . "/inicio");
+
+            }else{
 
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 $datos = [
 
-                    'formacion' => $_POST ['formacion']
+                    'campo' => $datos_ficha,
+                    'dato' => $_POST ["tipo"]
+                    
+                 ];
+                 
 
-                ];
+                    if ($this->crearModelos->tipos_crear($datos)){
 
-                if ($this->crearModelos->formacion($datos)){
+                        $_SERVER['crear']=true;
+                        $this->vista('administrador/' .  $datos_ficha);
 
-                    $_SERVER['formacion']=true;
-                    $this->vista('administrador/formacion');
-
-                }else{
-                    $_SERVER['formacion']=false;
-                    $this->vista('administrador/formacion');
-                }
+                    }else{
+                        $_SERVER['crear']=false;
+                        $this->vista('administrador/' .  $datos_ficha);
+                    }
 
             }else{
-                $this->vista('administrador/formacion');
+                
+                $this->vista('administrador/' . $datos_ficha);    
             }
-
-
         }
     }
 
-    public function trimestre()
-    {
-        session_start();
-        
-        if(!isset($_SESSION['Administrador']))
-        {
-            header("Location:" .  RUTA_URL . "/inicio");    
-        }else{
-
-            if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-                $datos = [
-
-                    'trimestre' => $_POST ['trimestre']
-
-                ];
-
-                if ($this->crearModelos->trimestre($datos)){
-
-                    $_SERVER['trimestre']=true;
-                    $this->vista('administrador/trimestre');
-
-                }else{
-                    $_SERVER['trimestre']=false;
-                    $this->vista('administrador/trimestre');
-                }
-
-            }else{
-                $this->vista('administrador/trimestre');
-            }
-
-
-        }
-
-    }
-
-    public function jornada()
-    {
-        session_start();
-        
-        if(!isset($_SESSION['Administrador']))
-        {
-            header("Location:" .  RUTA_URL . "/inicio");    
-        }else{
-
-            if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-                $datos = [
-
-                    'jornada' => $_POST ['jornada']
-
-                ];
-
-                if ($this->crearModelos->jornada($datos)){
-
-                    $_SERVER['jornada']=true;
-                    $this->vista('administrador/jornada');
-
-                }else{
-                    $_SERVER['jornada']=false;
-                    $this->vista('administrador/jornada');
-                }
-
-            }else{
-                $this->vista('administrador/jornada');
-            }
-
-
-        }
-
-    }
-
+    /******************Insertar ficha*********************** */
     public function ficha()
     {
         session_start();
         
         if(!isset($_SESSION['Administrador']))
         {
-            header("Location:" .  RUTA_URL . "/inicio");    
-        }else{
+            header("Location:" .  RUTA_URL . "/inicio");
+
+            }else{
 
             if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-                $datos = [
 
-                    'ficha' => $_POST ['ficha']
+                $guardar = [
 
+                        "ficha" => $_POST["ficha"],
+                        "sede" => $_POST["sede"],
+                        "jornada" => $_POST["jornada"],
+                        "trimestre" => $_POST["trimestre"],
+                        "modalidad" => $_POST["modalidad"],
+                        "tipo_formacion" => $_POST["tipo_formacion"],
+                        "programa_formacion" => $_POST["programa_formacion"]
                 ];
 
-                if ($this->crearModelos->ficha($datos)){
+                if($this->crearModelos->ficha($guardar)){
 
-                    $_SERVER['ficha']=true;
-                    $this->vista('administrador/ficha');
-
+                    $_SERVER['crear']=true;
+                    $resul= $this->crearModelos->consulta();
+                
+                    $datos = $resul;
+    
+                  $this->vista("administrador/ficha",$datos);
                 }else{
-                    $_SERVER['ficha']=false;
-                    $this->vista('administrador/ficha');
-                }
+                    $_SERVER['crear']=false;
+
+                    $resul= $this->crearModelos->consulta();
+                
+                    $datos = $resul;
+    
+                  $this->vista("administrador/ficha",$datos);                }
 
             }else{
-                $this->vista('administrador/ficha');
+                $resul= $this->crearModelos->consulta();
+                
+                $datos = $resul;
+
+              $this->vista("administrador/ficha",$datos); 
+
             }
-
-
         }
-
     }
 
-    public function sede()
-    {
-        session_start();
-        
-        if(!isset($_SESSION['Administrador']))
-        {
-            header("Location:" .  RUTA_URL . "/inicio");    
-        }else{
-
-            if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-                $datos = [
-
-                    'sede' => $_POST ['sede']
-
-                ];
-
-                if ($this->crearModelos->sede($datos)){
-
-                    $_SERVER['sede']=true;
-                    $this->vista('administrador/sede');
-
-                }else{
-                    $_SERVER['sede']=false;
-                    $this->vista('administrador/sede');
-                }
-
-            }else{
-                $this->vista('administrador/sede');
-            }
 
 
-        }
-
-    }
-
- 
+      /******************Insertar sede*********************** */
+      public function sede()
+      {
+          session_start();
+          
+          if(!isset($_SESSION['Administrador']))
+          {
+              header("Location:" .  RUTA_URL . "/inicio");
+  
+              }else{
+  
+              if($_SERVER["REQUEST_METHOD"] == "POST"){
+  
+  
+                  $guardar = [
+  
+                         "sede" => $_POST["sede"],
+                         "ciudad" => $_POST["ciudad"]
+                  ];
+  
+                  if($this->crearModelos->sede($guardar)){
+  
+                      $_SERVER['crear']=true;
+                      $resul= $this->crearModelos->consulta();
+                  
+                      $datos = $resul;
+      
+                    $this->vista("administrador/sede",$datos);
+                  }else{
+                      $_SERVER['crear']=false;
+  
+                      $resul= $this->crearModelos->consulta();
+                  
+                      $datos = $resul;
+      
+                    $this->vista("administrador/sede",$datos);                }
+  
+              }else{
+                  $resul= $this->crearModelos->consulta();
+                  
+                  $datos = $resul;
+  
+                $this->vista("administrador/sede",$datos); 
+  
+              }
+          }
+      }
 
 }
 

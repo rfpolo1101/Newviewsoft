@@ -3,230 +3,97 @@
     class Aprendiz
     {
         private $db;
+        private $documento;
+        private $identificador;
         
         public function __construct()
         {
             $this->db=new Base();
         }
 
+        public function documento($datos){
+
+                //Se convierten  y concatenan los tipos de documento y documento al codigo db
+                if ($datos['tipo_documento'] == 'CC'){
+
+                    $this->identificador=1;
+                    $this->documento = $datos['tipo_documento'] . $datos['documento'];
+                }
+    
+                if ($datos['tipo_documento'] == 'TI'){
+    
+                    $this->identificador=2;
+                    $this->documento = $datos['tipo_documento'] . $datos['documento'];
+                }
+    
+                if ($datos['tipo_documento'] == 'CE'){
+    
+                    $this->identificador=3;
+                    $this->documento = $datos['tipo_documento'] . $datos['documento'];
+                }
+
+
+        }
+
         //crear aprendiz
         public function crear($datos)
         {
 
-            $this->db->query('SELECT numero_doc FROM aprendices WHERE numero_doc='. $datos['ndocumento'] . "");
+            $this->db->query("SELECT dato.documento, permiso.id_documento FROM dato_persona as dato, permiso WHERE  dato.documento = ? AND permiso.id_documento = ?");
+            $this->db->bind(1,$this->documento);
+            $this->db->bind(2,$this->documento);
             $this->db->execute();
-            $busca=$this->db->rowCount();
-            if($busca==0){
-            $this->db->query('INSERT INTO aprendices (codigo_tipo_doc,numero_doc,primer_nom,segundo_nom,primer_apelli,segundo_apelli,correo,telefono_fijo,telefono_celu,codigo_ficha)
-             VALUES (:tdoc , :ndoc, :nombre1, :nombre2, :apellido1, :apellido2, :email, :tfijo, :tcelular, :ficha)');
-            //vincular los valores
-            $this->db->bind(':tdoc', $datos['tdocumento']);
-            $this->db->bind(':nombre1', $datos['nombre1']);
-            $this->db->bind(':nombre2', $datos['nombre2']);
-            $this->db->bind(':apellido1', $datos['apellido1']);
-            $this->db->bind(':apellido2', $datos['apellido2']);
-            $this->db->bind(':ndoc', $datos['ndocumento']);
-            $this->db->bind(':email', $datos['correo']);
-            $this->db->bind(':tfijo', $datos['tfijo']);
-            $this->db->bind(':tcelular', $datos['tcelular']);
-            $this->db->bind(':ficha', $datos['ficha']);
-            $this->db->execute();  
-            $resul=$this->db->rowCount();
-            if($resul==1)
-            {
-                return true;  
+            $cont=$this->db->rowCount();
+            if($cont==0) {
+
+                $this->db->query("INSERT INTO permiso VALUES (?)");
+                $this->db->bind(1, $this->documento);
+                $this->db->execute();
+                $cont2=$this->db->rowCount();
+                if($cont2==1){
+
+                    $this->db->query("INSERT INTO dato_persona (documento, primer_nombre, segundo_nombre, primer_apellido,  
+                    segundo_apellido, correo, contrasena,fk_estado,fk_ficha,fk_tipo_documento) VALUES (:doc,:pnombre,:snombre,:papellido,
+                    :sapellido,:mail,'Null','2',:fichas,:tdocumento )");
+
+                    //vincular los valores
+                    $this->db->bind(':doc', strip_tags($this->documento));
+                    $this->db->bind(':pnombre', strip_tags(ucwords(strtolower($datos['primer_nombre']))));
+                    $this->db->bind(':snombre', strip_tags(ucwords(strtolower($datos['segundo_nombre']))));
+                    $this->db->bind(':papellido', strip_tags(ucwords(strtolower($datos['primer_apellido']))));
+                    $this->db->bind('sapellido', strip_tags(ucwords(strtolower($datos['segundo_apellido']))));
+                    $this->db->bind(':mail', strip_tags($datos['correo']));
+                    $this->db->bind(':fichas', strip_tags($datos['ficha']));
+                    $this->db->bind(':tdocumento', strip_tags($this->identificador));
+                    $this->db->execute();
+                    $cont3=$this->db->rowCount();
+                    
+                    if($cont3==1){
+                        return true;
+                    }else{
+
+                        return false;
+                    }
+
+                }
+
             }else{
+
                 return false;
+
             }
-                
-            }else{
-                return false;
-            }
-
-        }
-
-        //cambio de jornada
-        public function cambioJornada($datos)
-        {
-
-            $this->db->query('SELECT numero_doc FROM cambio_jornada WHERE numero_doc='. $datos['ndocumento'] . "");
-            $this->db->execute();
-            $busca=$this->db->rowCount();
-
-            if($busca==0){
-              $this->db->query("INSERT INTO cambio_jornada (fecha_cambio_j,tiempo_cambio_j,numero_doc,descripcion_cambio_j) VALUES (:fecha, :tiempo, :ndoc, :descripcion)");
-              $this->db->bind(':fecha', $datos ['fecha']);
-              $this->db->bind(':tiempo', $datos ['tiempo']);
-              $this->db->bind(':ndoc', $datos ['ndocumento']);
-              $this->db->bind(':descripcion', $datos ['descripcion']);  
-              $this->db->execute();
-              $result=$this->db->rowCount();
-
-              if($result==1)
-              {
-                return true;
-              }else{return false;}
-            }else{
-                return false;
-            }
-
         }
         
-        //retiro voluntario
-        public function retiroVoluntario($datos)
-        {
-
-            $this->db->query('SELECT numero_doc FROM retiro_voluntario WHERE numero_doc='. $datos['ndocumento'] . "");
+        
+        /*****************Consulta fichas******************/
+        public function consultaFicha(){
+            $this->db->query("SELECT codigo_ficha FROM ficha WHERE codigo_ficha LIKE '%%' ");
             $this->db->execute();
-            $busca=$this->db->rowCount();
-
-            if($busca==0){
-
-              $this->db->query("INSERT INTO retiro_voluntario (fecha_retiro_volun,tiempo,numero_doc,observacion_retiro_volun
-              ) VALUES (:fecha, :tiempo, :ndoc, :observacion)");
-              $this->db->bind(':fecha', $datos ['fecha']);
-              $this->db->bind(':tiempo', $datos ['tiempo']);
-              $this->db->bind(':ndoc', $datos ['ndocumento']);
-              $this->db->bind(':observacion', $datos ['observacion']);  
-              $this->db->execute();
-              $result=$this->db->rowCount();
-
-              if($result==1)
-              {
-                return true;
-
-              }else{return false;}
-            }else{
-                return false;
-            }
-
+            $respuesta=$this->db->objetos();
+            return $respuesta;
         }
-
-        //aplazamiento
-        public function aplazamiento($datos)
-        {
-
-            $this->db->query('SELECT numero_doc FROM aplazamiento WHERE numero_doc='. $datos['ndocumento'] . "");
-            $this->db->execute();
-            $busca=$this->db->rowCount();
-
-            if($busca==0){
-
-              $this->db->query("INSERT INTO aplazamiento (apla_fecha_inicial,apla_fecha_final,tiempo,numero_doc,apla_motivo_solicitud,respuesta_apla) VALUES (:fecha1, :fecha2, :tiempo, :ndoc, :observacion, :respuesta)");
-              $this->db->bind(':fecha1', $datos ['fecha1']);
-              $this->db->bind(':fecha2', $datos ['fecha2']);
-              $this->db->bind(':tiempo', $datos ['tiempo']);
-              $this->db->bind(':ndoc', $datos ['ndocumento']);
-              $this->db->bind(':observacion', $datos ['motivo']);  
-              $this->db->bind(':respuesta', $datos ['respuesta']);  
-              $this->db->execute();
-              $result=$this->db->rowCount();
-
-              if($result==1)
-              {
-                return true;
-
-              }else{return false;}
-            }else{
-                return false;
-            }
-
-        }
-
-        public function desercion($datos)
-        {
-
-            $this->db->query('SELECT numero_doc FROM desercion WHERE numero_doc='. $datos['ndocumento'] . "");
-            $this->db->execute();
-            $busca=$this->db->rowCount();
-            if($busca==0){
-                echo $busca;
-
-              $this->db->query("INSERT INTO desercion (fecha_ini_desercion,fecha_fin_desercion,tiempo_deser,numero_doc,penalizacion,documento_inst) VALUES (:fecha1, :fecha2, :tiempo, :ndoc, :penalizacion, :docInstructor)");
-              $this->db->bind(':fecha1', $datos ['fecha1']);
-              $this->db->bind(':fecha2', $datos ['fecha2']);
-              $this->db->bind(':tiempo', $datos ['tiempo']);
-              $this->db->bind(':ndoc', $datos ['ndocumento']);
-              $this->db->bind(':penalizacion', $datos ['penalizacion']);  
-              $this->db->bind(':docInstructor', $datos ['docInstructor']);  
-              $this->db->execute();
-              $result=$this->db->rowCount();
-
-              if($result==1)
-              {
-                return true;
-
-              }else{return false;}
-            }else{
-                return false;
-            }
-
-        }
-
-        //traslado
-        public function traslado($datos){
-
-            $this->db->query('SELECT numero_doc FROM traslado WHERE numero_doc='. $datos['ndocumento'] . "");
-            $this->db->execute();
-            $busca=$this->db->rowCount();
-            if($busca==0){
-
-              $this->db->query("INSERT INTO traslado (fecha_traslado,tiempo_traslado,numero_doc,traslado_motivo_solicitud,traslado_respuesta) 
-                                VALUES (:fecha, :tiempo, :ndoc, :motivo, :respuesta)");
-              $this->db->bind(':fecha', $datos ['fecha']);
-              $this->db->bind(':tiempo', $datos ['hora']);
-              $this->db->bind(':ndoc', $datos ['ndocumento']);
-              $this->db->bind(':motivo', $datos ['motivo']);  
-              $this->db->bind(':respuesta', $datos ['respuesta']);  
-              $this->db->execute();
-              $result=$this->db->rowCount();
-
-              if($result==1)
-              {
-                return true;
-
-              }else{return false;}
-            }else{
-                return false;
-            }
-
-        }
-
-        //reintegro
-        public function reintegro($datos){
-
-
-            $this->db->query('SELECT numero_doc FROM reintegro WHERE numero_doc='. $datos['ndocumento'] . "");
-            $this->db->execute();
-            $busca=$this->db->rowCount();
-            if($busca==0){
-
-              $this->db->query("INSERT INTO reintegro (fecha_ini,fecha_fin,hora,numero_doc,descripcion) 
-                                VALUES (:fecha1, :fecha2, :tiempo, :ndoc, :descripcion)");
-              $this->db->bind(':fecha1', $datos ['fecha1']);
-              $this->db->bind(':fecha2', $datos ['fecha2']);
-              $this->db->bind(':tiempo', $datos ['tiempo']);
-              $this->db->bind(':ndoc', $datos ['ndocumento']);
-              $this->db->bind(':descripcion', $datos ['descripcion']);  
-              $this->db->execute();
-              $result=$this->db->rowCount();
-
-              if($result==1)
-              {
-                return true;
-
-              }else{return false;}
-            }else{
-                return false;
-            }   
-
-        }
-
-
-
-
-
-
+  
+      
 
     }
 

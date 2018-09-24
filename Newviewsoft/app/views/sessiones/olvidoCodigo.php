@@ -10,6 +10,9 @@
        <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/logeo.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/formato.css" /> 
+    <link rel="shortcut icon" href="<?php echo RUTA_URL ?>/img/logo1.png">
+    <link href="<?php echo RUTA_URL ?>/img/logo1.png" rel="shortcut icon" type="image/x-icon" />
+
 
       <title>NewViewSoft</title>
 
@@ -69,14 +72,14 @@
 
       if ($_SERVER["inicio"]==false){
         echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>el documento ya existe</div></div>";      }
+        <strong>Error: </strong>datos invalidos</div></div>";      }
 
     } ?>
     <div class="col-md-12">
       <div class="col-md-4">
       </div>
 
-      <form action="<?php  echo RUTA_URL; ?>/Inicio/olvidoCodigo"   method="post">   
+      <form action="<?php  echo RUTA_URL; ?>/Inicio/olvidoCodigo"  method="post">   
           <div class="col-md-4 clase">                             
               <div  class="titulo">
                   ¿Olvido su Código? 
@@ -84,15 +87,15 @@
                 <div class="formulario form-group" >
                   <div class="radio" style="padding-bottom: 50px;">                   
                     <div class="col-md-4 col-sm-4 col-xs-4">               
-                            <input type="radio" name="tdocumento" id="cedulac" value="2" required="" >
+                            <input type="radio" name="tipo_documento" id="cedulac" value="CC" required="" >
                             <label for="cedulac"  >Cédula Ciudadanía</label>
                     </div>                                         
                     <div class="col-md-4 col-sm-4 col-xs-4"> 
-                            <input type="radio" name="tdocumento" id="tarjeta" value="1"  required="" >
+                            <input type="radio" name="tipo_documento" id="tarjeta" value="TI"  required="" >
                             <label for="tarjeta"  >Tarjeta Identidad</label>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">                
-                            <input type="radio" name="tdocumento" id="cedulae" value="3" required="">
+                            <input type="radio" name="tipo_documento" id="cedulae" value="CE" required="">
                             <label for="cedulae">Cédula Extranjería</label>
                     </div>
                   </div>
@@ -100,10 +103,10 @@
                   <div class="col-md-12">
                     <div class="col-md-6 col-sm-6 col-xs-6">  
                         <div class="form-group">
-                          <label  for="docuUsu" class="sr-only" >Documento</label> 
+                          <label  for="documento" class="sr-only" >Documento</label> 
                             <div class="input-group">
                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" id="docuUsu" name="docuUsu" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control">
+                            <input type="text" id="documento" name="documento" required="" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control">
                             </div>
                         </div>
                     </div> 
@@ -112,7 +115,7 @@
                             <label  for="correo" class="sr-only" >Correo</label> 
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                            <input type="text" id="correo" name="correo" autocomplete="OFF"  placeholder="example@correo"  class="form-control" maxlength="30">
+                            <input type="email" id="correo" name="correo" required="" autocomplete="OFF"  placeholder="example@correo"  class="form-control" maxlength="30">
                             </div>
                         </div>
                     </div> 
@@ -120,7 +123,6 @@
                   <div class="col-md-12">
                     <div class="col-md-12 col-sm-12 col-xs-12"> 
                       <div class="form-group ">
-                       <label for="cargo"  class="sr-only">Cargo</label> 
                           <div class="input-group">
                           
                           </div>                    

@@ -21,7 +21,7 @@ Class Aprendices extends Controlador
             }
     }
 
-    //crear aprendiz
+    /*******************************Crear aprendiz *****************************************/
     public function crear()
     {
         session_start();
@@ -36,159 +36,77 @@ Class Aprendices extends Controlador
             {
                 $datos = [
 
-                    'tdocumento' => $_POST['tdocumento'],
-                    'nombre1' => $_POST['pnom'],
-                    'nombre2' => $_POST ['snom'],
-                    'apellido1' => $_POST ['papel'],
-                    'apellido2' => $_POST ['sapel'],
-                    'ndocumento' => $_POST ['documento'],
+                    'tipo_documento' => $_POST['tipo_documento'],
+                    'documento' => $_POST ['documento'],
                     'correo' => $_POST ['correo'],
-                    'tfijo' => $_POST ['tfijo'],
-                    'tcelular' => $_POST ['tcel'],
+                    'primer_nombre' => $_POST['primer_nombre'],
+                    'segundo_nombre' => $_POST ['segundo_nombre'],
+                    'primer_apellido' => $_POST ['primer_apellido'],
+                    'segundo_apellido' => $_POST ['segundo_apellido'],
                     'ficha' => $_POST ['ficha']
                 ];
-
+                    $this->crearModelo->documento($datos);
                 if($this->crearModelo->crear($datos)){
-
                     $_SERVER['crear']=true;
-                    $this->vista('administrador/crearAprendiz');
+                    $ddatos = $this->crearModelo->consultaFicha();
+                
+                    $datos = [ "datos2" => $ddatos ];
+    
+                    $this->vista('administrador/crearAprendiz', $datos);    
+                    
                 }else{
 
-                    $_SERVER['crear']=false;
-                    $this->vista('administrador/crearAprendiz');
+                    $ddatos = $this->crearModelo->consultaFicha();
+                
+                    $datos = [ "datos2" => $ddatos ];
+
+                     $_SERVER['crear']=false;
+
+                    $this->vista('administrador/crearAprendiz', $datos);    
+                    
+                    
 
                 }
-            }else{ $this->vista('administrador/crearAprendiz');}
+            }else{
+
+                $ddatos = $this->crearModelo->consultaFicha();
+
+                $datos = [ "datos2" => $ddatos ];
+
+                $_SERVER['crear']=false;
+
+                $this->vista('administrador/crearAprendiz', $datos);    
+                
+            }
 
         }
 
         
     }
 
-    //cambio de jornada
-    public function cambioJornada(){
-        session_start();
-
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
-
-            header('Location: ../inicio');  
-
-        }else{
-
-            if($_SERVER['REQUEST_METHOD'] == 'POST')
-            {
-                $datos = [
-
-                    'fecha' => $_POST ['FechaJor'],
-                    'tiempo' => $_POST ['TiempoJor'],
-                    'ndocumento' => $_POST ['documento'],
-                    'descripcion' => $_POST ['DesJor']
-                ];
-                if($this->crearModelo->cambioJornada($datos))
-                {
-                    $_SERVER['jornada']=true;
-                    $this->vista('administrador/cambioJornada');
-                }else{
-
-                    $_SERVER['jornada']=false;
-                    $this->vista('administrador/cambioJornada');
-                }
-
-            }else{$this->vista('administrador/cambioJornada');}
-
-        }
-
-    }
-
-    //retiro voluntario
-    public function retiroVoluntario(){
-
+    /******************************Novedades de los aprendices*****************************************/
+    public function novedades($novedad){
         session_start();
 
         if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
             
-        
             header('Location: ../inicio');  
 
         }else{
 
-            if($_SERVER["REQUEST_METHOD"] == "POST")
-            {
-
-                $datos =    [
-
-                    'fecha' => $_POST['fechaRetiro'],
-                    'tiempo'  => $_POST['tiempoRetiro'],
-                    'ndocumento' => $_POST ['documento'],
-                    'observacion' => $_POST ['observacion']
-                ];
-
-                if($this->crearModelo->retiroVoluntario($datos)){
-
-                    $_SERVER['retiroVolutario']=true;
-                    $this->vista('administrador/retiroVoluntario');
-                }else{  
-                    $_SERVER['retiroVolutario']=false;
-                    $this->vista('administrador/retiroVoluntario');
-                }
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
+
+                
             }else{
-
-                $this->vista('administrador/retiroVoluntario');
+                    
+                $this->vista("administrador/aplazamiento");
             }
-
-
         }
-
     }
 
-    //aplazamiento
-
-    public function aplazamiento()
-    {   
-        session_start();
-
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"]))
-        {
-            
-            header('Location: ../inicio');  
-
-        }else{
-
-            if($_SERVER["REQUEST_METHOD"] == "POST")
-            {
-
-                $datos = [
-
-                    'fecha1' => $_POST['FechaIniApla'],
-                    'fecha2' => $_POST['FechaFinaApla'],
-                    'tiempo' => $_POST['TiempoApla'],
-                    'ndocumento' => $_POST ['documento'],
-                    'motivo' => $_POST ['msoloapla'],
-                    'respuesta' => $_POST ['respuestapla']
-                ];
-
-                if($this->crearModelo->aplazamiento($datos)){
-
-                    $_SERVER['aplazamiento']=true;
-                    $this->vista('administrador/aplazamiento');
-
-                }else{
-
-                    $_SERVER['aplazamiento']=false;
-                    $this->vista('administrador/aplazamiento');
-                }
-
-            }else{
-
-                $this->vista('administrador/aplazamiento');
-
-            }
-
-        }
-
-    }
+    
 
     //desercion
     public function desercion()
@@ -214,12 +132,12 @@ Class Aprendices extends Controlador
 
                 if($this->crearModelo->desercion($datos)){
 
-                    $_SERVER['desercion']=true;
+                    $_SERVER['crear']=true;
                     $this->vista('administrador/desercion'); 
 
                 }else{
 
-                $_SERVER['desercion']=false;
+                $_SERVER['crear']=false;
                 $this->vista('administrador/desercion'); 
 
                 }
@@ -232,86 +150,6 @@ Class Aprendices extends Controlador
         }
 
     }
-
-    //traslado
-    public function traslado()
-    {
-        session_start();
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
-
-            $this->vista('Location: ..inicio');
-
-        }else{
-
-            if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-                $datos = [
-                   
-                    'fecha' => $_POST ['FechaTras'],
-                    'hora' => $_POST ['TiempoTras'],
-                    'ndocumento' => $_POST ['documento'],
-                    'motivo' => $_POST ['MotiSoli'],                  
-                    'respuesta' => $_POST ['Res']  
-                ];
-
-                if ($this->crearModelo->traslado($datos)){
-                    $_SERVER['traslado']=true;
-                    $this->vista('administrador/traslado');
-                }else{
-                    
-                    $_SERVER['traslado']=false;
-                    $this->vista('administrador/traslado');
-                }
-            
-            }else{
-                $this->vista('administrador/traslado');
-            }
-        }
-
-    }
-
-    //reintegro
-    public function reintegro()
-    {
-
-        session_start();
-
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
-
-            $this->vista('Location: ..inicio');
-        }else{
-
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            $datos = [
-
-                'fecha1' => $_POST['FechaIniRein'],
-                'fecha2' => $_POST['FechaFinaRein'],
-                'tiempo' => $_POST['TiempoRein'],
-                'ndocumento' => $_POST['documento'],
-                'descripcion' => $_POST['DesRein'],
-            ];
-
-            if ($this->crearModelo->reintegro($datos)){
-
-                $_SERVER['reintegro']=true;
-                $this->vista('administrador/reintegro');
-            }else{
-                $_SERVER['reintegro']=false;
-                $this->vista('administrador/reintegro');
-
-            }
-
-        }else{
-
-            $this->vista('administrador/reintegro');
-             }   
-
-         }
-    }
-
-
- 
 
 }
 

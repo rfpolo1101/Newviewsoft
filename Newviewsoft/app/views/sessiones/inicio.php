@@ -8,9 +8,10 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/logeo.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/formato.css" /> 
-    <script src="main.js"></script>
-</head>
-<body>
+    <link href="<?php echo RUTA_URL ?>/img/logo1.png" rel="shortcut icon" type="image/x-icon" />
+
+</head> 
+<body onload="actualizaReloj()">
 <header>
 
     <!--INICIO IMAGENES LOGO Y SENA-->      
@@ -67,7 +68,7 @@
                 </h4>
               </div>
               <div id="col1" class="panel-collapse collapse in">
-                <div class="panel-body">Somos aprendices del sena, que recrea un software para dichos funcionarios del Sena quienes tienen una tarea muy ardua y estamos aqui para el beneficio de su sociedad y optimizar siendo más facil su viabilidad de trabajo</div>
+                <div class="panel-body">Somos aprendices del sena, que recrea un software para los funcionarios del Sena quienes tienen una tarea muy ardua y estamos aqui para el beneficio de su sociedad y optimizar siendo más facil su viabilidad de trabajo.</div>
               </div>
             </div>
             <div class="panel panel-default">
@@ -77,7 +78,7 @@
                 </h4>
               </div>
               <div id="col2" class="panel-collapse collapse">
-                <div class="panel-body">Queremos ser un software potencial que beneficie el trabajo de sena, en el momento de gestionar las novedades de dichos aprendinces siendo informados.</div>
+                <div class="panel-body">Queremos ser un software potencial que beneficie el trabajo del sena, en el momento de gestionar las novedades de los aprendinces.</div>
               </div>
             </div>
             <div class="panel panel-default">
@@ -100,29 +101,9 @@
         
         <div id="myCarousel" class="carousel slide col-md-5" data-ride="carousel">
           
-          <!-- INDICADORES -->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
+         
 
-          <!-- IMAGENES -->
-
-        <div class="carousel-inner">
-             <div class="item active">
-                <img src="<?php echo RUTA_URL ?>/img/img1.png" alt="TÉCNOLOGIA" title="TÉCNOLOGIA" style="height: 500px;">
-             </div>
-
-             <div class="item">
-                <img src="<?php echo RUTA_URL ?>/img/img4.jpg" alt="TÉCNOLOGIA" title="TÉCNOLOGIA" style="height: 500px;" >
-             </div>
-
-            <div class="item">
-                <img  src="<?php echo RUTA_URL ?>/img/img3.jpg" alt="BIENVENIDOS" title="BIENVENIDOS" style="height: 500px;" >
-            </div>
-        </div>
-
+        
   <!-- CONTROLES DE IZQUIERDA A DERECHA -->
 
             <a class="top carousel-control" href="#myCarousel" data-slide="prev">
@@ -174,9 +155,13 @@
         </footer>
         </section>
 
- <!--BOOTSTRAP JQUERY-->
-     
-    </div>
+ </script>
 
-  </body>
-  </header>
+<!--BOOTSTRAP JQUERY-->
+   <script type="text/javascript" src="<?php echo RUTA_URL ?>/bootstrap/js/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo RUTA_URL ?>/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/reloj.js"></script>
+
+  </div>
+</body>
+</html>

@@ -5,8 +5,8 @@
     {
         private $host = DB_HOST;
         private $usuario = DB_USUARIO;
-        private $password = DB_PASSWORD;
-        private $nombre_base = DB_NOMBRE;
+        private $password = '';
+        private $nombre_base = 'newviewsoft';
 
         private $bdh; //data base
         private $stmt;
@@ -17,12 +17,7 @@
         {
             //configurar la conexion
             $dsn = 'mysql:host='. $this->host . ';dbname=' . $this->nombre_base; 
-           /* $opciones = array(
-
-                PDO::ATTR_PERSISTENT => true,
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-            );*/
-
+         
             //Crear un instancia de PDO
 
             try{
@@ -33,14 +28,16 @@
                 $this->error = $e->getMessage();
                 echo $this->error;
             }
-        }
+        }//FIN CONSTRUCTOR
 
-        //PREPARAMOS LA CONSULTA
+        //PREPARA LA CONSULTA
         public function query($sql)
         {
 
             $this->stmt = $this->bdh->prepare($sql);
-        }
+
+        }//FIN CONSULTA
+
 
         //VINCULAMOS EL BIND
         public function bind($parametro,$valor,$tipo = null )
@@ -65,14 +62,16 @@
                  }
              }
 
-             $this->stmt->bindValue($parametro, $valor, $tipo);
-        }
+             $this->stmt->bindParam($parametro, $valor, $tipo);
+        }//FIN  BINDVALUE
+
 
         //EJECUTAMOS LA CONSULTA
         public function execute()
         {
           return  $this->stmt->execute();
-        }
+        }//FIN EXECUTE
+        
         
         //obtenemos registros con obj
         public  function objetos()
@@ -82,17 +81,13 @@
         }
 
         //obtenemos registro con obj
-        public  function objeto()
-        {
-            $this->execute();
-            return $this->stmt->fetch(PDO::FETCH_OBJ);
-        }
-        //obtenemos registro con assoc
         public  function assoc()
         {
             $this->execute();
-            return $this->stmt->fetch(PDO :: FETCH_ASSOC);
+            return $this->stmt->fetch(PDO::FETCH_ASSOC);
         }
+        
+     
 
         //regitro 1 o 0
         public function rowCount()

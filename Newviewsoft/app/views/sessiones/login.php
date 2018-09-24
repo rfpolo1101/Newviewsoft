@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/logeo.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/formato.css" /> 
+    <link href="<?php echo RUTA_URL ?>/img/logo1.png" rel="shortcut icon" type="image/x-icon" />
+
 </head>
 <body>
   <header>
@@ -57,7 +59,7 @@
     
       if ($_SERVER["inicio"]==false){
         echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>datos invalidos</div></div>";      }
+        <strong>Error:  </strong>datos invalidos o no tiene permiso para ingresar</div></div>";      }
 
     } ?>
 
@@ -75,7 +77,7 @@
           
                 
               <div  class="titulo">
-                  Logeo
+                  Iniciar Sesion
                    
               </div>     
                    
@@ -83,15 +85,15 @@
                 
                   <div class="radio" style="padding-bottom: 50px;">                   
                     <div class="col-md-4 col-sm-4 col-xs-4">               
-                            <input type="radio" name="tdocumento" id="cedulac" value="2"  >
+                            <input type="radio" name="tipo_documento" id="cedulac" value="CC" required=""  >
                             <label for="cedulac"  >Cédula Ciudadanía</label>
                     </div>                                         
                     <div class="col-md-4 col-sm-4 col-xs-4"> 
-                            <input type="radio" name="tdocumento" id="tarjeta" value="1" >
+                            <input type="radio" name="tipo_documento" id="tarjeta" value="TI"  required="" >
                             <label for="tarjeta"  >Tarjeta Identidad</label>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-4">                
-                            <input type="radio" name="tdocumento" id="cedulae" value="3" >
+                            <input type="radio" name="tipo_documento" id="cedulae" value="CE" required="" >
                             <label for="cedulae">Cédula Extranjería</label>
                     </div>
                   </div>
@@ -102,52 +104,33 @@
                         <!--validacion numero documento-->
                           
                           <!--fin validacion numero de documento-->
-                          <label  for="docuUsu" class="sr-only" >Documento</label> 
+                          <label  for="documento" class="sr-only" >Documento</label> 
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" id="docuUsu" name="docuUsu" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control">
+                            <input type="text" id="documento" name="documento" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control" required="">
                             </div>
                         </div>
                     </div> 
                   </div>
                   <div class="col-md-12">
-                    <div class="col-md-12 col-sm-12 col-xs-12"> 
-                      <div class="form-group ">
-                       <label for="cargo"  class="sr-only">Cargo</label> 
-                          <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-briefcase"></i></span>  
-                          <select name="cargo" id="cargo" class="form-control">
-                          <option disabled="disabled">Seleccione Cargo</option>
-                          <option value="4">Invitado</option>
-                          <option value="2">Apoyo Administrativo</option>
-                          <option value="1">Administrador</option></select>
-                          </div>                    
-                      </div>
-                    </div>
                        <div class="col-md-12 col-sm-12 col-xs-12">  
                         <div class="form-group">                          
-                          <label  for="codigo" class="sr-only" >Código</label>
+                          <label  for="codigo" class="sr-only" >Password</label>
                            <!---validacion php tipo documento-->
                           <!---fin validacion tipo documento-->
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" id="codigo" name="password" autocomplete="OFF"  placeholder="Código"  class="form-control"  maxlength="8">
+                            <input type="password" id="password" name="password" autocomplete="OFF"  placeholder="Password"  class="form-control"   required="">
                             </div>
                         </div>
                     </div> 
                   <div class="col-md-4 col-md-offset-4" style="padding-bottom: 25px;"> 
                     <input type="submit" name="enviar" id="" value="Ingresar"  class="btn btn-primary btn-block" >
 
-                   
-                  </div>  
-                 
-          </div>         
+                  </div>        
+             </div>        
+      </form>
 
-                
-        </form>
-
-
- 
         <div class="col-md-4"> 
         </div>
     </div>

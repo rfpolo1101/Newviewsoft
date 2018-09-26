@@ -125,6 +125,7 @@ class Sessiones
                     if($cargo['tipo_rol'] == 'Administrador'){
 
                             $_SESSION['Administrador'] = 4 ;
+                            $_SESSION["ddocumento"] = $cargo["documento"];
                             $_SESSION['nombre']=$cargo["primer_nombre"];
                             $_SESSION['apellido']=$cargo["primer_apellido"];
                             return true;

@@ -12,13 +12,13 @@
     
 
       <!--CONEXIÓN HOJAS DE ESTILO-->
-      <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/menu.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/foondo.css">
 
       <title>NewViewSoft</title>
 
     </head>
 
-  <body>
+<body onload="actualizaReloj()">
 
   <header>
 
@@ -26,14 +26,14 @@
 
    <nav class="navbar navbar-fixed-top navbar-inverse"  >
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#inicial">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span> 
           </button>
           <a class="navbar-brand" href="#"></a>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse" id="inicial">
           <ul class="nav navbar-nav">
             <li class="media-left">
                 <div class="media">
@@ -178,7 +178,6 @@
 
     </div>
   </section>
-
 <!--TÉRMINO DE PÁGINA-->
 
         <section style="margin-top: 20px; padding-top: 20px; background-color: rgba(0, 0, 0, .9); color: #fff;" class="col-md-12">
@@ -212,6 +211,18 @@
   <!--BOOTSTRAP JQUERY-->
   <script type="text/javascript" src="<?php echo RUTA_URL; ?>/bootstrap/js/jquery.js"></script>
       <script type="text/javascript" src="<?php echo RUTA_URL; ?>/bootstrap/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/reloj.js"></script>
+
     </div>
+    <script>
+      $(document).ready(function(){
+        $('.dropdown-submenu a.test').on("click", function(e){
+          $(this).next('ul').toggle();
+          e.stopPropagation();
+          e.preventDefault();
+        });
+      });
+    </script>
+
 </body>
 </html>

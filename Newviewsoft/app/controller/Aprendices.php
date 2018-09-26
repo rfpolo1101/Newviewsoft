@@ -85,10 +85,10 @@ Class Aprendices extends Controlador
     }
 
     /******************************Novedades de los aprendices*****************************************/
-    public function novedades($novedad){
+    public function novedades($tipos){
         session_start();
 
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
+        if(!isset($_SESSION['ApoyoAdministrador']) and !isset($_SESSION["Administrador"])){
             
             header('Location: ../inicio');  
 
@@ -96,12 +96,55 @@ Class Aprendices extends Controlador
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+                
+                if($tipos == "cambio-jornada"){
 
+                    $novedad = "1";
+                }
+                if($tipos == "retiro-voluntario"){
+                    
+                    $novedad = "2";
+                }
+                if($tipos == "aplazamiento"){
 
+                    $novedad = "3";
+                }
+                if($tipos == "traslado"){
+
+                    $novedad = "5";
+                }
+                if($tipos == "reintegro"){
+
+                    $novedad = "6";
+                }
+
+                $datos = [
+
+                    "fecha_inicio" => $_POST["fecha_inicial"],
+                    "fecha_fin" => $_POST["fecha_final"],
+                    "tipo_documento" => $_POST["tipo_documento"],
+                    "documento" => $_POST["documento"],
+                    "motivo" => $_POST["motivo"],
+                    "respuesta" => $_POST["respuesta"],
+                    "novedad" => $novedad
+
+                ];
+
+                $this->crearModelo->documento($datos);
+                if($this->crearModelo->tipo_novedades($datos)){
+
+                    $_SERVER["crear"] = true;
+                    $this->vista("administrador/" . $tipos);
+
+                }else{
+                    $_SERVER["crear"] = false;
+                    $this->vista("administrador/" . $tipos);
+
+                }
                 
             }else{
                     
-                $this->vista("administrador/aplazamiento");
+                $this->vista("administrador/" . $tipos);
             }
         }
     }
@@ -109,7 +152,7 @@ Class Aprendices extends Controlador
     
 
     //desercion
-    public function desercion()
+    public function novedad($desercion)
     {   
         session_start();
         if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
@@ -118,35 +161,44 @@ Class Aprendices extends Controlador
 
         }else{
 
-            if($_SERVER['REQUEST_METHOD'] == "POST"){
+           if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                
+                if($desercion == "desercion"){
+
+                    $novedad = "4";
+                }
+              
 
                 $datos = [
 
-                    'fecha1' => $_POST ['FechaIniD'],
-                    'fecha2' => $_POST ['FechaFinaD'],
-                    'tiempo' => $_POST ['TiempoDeser'],
-                    'ndocumento' => $_POST ['documento'],
-                    'penalizacion' => $_POST ['penalizacion'],
-                    'docInstructor' => $_POST ['docuInstruc']
+                    "fecha_inicio" => $_POST["fecha_inicial"],
+                    "fecha_fin" => $_POST["fecha_final"],
+                    "tipo_documento" => $_POST["tipo_documento"],
+                    "documento" => $_POST["documento"],
+                    "motivo" => $_POST["motivo"],
+                    "fallas" => $_POST["fallas"],
+                    "respuesta" => $_POST["respuesta"],
+                    "novedad" => $novedad
+
                 ];
 
-                if($this->crearModelo->desercion($datos)){
+                $this->crearModelo->documento($datos);
+                if($this->crearModelo->tipo_novedad($datos)){
 
-                    $_SERVER['crear']=true;
-                    $this->vista('administrador/desercion'); 
+                    $_SERVER["crear"] = true;
+                    $this->vista("administrador/" . $desercion);
 
                 }else{
-
-                $_SERVER['crear']=false;
-                $this->vista('administrador/desercion'); 
+                    $_SERVER["crear"] = false;
+                    $this->vista("administrador/" . $desercion);
 
                 }
-
+                
             }else{
-
-                $this->vista('administrador/desercion');
+                    
+                $this->vista("administrador/" . $desercion);
             }
-
         }
 
     }

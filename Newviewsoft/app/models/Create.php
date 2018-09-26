@@ -55,7 +55,9 @@
             if($busca==0){
 
                 
-                $this->db->query("INSERT INTO ficha (codigo_ficha,fk_sede,fk_jornada,fk_tipo_formacion,fk_modalidad,fk_programa_formacion,fk_trimestre) VALUES (?,?,?,?,?,?,?)");
+                $this->db->query("INSERT INTO ficha (codigo_ficha,fk_sede,fk_jornada,fk_tipo_formacion,fk_modalidad,fk_programa_formacion,fk_trimestre) 
+                                    VALUES (?,?,?,?,?,?,?)");
+                                    
                 $this->db->bind(1, strip_tags($datos["ficha"]));
                 $this->db->bind(2, strip_tags($datos["sede"]));
                 $this->db->bind(3, strip_tags($datos["jornada"]));

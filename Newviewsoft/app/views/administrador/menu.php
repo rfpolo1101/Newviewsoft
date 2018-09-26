@@ -12,7 +12,7 @@
     
 
       <!--CONEXIÓN HOJAS DE ESTILO-->
-      <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/menu.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/foondo.css">
 
       <title>NewViewSoft</title>
 
@@ -25,14 +25,14 @@
     <!--Nombre y Apellido usuario-->   
    <nav class="navbar navbar-fixed-top navbar-inverse"  >
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar" aria-expanded="true">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span> 
           </button>
           <a class="navbar-brand" href="#"></a>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li class="media-left">
                 <div class="media">
@@ -74,59 +74,77 @@
  <!--MENU PRINCIPAL--> 
 
 
-<nav class="navbar navbar-inverse">
-<div class="navbar-header">
-  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span> 
-  </button>
-  <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/admtd/">MENÚ</a>
-</div>
-<div class="collapse navbar-collapse" id="myNavbar">
-  <ul class="nav navbar-nav">
-    <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
-    <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
-    <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
-
-            <ul class="dropdown-menu" >
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Cambios de jornada</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Retiro voluntario</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Aplazamientos</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Deserciones</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Traslados</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Reintegro</a></li>
-            </ul>
-    </li>
-  </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-         <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
-
-                <ul class="dropdown-menu" >
-                  <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
-                  <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-question-sign "></span> Ayuda</a></li>
-                  <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
-                </ul>
-        </li> 
-      </ul>
-
-<!--buscar usuarios-->
-      <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
-        <div class="form-group">
-          <input type="text" id="usuarios" name="usuarios" placeholder="usuarios" class="form-control">
-        </div>
-        <button type="sumit" class="btn btn-primary">
-          <span class="glyphicon glyphicon-search"></span>
+    <nav class="navbar navbar-inverse">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="true">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
         </button>
-      </form>
+        <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/admtd/">MENÚ</a>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+          <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
+          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
+          <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
 
-    </div>
-  </div>
-</nav>
+                  <ul class="dropdown-menu" >
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/cambio-jornada"> Cambios de jornada</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/retiro-voluntario"> Retiro voluntario</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/aplazamiento"> Aplazamiento</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedad/desercion"> Deserciones</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/traslado"> Traslado</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/reintegro"> Reintegro</a></li>
+                  </ul>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
+
+                  <ul class="dropdown-menu" >
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>permisos</a></li>
+                    <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                  </ul>
+          </li> 
+        </ul>
+
+    <!--buscar usuarios-->
+          <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
+            <div class="dropdown btn-group">
+              <button type="button" class="btn btn-default">Buscador</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <span class="caret"></span>
+                  <span class="sr-only">Buscador</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/usuarios">Usuarios</a></li>
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendices</a></li>
+                <li class="dropdown-submenu">
+                  <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/1">Cambio Jornada</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Retiro voluntario</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Aplazamiento</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Deserción</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Traslado</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Reintegro</a></li>
+
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </nav>
 
 </header>
 
@@ -235,5 +253,15 @@
       <script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/reloj.js"></script>
 
     </div>
+    <script>
+      $(document).ready(function(){
+        $('.dropdown-submenu a.test').on("click", function(e){
+          $(this).next('ul').toggle();
+          e.stopPropagation();
+          e.preventDefault();
+        });
+      });
+    </script>
+
 </body>
 </html>

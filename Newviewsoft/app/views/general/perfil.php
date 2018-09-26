@@ -1,6 +1,6 @@
 <?php require RUTA_APP . '/views/inicio/header.php' ?>
 
-<form action="<?php RUTA_URL; ?>/usuario/perfil"  method="POST">   
+<form action="<?php echo RUTA_URL; ?>/usuario/perfil"  method="POST">   
     <div class="col-md-12">
       <div class="col-md-3">
       </div>
@@ -18,17 +18,18 @@
               <div class="col-md-12"> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                   <div class="form-group">
-                    <label  for="primerNom" class="sr-only" >Nombres</label> 
+                    <label>Documento</label> 
                       <div class="">
-                      <input type="text" id="primerNom" name="primerNom" autocomplete="OFF" required="" placeholder=" Primer Nombre"  class="form-control">
+                      <input type="text" id="documento" name="" autocomplete="OFF" required="" placeholder="Documento"  class="form-control" 
+                      value="<?php foreach($datos  ['datos'] as $datos1){echo substr($datos1->documento,2);}?>" disabled>
                       </div>
                   </div>
                 </div> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                   <div class="form-group">
-                    <label  for="segunNom" class="sr-only" ></label> 
+                    <label >correo</label> 
                       <div class="">
-                      <input type="text" id="segunNom" name="segunNom" autocomplete="OFF" required="" placeholder=" Segundo Nombre"  class="form-control">
+                      <input type="text" id="correo" name="correo" autocomplete="OFF" required="" placeholder="correo"  class="form-control"  value="<?php foreach($datos  ['datos'] as $datos1){echo $datos1->correo;}?>">
                       </div>
                   </div>
                 </div> 
@@ -36,17 +37,17 @@
               <div class="col-md-12"> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                   <div class="form-group">
-                    <label  for="primerApel" class="sr-only" >Apellidos</label> 
+                    <label >Primer nombre</label> 
                       <div class="">
-                      <input type="text" id="primerApel" name="primerApel" autocomplete="OFF" required="" placeholder=" Primer Apellido"  class="form-control">
+                      <input type="text" id="primer_nombre" name="primer_nombre" autocomplete="OFF" required="" placeholder=" Primer nombre"  class="form-control"  value="<?php foreach($datos  ['datos'] as $datos1){echo $datos1->primer_nombre;}?>">
                       </div>
                   </div>
                 </div> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                   <div class="form-group">
-                    <label  for="segunApel" class="sr-only" ></label> 
+                    <label>Segundo_nombre</label> 
                       <div class="">
-                      <input type="text" id="segunApel" name="segunApel" autocomplete="OFF" required="" placeholder=" Segundo Apellido"  class="form-control">
+                      <input type="text" id="segundo_nombre" name="segundo_nombre" autocomplete="OFF" required="" placeholder=" Segundo nombre"  class="form-control"  value="<?php foreach($datos  ['datos'] as $datos1){echo $datos1->segundo_nombre;}?>">
                       </div>
                   </div>
                 </div> 
@@ -54,53 +55,34 @@
               <div class="col-md-12">
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                     <div class="form-group">
-                      <label  for="docuUsu" class="sr-only" >Documento</label> 
+                      <label>Primer_apellido</label> 
                         <div class="">
-                        <input type="text" id="docuUsu" name="docuUsu" autocomplete="OFF" required="" placeholder="Documento"  class="form-control">
+                        <input type="text" id="primer_apellido" name="primer_apellido" autocomplete="OFF" required="" placeholder="Primer apellido"  class="form-control"  value="<?php foreach($datos  ['datos'] as $datos1){echo $datos1->primer_apellido;}?>">
                         </div>
                     </div>
                 </div> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                     <div class="form-group">
-                      <label  for="emailC" class="sr-only" >Email</label> 
+                      <label>Segundo apellido</label> 
                         <div class="">
-                        <input type="email" id="emailC" name="emailC" autocomplete="OFF" required="" placeholder=" email@correo"  class="form-control">
+                        <input type="text" id="segundo_apellido" name="segundo_apellido" autocomplete="OFF" required="" placeholder="Segundo apellido"  class="form-control"  value="<?php foreach($datos  ['datos'] as $datos1){echo $datos1->segundo_apellido;}?>">
                         </div>
                     </div>
                 </div> 
               </div>
-              <div class="col-md-12"> 
-                <div class="col-md-6 col-sm-6 col-xs-6">  
-                  <div class="form-group">
-                    <label  for="teleF" class="sr-only" >Teléfonos</label> 
-                      <div class="">
-                      <input type="text" id="teleF" name="teleF" autocomplete="OFF" required="" placeholder="Teléfono Fijo"  class="form-control">
-                      </div>
-                  </div>
-                </div> 
-                <div class="col-md-6 col-sm-6 col-xs-6">  
-                  <div class="form-group">
-                    <label  for="teleC" class="sr-only" ></label> 
-                      <div class="">
-                      <input type="text" id="teleC" name="teleC" autocomplete="OFF" required="" placeholder="Teléfono Celular"  class="form-control">
-                      </div>
-                  </div>
-                </div>
-              </div>
+             
+                
               <div class="col-md-12"> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                   <div class="form-group">
                     <label  for="direccion" class="sr-only" >Dirección</label> 
-                      <div class="">
-                      <input type="text" id="direccion" name="direccion" autocomplete="OFF" required="" placeholder="Dirección"  class="form-control">
-                      </div>
-                  </div>
-                </div> 
-                <div class="col-md-6 col-sm-6 col-xs-6">  
+                   
+                </div></div>
+                <div class="col-md-12 col-sm-12 col-xs-12">  
                   <div class="form-group">
-                    <label  for="fechaN" class="sr-only" >Fecha Nacimiento</label> 
+                    <label >Contraseña</label> 
                       <div class="">
-                      <input type="text" id="fechaN" name="fechaN" autocomplete="OFF" required="" placeholder="Fecha Nacimiento"  class="form-control">
+                      <input type="pas" id="contrasena" name="contrasena" autocomplete="OFF" required="" placeholder="Contraseña"  class="form-control">
                       </div>
                   </div>
                 </div>
@@ -108,9 +90,8 @@
               <div class="col-md-12">
                 <div class="col-md-12 col-sm-12 col-xs-12"> 
                   <div class="form-group ">
-                   <label for="cargo"  class="sr-only">Cargo</label> 
                       <div class="input-group">
-
+                      <a hrft="">Cambiar contraseña</a>
                       </div>                    
                   </div>
                 </div>

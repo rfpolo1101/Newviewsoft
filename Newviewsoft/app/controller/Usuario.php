@@ -33,69 +33,96 @@
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
                 $datos = [
-                    'ndocumento' => $_POST['documento'],
+                    "tipo_documento" => $_POST["tipo_documento"],
+                    'documento' => $_POST['documento'],
                     'cargo' => $_POST['cargo']
-                        ];
+                ];
 
+                $this->usuarioModelo->documento($datos);
              if($this->usuarioModelo->asignar($datos)){
 
                 $_SERVER["asignar"]=true;
-                $this->vista('administrador/asignarRol');
+                $this->vista('administrador/asignar-rol');
             }else{
 
                 $_SEVER["asignar"]=false;
-                $this->vista('administrador/asignarRol');
+                $this->vista('administrador/asignar-rol');
 
             }
             }else{ 
 
-                $this->vista('administrador/asignarRol');
-
+                $this->vista('administrador/asignar-rol');
             }
-        
-        
-         }
-
-
-        
+          }
         }
 
         public function perfil()
         {
-            session_start();
-            
-                 if(!isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo Administrador']) && !isset($_SESSION['Invitado']))
-            {
-                $this->vista('Location: ..inicio');
-            }else{
+                session_start();
+                
+                    if(!isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo Administrador']) && !isset($_SESSION['Invitado']))
+                {
+                    $this->vista('Location: ..inicio');
+                }else{
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST')
-            {
-                $datos = [
-                    'ndocumento' => $_POST['documento'],
-                    'cargo' => $_POST['cargo']
-                        ];
+                if($_SERVER['REQUEST_METHOD'] == 'POST')
+                {
+                    $datos = [
 
-             if($this->usuarioModelo->asignar($datos)){
+                        "correo" => $_POST["correo"],
+                        "primer_nombre" => $_POST["primer_nombre"],
+                        "segundo_nombre" => $_POST["segundo_nombre"],
+                        "primer_apellido" => $_POST["primer_apellido"],
+                        "segundo_apellido" => $_POST["segundo_apellido"],
+                        "contrasena" => $_POST["contrasena"]
 
-                $_SERVER["asignar"]=true;
-                $this->vista('administrador/asignarRol');
-            }else{
 
-                $_SEVER["asignar"]=false;
-                $this->vista('administrador/asignarRol');
+                    ];
+                    
+                    
+                if($this->usuarioModelo->actualizarPefil($datos)){
 
+                    $resul = $this->usuarioModelo->perfiles();
+
+                    $dato = [
+
+                        "datos" => $resul
+                    ];
+                    $_SERVER["asignar"]=true;
+                    $this->vista('general/perfil',$dato);
+                }else{
+
+                    $resul = $this->usuarioModelo->perfiles();
+
+                    $dato = [
+
+                        "datos" => $resul
+                    ];
+                    $_SERVER["asignar"]=false;
+                    $this->vista('general/perfil',$dato);
+                }
+                }else{ 
+                    $resul = $this->usuarioModelo->perfiles();
+
+                    $dato = [
+
+                        "datos" => $resul
+                    ];
+                    $_SERVER["asignar"]=true;
+                    $this->vista('general/perfil',$dato);
+
+                }   
             }
-            }else{ 
-
-                $this->vista('administrador/asignarRol');
-
-            }
-            
-            
         }
 
-    }
+
+
+        public function actualizarNovedad()
+        {
+            
+
+
+        }
 
 }
 

@@ -37,46 +37,57 @@
     
             }else{
     
-                if($_SERVER['REQUEST_METHOD'] == 'POST')
-                {
-                    $datos = [
-                        
-                        'usuarios' => $_POST ['usuarios']                       
-                    ];
-                    
-                    if($this->buscarModelo->user($datos))
-                    {
-                    
-                        $resul = $this->buscarModelo->devuelveUser();
+                $resul = $this->buscarModelo->devuelveUser();
 
-                        
-                        $dato=[
-                            'datos' => $resul ];
+                $datos=['datos' => $resul ];
                             
-                            $_SESSION["busqueda"]=true;
-
-                           $this->vista('busquedas/usuario',$dato);
-                            
-
-                    }else{
-                        $this->vista('busquedas/usuario');
-                        $_SESSION["busqueda"]=false;
-
-                    }
-    
-                }else{          
-                    $this->vista('busquedas/usuario');
-                    $_SESSION["busqueda"]=false;
-
-                }
-    
+                $this->vista('busquedas/usuario',$datos);
             }
-           
-
         }      
+    
+
+    public function aprendices()
+    {
+        session_start();
+
+        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Invitado"])){
+
+            header('Location: ../inicio');  
+
+        }else{
+
+            $resul = $this->buscarModelo->devuelveUser();
+
+            $datos=['datos' => $resul ];
+                        
+            $this->vista('busquedas/Aprendiz',$datos);
+        }
+    }      
+
+
+
+public function novedades($buscar)
+{
+    session_start();
+
+    if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Invitado"])){
+
+        header('Location: ../inicio');  
+
+    }else{
         
 
+        $resul = $this->buscarModelo->devuelveNovedades();
+
+        $datos=['datos' => $resul,
+                'xd' => $buscar
+                ];
+
+                    
+        $this->vista('busquedas/novedades', $datos);
     }
+}      
+}
 
 
 

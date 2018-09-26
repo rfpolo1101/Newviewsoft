@@ -63,22 +63,24 @@ class User
     }
 
     public function actualizarPefil($datos){
+        print_r($datos);
 
-        $this->db->query("SELECT * FROM datos_persona WHERE documento= ? ");
+        $this->db->query("SELECT * FROM dato_persona WHERE documento = ? ");
         $this->db->bind(1, $_SESSION["ddocumento"]);
         $this->db->execute();
         $busca=$this->db->rowCount();
-        
+        echo $busca;
         if($busca==1){
-          $this->db->query("UPDATE dato_persona SET primer_nombre = :pnom, segundo_nombre = :snom, primer_apellido = :papellido,
-                         segundo_apellido = :sapellido, correo = :mail WHERE contrasena = :contra");
+          $this->db->query("UPDATE dato_persona SET primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?,
+                         segundo_apellido = ?, correo = ? WHERE documento = ? AND contrasena = ? ");
                          
-          $this->db->bind(':pnom', strip_tags( ucwords(strtolower($datos["primer_nombre"]))));
-          $this->db->bind(':snom',strip_tags( ucwords(strtolower($datos["segundo_nombre"]))));
-          $this->db->bind(':papellido',strip_tags( ucwords(strtolower($datos["primer_apellido"]))));
-          $this->db->bind(':sapellido',strip_tags( ucwords(strtolower($datos["segundo_apellido"]))));
-          $this->db->bind(':mail',strip_tags( ucwords(strtolower($datos["correo"]))));
-          $this->db->bind(':contra', md5($datos["contrasena"]));
+          $this->db->bind(1, strip_tags( ucwords(strtolower($datos["primer_nombre"]))));
+          $this->db->bind(2,strip_tags( ucwords(strtolower($datos["segundo_nombre"]))));
+          $this->db->bind(3,strip_tags( ucwords(strtolower($datos["primer_apellido"]))));
+          $this->db->bind(4,strip_tags( ucwords(strtolower($datos["segundo_apellido"]))));
+          $this->db->bind(5,strip_tags( ucwords(strtolower($datos["correo"]))));
+          $this->db->bind(6, $_SESSION["ddocumento"]);
+          $this->db->bind(7, strip_tags(md5($datos['password'])));
           $this->db->execute();
           $result=$this->db->rowCount();
           if($result==1)

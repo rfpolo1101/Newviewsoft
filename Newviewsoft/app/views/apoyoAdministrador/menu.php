@@ -23,32 +23,41 @@
   <header>
 
     <!--Nombre y Apellido usuario-->   
-
    <nav class="navbar navbar-fixed-top navbar-inverse"  >
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#inicial">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar" aria-expanded="true">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span> 
           </button>
           <a class="navbar-brand" href="#"></a>
         </div>
-        <div class="collapse navbar-collapse" id="inicial">
+        <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li class="media-left">
                 <div class="media">
                   <div class="input-group">
                    <a href="#"><img src="<?php echo RUTA_URL; ?>/img/icono_perfil.jpg" class="img-rounded" style="width: 35px; height: 35px;"></a>
-                   <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary"><span><?php echo "Apoyo Administrador:  " . $_SESSION ["ApoyoAdministrador"]; ?></span></button></a>
+                   <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary">
+                       <span><?php if(isset($_SESSION['Administrador'])){ echo "Administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} 
+                       if(isset($_SESSION['Apoyo_admin'])){ echo "Apoyo dministrador:  ". $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} if(isset($_SESSION['Invitado'])){ echo "Invitado:  " . $_SESSION ["Invitado"];}?></span></button></a>
                   </div> 
                 </div>
+                
             </li>  
+           
           </ul>
+          <div class="media">
+                <div >
+                  <div id="Fecha_Reloj"></div>
+                </div>
+              </div>
 
             <ul class="nav navbar-nav navbar-right">
             </ul>
         </div>
       </div>
+  </nav>
   </nav>
     <!--INICIO IMAGENES LOGO Y SENA-->   
 
@@ -57,66 +66,82 @@
            <a href="" ><img src="<?php echo RUTA_URL; ?>/img/logo.png" alt="NewViewSoft" title="NewViewSoft" style="position:relative; top:28px; width: 648px;"></a>
           </div>
           <div>
-           <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/"><img src="<?php echo RUTA_URL; ?>/img/intro.png" alt="NewViewSoft" title="NewViewSoft" style="position:absolute; width:160px; left:1110px; top:55px;"></a>
+          <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/"><img src="<?php echo RUTA_URL ?>/img/intro.png" alt="NewViewSoft" title="NewViewSoft" style="position:absolute; width:156px; left:85%; top:60px;"></a>
           </div>
 	 </nav>
         
 
-  <!--MENU PRINCIPAL--> 
+ <!--MENU PRINCIPAL--> 
 
 
-<nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand" href="menu">MENÚ</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li ><a href=""><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
-        <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
-        <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
+    <nav class="navbar navbar-inverse">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="true">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/apymd/">MENÚ</a>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+          <li ><a href="<?php echo RUTA_URL; ?>/nvs/apymd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
+          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
+          <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
 
-                <ul class="dropdown-menu" >
-                <li><a href="<?php echo RUTA_URL ?>/aprendices/cambioJornada/"> Cambios de jornada</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/retiroVoluntario/"> Retiro voluntario</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/aplazamiento/"> Aplazamientos</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/desercion/"> Deserciones</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/traslado/"> Traslados</a></li>
-              <li><a href="<?php echo RUTA_URL ?>/aprendices/reintegro/"> Reintegro</a></li>
-                </ul>
-        </li>
-      </ul>
+                  <ul class="dropdown-menu" >
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/cambio-jornada"> Cambios de jornada</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/retiro-voluntario"> Retiro voluntario</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/aplazamiento"> Aplazamiento</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedad/desercion"> Deserciones</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/traslado"> Traslado</a></li>
+                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/reintegro"> Reintegro</a></li>
+                  </ul>
+          </li>
+        </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-         <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
 
-                <ul class="dropdown-menu" >
-              <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-question-sign "></span> Ayuda</a></li>
-                  <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
-                </ul>
-        </li> 
-      </ul>
+                  <ul class="dropdown-menu" >
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                    <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                  </ul>
+          </li> 
+        </ul>
 
     <!--buscar usuarios-->
-    <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
-        <div class="form-group">
-          <input type="text" id="usuarios" name="usuarios" placeholder="usuarios" class="form-control">
-        </div>
-        <button type="sumit" class="btn btn-primary">
-          <span class="glyphicon glyphicon-search"></span>
-        </button>
-      </form>
+          <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
+            <div class="dropdown btn-group">
+              <button type="button" class="btn btn-default">Buscador</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <span class="caret"></span>
+                  <span class="sr-only">Buscador</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendices</a></li>
+                <li class="dropdown-submenu">
+                  <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/1">Cambio Jornada</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Retiro voluntario</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Aplazamiento</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Deserción</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Traslado</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Reintegro</a></li>
 
-    </div>
-  </div>
-</nav>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </nav>
 
 </header>
 
@@ -168,16 +193,14 @@
         </div>
 
         <div class="col-md-3">
-          <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
-            
-                  <li class="divider"></li>  
-                </ul>
+   
             </li>
           </ul>
         </div>
 
     </div>
   </section>
+
 <!--TÉRMINO DE PÁGINA-->
 
         <section style="margin-top: 20px; padding-top: 20px; background-color: rgba(0, 0, 0, .9); color: #fff;" class="col-md-12">

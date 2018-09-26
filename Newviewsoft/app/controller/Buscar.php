@@ -18,7 +18,7 @@
             if(isset($_SESSION['Administrador'])){   
             $this->vista('/inicio/admtd');    
             }
-            if(isset($_SESSION['ApoyoAdministrador'])){   
+            if(isset($_SESSION['Apoyo_admin'])){   
                 $this->vista('/inicio/apymd');    
                 }
                  if(isset($_SESSION['Invitado'])){   
@@ -31,7 +31,7 @@
         {
             session_start();
 
-            if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Invitado"])){
+            if(!isset($_SESSION['Apoyo_admin']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Instructor"])){
     
                 header('Location: ../inicio');  
     
@@ -50,7 +50,7 @@
     {
         session_start();
 
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Invitado"])){
+        if(!isset($_SESSION['Apoyo_admin']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Instructor"])){
 
             header('Location: ../inicio');  
 
@@ -70,7 +70,7 @@ public function novedades($buscar)
 {
     session_start();
 
-    if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Invitado"])){
+    if(!isset($_SESSION['Apoyo_admin']) and  !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Instructor"])){
 
         header('Location: ../inicio');  
 

@@ -57,7 +57,7 @@
                    <a href="#"><img src="<?php echo RUTA_URL; ?>/img/icono_perfil.jpg" class="img-rounded" style="width: 35px; height: 35px;"></a>
                    <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary">
                        <span><?php if(isset($_SESSION['Administrador'])){ echo "Administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} 
-                       if(isset($_SESSION['ApoyoAdministrador'])){ echo "Administrador:  " . $_SESSION ["ApoyoAdministrador"];} if(isset($_SESSION['Invitado'])){ echo "Invitado:  " . $_SESSION ["Invitado"];}?></span></button></a>
+                       if(isset($_SESSION['Apoyo_admin'])){ echo "apoyo administrador:  " . $_SESSION ["nombre"] . " " .  $_SESSION["apellido"];} if(isset($_SESSION['Instructor'])){ echo "Instructor:  " . $_SESSION ["nombre"] . " " .  $_SESSION["apellido"];}?></span></button></a>
                   </div> 
                 </div>
                 
@@ -87,15 +87,17 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span> 
   </button>
-  <a class="navbar-brand" href="<?php if(isset($_SESSION['Administrador'])){ echo RUTA_URL . '/nvs/admtd/';}if(isset($_SESSION['ApoyoAdministrador'])){ echo RUTA_URL . '/nvs/apymd/';} ?>">MENÚ</a>
+  <a class="navbar-brand" href="<?php if(isset($_SESSION['Administrador'])){ echo RUTA_URL . '/nvs/admtd/';}if(isset($_SESSION['Apoyo_admin'])){ echo RUTA_URL . '/nvs/apymd/';} if(isset($_SESSION['Instructor'])){ echo RUTA_URL . '/nvs/ivtd/';} ?>">MENÚ</a>
+  
 </div>
+<?php  if(isset($_SESSION['Administrador']) || isset($_SESSION['Apoyo_admin'])):  ?>
+
 <div class="collapse navbar-collapse" id="menu">
   <ul class="nav navbar-nav">
-    <li ><a href="<?php if(isset($_SESSION['Administrador'])){ echo RUTA_URL . '/nvs/admtd/';}if(isset($_SESSION['ApoyoAdministrador'])){ echo RUTA_URL . '/nvs/apymd/';} ?>"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
+    <li ><a href="<?php if(isset($_SESSION['Administrador'])){ echo RUTA_URL . '/nvs/admtd/';}if(isset($_SESSION['Apoyo_admin'])){ echo RUTA_URL . '/nvs/apymd/';}if(isset($_SESSION['Instructor'])){ echo RUTA_URL . '/nvs/ivtd/';} ?>"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
     <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
     <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
-
          <ul class="dropdown-menu" >
               <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/cambio-jornada"> Cambios de jornada</a></li>
               <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/retiro-voluntario"> Retiro voluntario</a></li>
@@ -104,7 +106,7 @@
               <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/traslado"> Traslado</a></li>
               <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/reintegro"> Reintegro</a></li>
             </ul>
-            
+<?php  endif;?>
     </li>
    
   </ul>
@@ -114,9 +116,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
 
                 <ul class="dropdown-menu" >
-                  <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
+<?php if(isset($_SESSION["Administrador"])):?> <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li><?php endif;?>
                   <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                  <li><a href="#"><span class="glyphicon glyphicon-question-sign "></span> Ayuda</a></li>
                   <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                 </ul>
         </li> 

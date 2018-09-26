@@ -68,6 +68,10 @@
                     $this->db->bind(':tdocumento', strip_tags($this->identificador));
                     $this->db->execute();
                     $cont3=$this->db->rowCount();
+
+                     $this->db->query("INSERT INTO rol  (fk_tipo_rol,fk_documento) VALUES ('1', ?)");
+                     $this->db->bind(1, strip_tags($this->documento));
+                     $this->db->execute();
                     
                     if($cont3==1){
                         return true;

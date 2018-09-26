@@ -15,9 +15,12 @@
             if(isset($_SESSION['Administrador'])){   
             $this->vista('/inicio/admtd');    
             }
-            if(isset($_SESSION['ApoyoAdministrador'])){   
+            if(isset($_SESSION['Apoyo_admin'])){   
                 $this->vista('/inicio/apymd');    
                 }    
+                if(isset($_SESSION['Instructor'])){   
+                    $this->vista('/inicio/ivtd');    
+                    }  
             }
         
 
@@ -60,7 +63,7 @@
         {
                 session_start();
                 
-                    if(!isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo Administrador']) && !isset($_SESSION['Invitado']))
+                    if(!isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo_admin']) && !isset($_SESSION['Instructor']))
                 {
                     $this->vista('Location: ..inicio');
                 }else{
@@ -74,7 +77,7 @@
                         "segundo_nombre" => $_POST["segundo_nombre"],
                         "primer_apellido" => $_POST["primer_apellido"],
                         "segundo_apellido" => $_POST["segundo_apellido"],
-                        "contrasena" => $_POST["contrasena"]
+                        "password" => $_POST["contrasena"]
 
 
                     ];
@@ -88,7 +91,9 @@
 
                         "datos" => $resul
                     ];
-                    $_SERVER["asignar"]=true;
+                    $_SERVER["crear"]=true;
+                    $_SESSION['nombre']=$datos["primer_nombre"];
+                    $_SESSION['apellido']=$datos["primer_apellido"];
                     $this->vista('general/perfil',$dato);
                 }else{
 
@@ -98,7 +103,7 @@
 
                         "datos" => $resul
                     ];
-                    $_SERVER["asignar"]=false;
+                    $_SERVER["crear"]=false;
                     $this->vista('general/perfil',$dato);
                 }
                 }else{ 
@@ -108,7 +113,7 @@
 
                         "datos" => $resul
                     ];
-                    $_SERVER["asignar"]=true;
+                    $_SERVER["crear"]=true;
                     $this->vista('general/perfil',$dato);
 
                 }   

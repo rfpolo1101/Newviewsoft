@@ -34,9 +34,9 @@
         {
             session_start();
             
-            if(!isset($_SESSION["ApoyoAdministrador"])){
+            if(!isset($_SESSION["Apoyo_admin"])){
 
-                header('Location: ../inicio');  
+                header("Location:" .  RUTA_URL . "/inicio");    
 
             }else{
 
@@ -50,7 +50,7 @@
         public function ivtd()
         {
             session_start();
-            if(!isset($_SESSION["invitado"])){
+            if(!isset($_SESSION["Instructor"])){
 
                 header('Location: ../inicio');  
 

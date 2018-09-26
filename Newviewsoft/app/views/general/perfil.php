@@ -1,5 +1,16 @@
 <?php require RUTA_APP . '/views/inicio/header.php' ?>
 
+<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER["crear"]==true){
+      echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+      <strong>Registrado: </strong> Datos actualizados</div></div>";    }
+
+      if ($_SERVER["crear"]==false){
+        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+        <strong>Error: </strong>No se pudo actualizar los datos</div></div>";      }
+
+    } ?>
+
 <form action="<?php echo RUTA_URL; ?>/usuario/perfil"  method="POST">   
     <div class="col-md-12">
       <div class="col-md-3">
@@ -75,14 +86,14 @@
               <div class="col-md-12"> 
                 <div class="col-md-6 col-sm-6 col-xs-6">  
                   <div class="form-group">
-                    <label  for="direccion" class="sr-only" >Dirección</label> 
+                    <label  for="direccion" class="sr-only" ></label> 
                    
                 </div></div>
                 <div class="col-md-12 col-sm-12 col-xs-12">  
                   <div class="form-group">
                     <label >Contraseña</label> 
                       <div class="">
-                      <input type="pas" id="contrasena" name="contrasena" autocomplete="OFF" required="" placeholder="Contraseña"  class="form-control">
+                      <input type="password" id="contrasena" name="contrasena" autocomplete="OFF" required="" placeholder="Contraseña"  class="form-control">
                       </div>
                   </div>
                 </div>

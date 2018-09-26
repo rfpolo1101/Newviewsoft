@@ -5,8 +5,8 @@
     {
         private $host = DB_HOST;
         private $usuario = DB_USUARIO;
-        private $password = '';
-        private $nombre_base = 'newviewsoft';
+        private $password = 'astronomia1234';
+        private $nombre_base = 'newviews_newviewsoft';
 
         private $bdh; //data base
         private $stmt;

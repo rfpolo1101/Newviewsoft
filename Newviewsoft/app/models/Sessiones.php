@@ -133,12 +133,20 @@ class Sessiones
                         //si el cargo es apoyo administrador
                         if($cargo['tipo_rol'] == 'Apoyo Administrativo'){
 
-                            $_SESSION['Apoyo Admin'] = 3;
+                            $_SESSION['Apoyo_admin'] = 3 ;
+                            $_SESSION["ddocumento"] = $cargo["documento"];
+                            $_SESSION['nombre']=$cargo["primer_nombre"];
+                            $_SESSION['apellido']=$cargo["primer_apellido"];
+                            return true;
                         }
                         //si el cargo es instructor
                         if($cargo['tipo_rol'] == 'Instructor'){
 
                             $_SESSION['Instructor'] = 2;
+                            $_SESSION["ddocumento"] = $cargo["documento"];
+                            $_SESSION['nombre']=$cargo["primer_nombre"];
+                            $_SESSION['apellido']=$cargo["primer_apellido"];
+                            return true;
                         }
                     }
                 //else del login    
@@ -176,7 +184,7 @@ class Sessiones
                     $this->db->bind(4, strip_tags(ucwords(strtolower($datos['primer_apellido']))));
                     $this->db->bind(5, strip_tags(ucwords(strtolower($datos['segundo_apellido']))));
                     $this->db->bind(6, strip_tags($datos['correo']));
-                    $this->db->bind(7, strip_tags($this->codigo));
+                    $this->db->bind(7, strip_tags(md5($this->codigo)));
                     $this->db->bind(8, strip_tags($this->identificador));
                     $resul=$this->db->execute();
                 

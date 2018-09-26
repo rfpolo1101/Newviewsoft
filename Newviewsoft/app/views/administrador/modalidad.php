@@ -3,11 +3,11 @@
 <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ($_SERVER["crear"]==true){
       echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-      <strong>Registrado: </strong> el trimestre fue registrada </div></div>";    }
+      <strong>Registrado: </strong> la modalidad fue registrada </div></div>";    }
 
       if ($_SERVER["crear"]==false){
         echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>el trimestre ya existe</div></div>";      }
+        <strong>Error: </strong>la modalidad ya existe</div></div>";      }
 
     } ?>
 <form action="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"  method="post"> 

@@ -51,15 +51,7 @@
 		  </tbody>
 		</table>
 	</div>
-    <?php   
-
-        else:
-
-          echo "<br><br><br><br>";
-
-
-        endif; 
-      ?>
+    
     </div>  
   </div>
 </div>
@@ -86,6 +78,16 @@
     	
     </div>
 </div>
+<?php   
+
+        else:
+          echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+          <strong></strong>No hay novedades que mostrar</div></div>";
+          echo "<br><br><br><br>";
+
+
+        endif; 
+      ?>
 <!-- Modal -->
 
 <div id="myModal" class="modal fade" role="dialog">

@@ -16,7 +16,7 @@ Class Aprendices extends Controlador
         if(isset($_SESSION['Administrador'])){   
         $this->vista('/inicio/admtd');    
         }
-        if(isset($_SESSION['ApoyoAdministrador'])){   
+        if(isset($_SESSION['Apoyo_admin'])){   
             $this->vista('/inicio/apymd');    
             }
     }
@@ -26,7 +26,7 @@ Class Aprendices extends Controlador
     {
         session_start();
 
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
+        if(!isset($_SESSION['Apoyo_admin']) and  !isset($_SESSION["Administrador"]) ){
 
             header('Location:' . RUTA_URL . '/inicio');  
 
@@ -88,7 +88,7 @@ Class Aprendices extends Controlador
     public function novedades($tipos){
         session_start();
 
-        if(!isset($_SESSION['ApoyoAdministrador']) and !isset($_SESSION["Administrador"])){
+        if(!isset($_SESSION['Apoyo_admin']) and !isset($_SESSION["Administrador"])){
             
             header('Location: ../inicio');  
 
@@ -155,7 +155,7 @@ Class Aprendices extends Controlador
     public function novedad($desercion)
     {   
         session_start();
-        if(!isset($_SESSION['ApoyoAdministrador']) and  !isset($_SESSION["Administrador"])){
+        if(!isset($_SESSION['Apoyo_admin']) and  !isset($_SESSION["Administrador"])){
 
             $this->vista('Location: ../inicio');
 

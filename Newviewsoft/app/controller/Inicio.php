@@ -43,15 +43,15 @@
                         } 
   
                       //si la session es de apoyo admin
-                      /*6*/if($_SESSION['cargo']=="apoyo administrador"){
+                      /*6*/if($_SESSION['Apoyo_admin']== 3){
 
-                         /*7*/ $_SESSION['ApoyoAdministrador'];
+                         /*7*/ $_SESSION['Apoyo_admin'];
                           header ("Location:" . RUTA_URL . "/nvs/apymd/");
                         }
   
-                      /*8*/if($_SESSION['cargo']=="invitado"){
+                      /*8*/if($_SESSION['Instructor']== 2){
   
-                         /*9*/ $_SESSION['invitado'];
+                         /*9*/ $_SESSION['Instructor'];
                           header ("Location:" . RUTA_URL . "/nvs/ivtd/"); 
                         }
 

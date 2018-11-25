@@ -3,11 +3,11 @@
 <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ($_SERVER["crear"]==true){
       echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-      <strong>Registrado: </strong> el Ciudad fue registrada </div></div>";    }
+      <strong>Registrado: </strong> la ciudad fue registrada </div></div>";    }
 
       if ($_SERVER["crear"]==false){
         echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>el Ciudad ya existe</div></div>";      }
+        <strong>Error: </strong>la ciudad ya existe</div></div>";      }
 
     } ?>
 <form action="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"  method="post"> 
@@ -38,13 +38,18 @@
       </div>
 
        <div class="col-md-3">
-          <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/formacion"> Formación</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/Ciudad"> Trimestre</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/jornada"> Jornada</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha"> Ficha</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/sede"> Sede</a></li> 
+       <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
+           <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/sede/"> Sede</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha/">  Ficha</a></li>  
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/jornada"> Jornada</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"> Ciudad</a></li>  
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"> Modalidad</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"> Trimestre</a></li>  
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo formacion</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa formacion </a></li>  
+
+
                   <li class="divider"></li>  
                 </ul>
             </li>

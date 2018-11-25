@@ -1,4 +1,4 @@
-<?php  include RUTA_APP . '/views/inicio/header.php';  ?>
+<?php require RUTA_APP . '/views/inicio/header.php'; ?>
 <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ($_SERVER["crear"]==true){
       echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
@@ -10,9 +10,9 @@
 
     } ?>
 
-<form action="<?php echo RUTA_URL; ?>/aprendices/novedad/desercion"  method="post">   
-   
-<div class="col-md-12">
+<!--**********************************FROM*************************************-->
+  <form action="<?php echo RUTA_URL; ?>/aprendices/novedades/retiro-voluntario"  method="post">   
+  <div class="col-md-12">
     
     <div class="col-md-3 nov">
           <div class="col-md-12" >
@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">  
                 <div class="form-group">
-                Fecha Inicial desercion
+                Fecha Inicial retiro voluntario
                   <label  for="fecha_inicial" class="sr-only" >Fecha Inicial</label> 
                     <div class="">
                     <input type="date" id="fecha_inicial" name="fecha_inicial" autocomplete="OFF" required="" placeholder="Fecha Inicial"  class="form-control">
@@ -30,28 +30,20 @@
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">  
                 <div class="form-group">
-                Fecha Final desercion
+                Fecha Final retiro voluntario
                   <label  for="fecha_final" class="sr-only" >Fecha Final </label> 
                     <div class="">
                     <input type="date" id="fecha_final" name="fecha_final" autocomplete="OFF" required="" placeholder="Fecha Final"  class="form-control">
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                Numero de fallas
-                  <label  for="fallas" class="sr-only" >Fecha Final </label> 
-                    <div class="">
-                    <input type="number" id="fallas" name="fallas" autocomplete="OFF" required="" placeholder="fallas"  class="form-control">
-                    </div>
-                </div>
-            </div>
+            
           </div> 
     </div>
  
     <div class="col-md-6 clase">                             
         <div  class="titulo">
-            Desercion
+            Retiro voluntario
         </div><br>
         <div class="formulario form-group" >
               <div class="radio" style="padding-bottom: 30px;">                   
@@ -106,4 +98,9 @@
     </div> 
   </div>
   </form>
-<?php  include RUTA_APP . '/views/inicio/footer.php';  ?>
+  
+<?php require RUTA_APP . '/views/inicio/footer.php'; ?>
+
+            
+
+         

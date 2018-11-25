@@ -35,11 +35,12 @@
 
         }
 
-        //crear aprendiz
+        /**********************Crear aprendiz*************************/
         public function crear($datos)
         {
 
-            $this->db->query("SELECT dato.documento, permiso.id_documento FROM dato_persona as dato, permiso WHERE  dato.documento = ? AND permiso.id_documento = ?");
+            $this->db->query("SELECT dato.documento, permiso.id_documento FROM dato_persona as dato, permiso WHERE  dato.documento = ? 
+                                AND permiso.id_documento = ?");
             $this->db->bind(1,$this->documento);
             $this->db->bind(2,$this->documento);
             $this->db->execute();
@@ -67,6 +68,10 @@
                     $this->db->bind(':tdocumento', strip_tags($this->identificador));
                     $this->db->execute();
                     $cont3=$this->db->rowCount();
+
+                     $this->db->query("INSERT INTO rol  (fk_tipo_rol,fk_documento) VALUES ('1', ?)");
+                     $this->db->bind(1, strip_tags($this->documento));
+                     $this->db->execute();
                     
                     if($cont3==1){
                         return true;
@@ -74,15 +79,70 @@
 
                         return false;
                     }
-
                 }
 
             }else{
 
                 return false;
-
             }
         }
+
+
+        public function tipo_novedades($datos){
+
+
+            if($cont == 0){
+
+                $this->db->query("INSERT INTO novedad (fecha_inicio,fecha_fin,motivo,respuesta,fk_tipo_novedad,fk_documento)
+                                    VALUES (?,?,?,?,?,?)");
+
+                $this->db->bind(1, $datos["fecha_inicio"]);
+                $this->db->bind(2, $datos["fecha_fin"]);
+                $this->db->bind(3, $datos["motivo"]);
+                $this->db->bind(4, $datos["respuesta"]);
+                $this->db->bind(5, $datos["novedad"]);
+                $this->db->bind(6, $this->documento);
+                $this->db->execute();
+                $cont2 = $this->db->rowCount();
+
+                if($cont2 == 1){
+
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+        }
+
+        public function tipo_novedad($datos){
+
+
+            if($cont == 0){
+
+                $this->db->query("INSERT INTO novedad (fecha_inicio,fecha_fin,motivo,respuesta,fallas,fk_tipo_novedad,fk_documento)
+                                    VALUES (?,?,?,?,?,?,?)");
+
+                $this->db->bind(1, $datos["fecha_inicio"]);
+                $this->db->bind(2, $datos["fecha_fin"]);
+                $this->db->bind(3, $datos["motivo"]);
+                $this->db->bind(4, $datos["respuesta"]);
+                $this->db->bind(5, $datos["fallas"]);
+                $this->db->bind(6, $datos["novedad"]);
+                $this->db->bind(7, $this->documento);
+                $this->db->execute();
+                $cont2 = $this->db->rowCount();
+
+                if($cont2 == 1){
+
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+        }
+        
         
         
         /*****************Consulta fichas******************/

@@ -6,7 +6,7 @@
     //define('DB_USUARIO', 'root');
 
 
-    define('DB_USUARIO', 'root');
+    define('DB_USUARIO', 'newviews_Newview');//nombre del usuario de la base de datos
     /*define('DB_PASSWORD', 'astronomia1234');
     define('DB_NOMBRE','newviews_newviewsoft');*/
 
@@ -18,7 +18,7 @@
 
    /*define('RUTA_URL',' https://localhost:8080/Newviewsoft');*/
 
-    define('RUTA_URL','http://localhost/Newviewsoft');
+    define('RUTA_URL','http://newviewsoft.com/Newviewsoft');//esta no se debe mover
 
 
 //$nombre = str_replace('"',' ',$nombre);.

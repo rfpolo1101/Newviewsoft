@@ -1,87 +1,78 @@
 <?php
-class Nvs extends Controlador
-{
+    class Nvs extends Controlador
+    {   
+        
+        public function __construct()
+        {
 
-    public function __construct()
-    {
-    }
-
-    //index
-    public function index()
-    {
-        $this->vista('sessiones/inicio');
-    }
-
-    //Controlador que permite enviar al super administrador al menu
-    public function sdmtd()
-    {
-
-        session_start();
-        if (!isset($_SESSION["Super_admin"])) {
-
-            herder("Location:" . RUTA_URL . "/inicio");
-        } else {
-
-            $this->vista('superAdministrador/menu');
         }
-    }
-
-    //Controlador que permite enviar al administrador al menu
-    public function admtd()
-    {
-        session_start();
-
-        if (!isset($_SESSION["Administrador"])) {
-
-            header("Location:" . RUTA_URL . "/inicio");
-
-        } else {
-
-            $this->vista('administrador/menu');
+        
+        //index
+        public function index()
+        {
+            $this->vista('sessiones/inicio');    
         }
 
-    }
+        //Administrador
+        public function admtd()
+        {
+            session_start();
 
-    //Controlador que permite enviar al apoyo administrador al menu
-    public function apymd()
-    {
-        session_start();
+            if(!isset($_SESSION["Administrador"])){
 
-        if (!isset($_SESSION["Apoyo_admin"])) {
+                header("Location:" .  RUTA_URL . "/inicio");    
 
-            header("Location:" . RUTA_URL . "/inicio");
+            }else{
 
-        } else {
-
-            $this->vista('apoyoAdministrador/menu');
+                $this->vista('administrador/menu');
+            }
 
         }
 
-    }
+        //Apoyo Administrador
+        public function apymd()
+        {
+            session_start();
+            
+            if(!isset($_SESSION["ApoyoAdministrador"])){
 
-    //Controlador que permite enviar al invitado al menu
-    public function ivtd()
-    {
-        session_start();
-        if (!isset($_SESSION["Instructor"])) {
+                header('Location: ../inicio');  
 
-            header('Location: ../inicio');
+            }else{
 
-        } else {
+                $this->vista('apoyoAdministrador/menu');
 
-            $this->vista('invitado/menu');
+            }
 
         }
+
+        //invitado
+        public function ivtd()
+        {
+            session_start();
+            if(!isset($_SESSION["invitado"])){
+
+                header('Location: ../inicio');  
+
+            }else{
+
+                $this->vista('invitado/menu');
+
+            }   
+        }
+        //cerrar session
+        public function cerrar()
+        {
+            session_start();
+
+            session_destroy();
+
+            header("Location:" .  RUTA_URL . "/inicio");    
+
+        }
+
+        
     }
-    //Metodo que destrulle las sessiones existentes y retorna al inicio
-    public function cerrar()
-    {
-        session_start();
 
-        session_destroy();
 
-        header("Location:" . RUTA_URL . "/inicio");
-
-    }
-
-}
+?>

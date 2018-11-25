@@ -9,10 +9,10 @@
 
       <!--BOOTSTRAP HOJAS DE ESTILO-->
       <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/bootstrap/css/bootstrap.min.css">
-
+    
 
       <!--CONEXIÓN HOJAS DE ESTILO-->
-      <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/foondo.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/menu.css">
 
       <title>NewViewSoft</title>
 
@@ -22,30 +22,30 @@
 
   <header>
 
-    <!--Nombre y Apellido usuario-->
+    <!--Nombre y Apellido usuario-->   
    <nav class="navbar navbar-fixed-top navbar-inverse"  >
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar" aria-expanded="true">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
           </button>
           <a class="navbar-brand" href="#"></a>
         </div>
-        <div class="collapse navbar-collapse" id="navbar">
+        <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="media-left">
                 <div class="media">
                   <div class="input-group">
                    <a href="#"><img src="<?php echo RUTA_URL; ?>/img/icono_perfil.jpg" class="img-rounded" style="width: 35px; height: 35px;"></a>
                    <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary">
-                       <span><?php if (isset($_SESSION['Administrador'])) {echo "Administrador:  " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];}
-if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_SESSION["ApoyoAdministrador"];}if (isset($_SESSION['Invitado'])) {echo "Invitado:  " . $_SESSION["Invitado"];}?></span></button></a>
-                  </div>
+                       <span><?php if(isset($_SESSION['Administrador'])){ echo "Administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} 
+                       if(isset($_SESSION['ApoyoAdministrador'])){ echo "Administrador:  " . $_SESSION ["ApoyoAdministrador"];} if(isset($_SESSION['Invitado'])){ echo "Invitado:  " . $_SESSION ["Invitado"];}?></span></button></a>
+                  </div> 
                 </div>
-
-            </li>
-
+                
+            </li>  
+           
           </ul>
           <div class="media">
                 <div >
@@ -59,7 +59,7 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
       </div>
   </nav>
   </nav>
-    <!--INICIO IMAGENES LOGO Y SENA-->
+    <!--INICIO IMAGENES LOGO Y SENA-->   
 
     <nav class="navbar navbar-inverse">
           <div>
@@ -69,80 +69,64 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
           <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/"><img src="<?php echo RUTA_URL ?>/img/intro.png" alt="NewViewSoft" title="NewViewSoft" style="position:absolute; width:156px; left:85%; top:60px;"></a>
           </div>
 	 </nav>
+        
+
+ <!--MENU PRINCIPAL--> 
 
 
- <!--MENU PRINCIPAL-->
+<nav class="navbar navbar-inverse">
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span> 
+  </button>
+  <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/admtd/">MENÚ</a>
+</div>
+<div class="collapse navbar-collapse" id="myNavbar">
+  <ul class="nav navbar-nav">
+    <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
+    <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
+    <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
 
+            <ul class="dropdown-menu" >
+              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Cambios de jornada</a></li>
+              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Retiro voluntario</a></li>
+              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Aplazamientos</a></li>
+              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Deserciones</a></li>
+              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Traslados</a></li>
+              <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/"> Reintegro</a></li>
+            </ul>
+    </li>
+  </ul>
 
-    <nav class="navbar navbar-inverse">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="true">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/admtd/">MENÚ</a>
-      </div>
-      <div class="collapse navbar-collapse" id="menu">
-        <ul class="nav navbar-nav">
-          <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li>
-          <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
+      <ul class="nav navbar-nav navbar-right">
+         <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
 
-                  <ul class="dropdown-menu" >
-                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/cambio-jornada"> Cambios de jornada</a></li>
-                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/retiro-voluntario"> Retiro voluntario</a></li>
-                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/aplazamiento"> Aplazamiento</a></li>
-                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedad/desercion"> Deserciones</a></li>
-                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/traslado"> Traslado</a></li>
-                    <li><a href="<?php echo RUTA_URL ?>/aprendices/novedades/reintegro"> Reintegro</a></li>
-                  </ul>
-          </li>
-        </ul>
+                <ul class="dropdown-menu" >
+                  <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
+                  <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-question-sign "></span> Ayuda</a></li>
+                  <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                </ul>
+        </li> 
+      </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
-
-                  <ul class="dropdown-menu" >
-                    <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
-                    <li><a href="<?php echo RUTA_URL; ?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
-                  </ul>
-          </li>
-        </ul>
-
-    <!--buscar usuarios-->
-          <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
-            <div class="dropdown btn-group">
-              <button type="button" class="btn btn-default">Buscador</button>
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  <span class="glyphicon glyphicon-search"></span>
-                  <span class="caret"></span>
-                  <span class="sr-only">Buscador</span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/usuarios">Usuarios</a></li>
-                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendiz</a></li>                <li class="dropdown-submenu">
-                  <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/1">Cambio Jornada</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Retiro voluntario</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Aplazamiento</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Deserción</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Traslado</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Reintegro</a></li>
-
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </form>
-
+<!--buscar usuarios-->
+      <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
+        <div class="form-group">
+          <input type="text" id="usuarios" name="usuarios" placeholder="usuarios" class="form-control">
         </div>
-      </div>
-    </nav>
+        <button type="sumit" class="btn btn-primary">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</nav>
 
 </header>
 
@@ -151,7 +135,7 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
   <section>
     <div class="container col-md-12">
         <div id="myCarousel" class="carousel slide col-md-9" data-ride="carousel">
-
+          
           <!-- INDICADORES -->
             <ol class="carousel-indicators">
               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -197,16 +181,16 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
         <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
            <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
             <li><a href="<?php echo RUTA_URL; ?>/crear/sede/"> Sede</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha/">  Ficha</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha/">  Ficha</a></li>  
             <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/jornada"> Jornada</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"> Ciudad</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"> Ciudad</a></li>  
             <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"> Modalidad</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"> Trimestre</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"> Trimestre</a></li>  
             <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo formacion</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa formacion </a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa formacion </a></li>  
 
 
-                  <li class="divider"></li>
+                  <li class="divider"></li>  
                 </ul>
             </li>
           </ul>
@@ -221,7 +205,7 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
           <div class="col-md-6">
             <article>
                   <ul>
-                    <li><a href="">Ayuda</a></li>
+                    <li><a href="">Ayuda</a></li>            
                     <li><a href="">Comentarios</a></li>
                     <li><a href="">Aviso de privacidad</a></li>
                     <li><a href="">Términos y condiciones</a></li>
@@ -240,7 +224,7 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
                   </ul>
             </aside>
           </div>
-        <footer style="text-align: right;">
+        <footer style="text-align: right;">  
         </footer>
         </section>
 
@@ -251,15 +235,5 @@ if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_S
       <script type="text/javascript" src="<?php echo RUTA_URL; ?>/js/reloj.js"></script>
 
     </div>
-    <script>
-      $(document).ready(function(){
-        $('.dropdown-submenu a.test').on("click", function(e){
-          $(this).next('ul').toggle();
-          e.stopPropagation();
-          e.preventDefault();
-        });
-      });
-    </script>
-
 </body>
 </html>

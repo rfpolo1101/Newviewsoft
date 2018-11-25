@@ -138,10 +138,10 @@
                       <option value="0">Seleccione Programa Formación</option>
 
                       <?php foreach($datos["programa_formacion"] as $datos1):
-                            if($datos1->programa_formacion != "Null"):
+                            if($datos1->programas_formacion != "Null"):
                       ?>
 
-                         <option value="<?php echo $datos1->id_programa_formacion ?>"><?php echo $datos1->programa_formacion; ?></option>
+                         <option value="<?php echo $datos1->id_programa_formacion ?>"><?php echo $datos1->programas_formacion; ?></option>
             
                             <?php  endif; endforeach; ?> </select>   
                      
@@ -161,19 +161,16 @@
 
           <div class="col-md-3">
           <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
-           <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/sede/"> Sede</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha/">  Ficha</a></li>  
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/jornada"> Jornada</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"> Ciudad</a></li>  
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"> Modalidad</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"> Trimestre</a></li>  
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo formacion</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa formacion </a></li>  
-
-
+            <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/formacion"> Formación</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/trimestre"> Trimestre</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/jornada"> Jornada</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha"> Ficha</a></li>
+            <li><a href="<?php echo RUTA_URL; ?>/crear/sede"> Sede</a></li> 
                   <li class="divider"></li>  
                 </ul>
+            </li>
+          </ul>
           </div>
       </div>
     </div>         

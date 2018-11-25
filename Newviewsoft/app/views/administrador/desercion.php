@@ -10,100 +10,84 @@
 
     } ?>
 
-<form action="<?php echo RUTA_URL; ?>/aprendices/novedad/desercion"  method="post">   
-   
-<div class="col-md-12">
-    
-    <div class="col-md-3 nov">
-          <div class="col-md-12" >
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-               
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                Fecha Inicial desercion
-                  <label  for="fecha_inicial" class="sr-only" >Fecha Inicial</label> 
-                    <div class="">
-                    <input type="date" id="fecha_inicial" name="fecha_inicial" autocomplete="OFF" required="" placeholder="Fecha Inicial"  class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                Fecha Final desercion
-                  <label  for="fecha_final" class="sr-only" >Fecha Final </label> 
-                    <div class="">
-                    <input type="date" id="fecha_final" name="fecha_final" autocomplete="OFF" required="" placeholder="Fecha Final"  class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                Numero de fallas
-                  <label  for="fallas" class="sr-only" >Fecha Final </label> 
-                    <div class="">
-                    <input type="number" id="fallas" name="fallas" autocomplete="OFF" required="" placeholder="fallas"  class="form-control">
-                    </div>
-                </div>
-            </div>
-          </div> 
-    </div>
- 
-    <div class="col-md-6 clase">                             
-        <div  class="titulo">
-            Desercion
-        </div><br>
-        <div class="formulario form-group" >
-              <div class="radio" style="padding-bottom: 30px;">                   
-                <div class="col-md-4 col-sm-4 col-xs-4">               
-                        <input type="radio" name="tipo_documento" id="cedulac" value="CC" required="" >
-                        <label for="cedulac">Cédula Ciudadania</label>
-                </div>                                         
-                <div class="col-md-4 col-sm-4 col-xs-4"> 
-                        <input type="radio" name="tipo_documento" id="tarjeta" value="TI"  required="" >
-                        <label for="tarjeta"  >Tarjeta Identidad</label>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-4">                
-                        <input type="radio" name="tipo_documento" id="cedulae" value="CE" required="">
-                        <label for="cedulae">Cédula Extranjería</label>
-                </div>
+<form action="<?php echo RUTA_URL; ?>/aprendices/desercion"  method="post">   
+    <div class="col-md-12">
+      <div class="col-md-3 nov">
+            <div class="col-md-12" >
+              <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    
+                  </div>
               </div>
-          <div class="col-md-12">
-             <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                  <label  for="documento" class="sr-only" >Documento Aprendiz</label> 
-                    <div class="">
-                    <input type="text" id="documento" name="documento" autocomplete="OFF" required="" placeholder="Ejemplo: 99121700405"  class="form-control">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                  <label  for="motivo" class="sr-only" >Motivo Solicitud</label> 
-                    <div class="">
-                    <textarea type="text" id="motivo" name="motivo" autocomplete="OFF" required="" placeholder="Motivo Solicitud"  class="form-control" cols="10" rows="5" ></textarea>
-                    </div>
-                </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="FechaIniD" class="sr-only" >Fecha Inicial Deserción</label> 
+                      <div class="">
+                      <input type="date" id="FechaIniD" name="FechaIniD" autocomplete="OFF" required="" placeholder="Fecha Inicial Deserción"  class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="FechaFinaD" class="sr-only" >Fecha Final Deserción</label> 
+                      <div class="">
+                      <input type="date" id="FechaFinaD" name="FechaFinaD" autocomplete="OFF" required="" placeholder="Fecha Final Deserción"  class="form-control">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="TiempoDeser" class="sr-only" >Tiempo Deserción</label> 
+                      <div class="">
+                      <input type="time" id="TiempoDeser" name="TiempoDeser" autocomplete="OFF" required="" placeholder="Tiempo Deserción"  class="form-control">
+                      </div>
+                  </div>
+              </div>  
             </div> 
-            <div class="col-md-12 col-sm-12 col-xs-12">  
-                <div class="form-group">
-                  <label  for="respuesta" class="sr-only" >Respuesta</label> 
-                    <div class="">
-                    <textarea type="text" id="respuesta" name="respuesta" autocomplete="OFF" required="" placeholder="Respuesta"  class="form-control" cols="10" rows="5" ></textarea>
-                    </div>
-                </div>
-            </div>    
-            <div class="aprobaciones form-group">
-              <div class="radio">                
+      </div>
+   
+      <div class="col-md-6 clase">                             
+          <div  class="titulo">
+              Deserciones
+          </div> <br><br>         
+
+            <div class="col-md-12">
+               <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="documento" class="sr-only" >Documento Aprendiz</label> 
+                      <div class="">
+                      <input type="text" id="documento" name="documento" autocomplete="OFF" required="" placeholder="Documento"  class="form-control">
+                      </div>
+                  </div>
               </div>
-            </div>   
-          </div>
-         <div class="col-md-4 col-md-offset-4" style=" padding-top: 15px; padding-bottom: 25px;"> 
-            <input type="submit" name="enviar" id="enviar" value="Guardar"  class="btn btn-primary btn-block" >
-          </div>
-    </div>         
-    <div class="col-md-3" >
-    </div> 
-  </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="penalizacion" class="sr-only" >Penalización</label> 
+                      <div class="">
+                      <textarea type="text" id="penalizacion" name="penalizacion" autocomplete="OFF" required="" placeholder="Penalización"  class="form-control" cols="10" rows="5" ></textarea>
+                      </div>
+                  </div>
+              </div> 
+              <div class="col-md-12 col-sm-12 col-xs-12">  
+                  <div class="form-group">
+                    <label  for="docuUsu" class="sr-only" >Documento Instructor</label> 
+                      <div class="">
+                      <input type="text" id="docuUsu" name="docuInstruc" autocomplete="OFF" required="" placeholder="Documento Intructor"  class="form-control">
+                      </div>
+                  </div>
+              </div>    
+              <div class="aprobaciones form-group">
+                <div class="radio">                   
+                  
+                </div>
+              </div>   
+            </div>
+           <div class="col-md-4 col-md-offset-4" style=" padding-top: 15px; padding-bottom: 25px;"> 
+              <input type="submit" name="" id="" value="Guardar"  class="btn btn-primary btn-block" >
+            </div>
+      </div>         
+      <div class="col-md-3" >
+      </div> 
+    </div>
   </form>
 <?php  include RUTA_APP . '/views/inicio/footer.php';  ?>

@@ -70,37 +70,23 @@ RADIO BOTON
       border-radius: 5px;
       color: #FFFFFF; }
 
-    .error1
+    .error
     { 
-      padding: -50px;
-      margin: 3px 340px;
-      background-color: #C51350;
-      color: white;
-      text-align: left 0;
-     width:33%;
-     border: 1px solid red;
+        text-align: left;
+        color:red;
     }
 
       .errores{
+
        padding: -50px;
-        margin: 3px;
-        background-color: #C51350;
-        color: white;
-        text-align: left 0;
-        width:33%;
-        border: 1px solid red;
+    margin: 3px;
+    background-color: #C51350;
+    color: white;
+    text-align: left 0;
+   width:33%;
+   border: 1px solid red;
       }
 
-      .correctos1{
-        padding: 0px;
-        margin: 3px 340px;
-        background-color:#239d60;
-     color: #fafaf6;
-         text-align: left 0;
-        width:36%;
-        border: 1px solid #a3de83;
-     
-     }
       .correctos{
    padding: 0px;
     margin: 4px;

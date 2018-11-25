@@ -1,5 +1,6 @@
 <!--TÉRMINO DE PÁGINA-->
-<section style=" margin-top: 9%; padding-top: 20px; background-color: rgba(0, 0, 0, .9); color: #fff;" class="col-md-12">
+
+        <section style=" margin-top: 9%; padding-top: 20px; background-color: rgba(0, 0, 0, .9); color: #fff;" class="col-md-12">
           <div class="col-md-6">
             <article>
                   <ul>
@@ -42,7 +43,5 @@
         });
       });
     </script>
-
-
 </body>
 </html>

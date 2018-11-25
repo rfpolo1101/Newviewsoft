@@ -10,27 +10,27 @@
 
     } ?>
 
-<br><br>
-<form action="<?php echo RUTA_URL; ?>/aprendices/novedades/reintegro"  method="post">   
-<div class="col-md-12">
-      <div class="col-md-3 nov">
-            <div class="col-md-12" >
-              <div class="col-md-12 col-sm-12 col-xs-12">  
+<!--*******************FROM**********************************-->
+  <form action="<?php echo RUTA_URL; ?>/aprendices/novedades/cambio-jornada"  method="post" class="justify-cotent-center flex-column flex-md-row">   
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 nov">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">  
                  
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">  
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >  
                   <div class="form-group">
-                  Fecha Inicial reintegro
+                  Fecha Inicial cambio de jornada
                     <label  for="fecha_inicial" class="sr-only" >Fecha Inicial</label> 
                       <div class="">
                       <input type="date" id="fecha_inicial" name="fecha_inicial" autocomplete="OFF" required="" placeholder="Fecha Inicial"  class="form-control">
                       </div>
                   </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">  
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >  
                   <div class="form-group">
-                  Fecha Final reintegro
-                    <label  for="fecha_final" class="sr-only" >Fecha Final </label> 
+                  Fecha Final cambio de jornada
+                    <label  for="fecha_final" class="sr-only" style="color #FFFFFF;" >Fecha Final </label> 
                       <div class="">
                       <input type="date" id="fecha_final" name="fecha_final" autocomplete="OFF" required="" placeholder="Fecha Final"  class="form-control">
                       </div>
@@ -40,27 +40,27 @@
             </div> 
       </div>
    
-      <div class="col-md-6 clase">                             
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 clase ">                             
           <div  class="titulo">
-              Reintegro
+              Cambio de jornada
           </div><br>
-            <div class="col-md-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="formulario form-group" >
                 <div class="radio" style="padding-bottom: 30px;">                   
-                  <div class="col-md-4 col-sm-4 col-xs-4">               
+                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">               
                           <input type="radio" name="tipo_documento" id="cedulac" value="CC" required="" >
                           <label for="cedulac">Cédula Ciudadania</label>
                   </div>                                         
-                  <div class="col-md-4 col-sm-4 col-xs-4"> 
+                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
                           <input type="radio" name="tipo_documento" id="tarjeta" value="TI"  required="" >
                           <label for="tarjeta"  >Tarjeta Identidad</label>
                   </div>
-                  <div class="col-md-4 col-sm-4 col-xs-4">                
+                  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">                
                           <input type="radio" name="tipo_documento" id="cedulae" value="CE" required="">
                           <label for="cedulae">Cédula Extranjería</label>
                   </div>
                 </div>
-               <div class="col-md-12 col-sm-12 col-xs-12">  
+               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">  
                   <div class="form-group">
                     <label  for="documento" class="sr-only" >Documento Aprendiz</label> 
                       <div class="">
@@ -89,7 +89,7 @@
                 </div>
               </div>   
             </div>
-           <div class="col-md-4 col-md-offset-4" style=" padding-top: 15px; padding-bottom: 25px;"> 
+           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" style=" padding-top: 15px; padding-bottom: 25px;"> 
               <input type="submit" name="enviar" id="enviar" value="Guardar"  class="btn btn-primary btn-block" >
             </div>
       </div>         
@@ -101,3 +101,7 @@
 
 
 <?php require RUTA_APP . '/views/inicio/footer.php'; ?>
+
+
+            
+ 

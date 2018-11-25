@@ -81,11 +81,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span> 
         </button>
-        <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/admtd/">MENÚ</a>
+        <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/sdmtd/">MENÚ</a>
       </div>
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
-          <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
+          <li ><a href="<?php echo RUTA_URL; ?>/nvs/sdmtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
           <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li>
           <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>

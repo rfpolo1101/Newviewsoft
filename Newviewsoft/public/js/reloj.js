@@ -18,7 +18,7 @@ function actualizaReloj() {
         Segundos = "0" + Segundos
     var Dia = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
     var Mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
-            "Octubre", "Noviembre", "Diciembre");
+        "Octubre", "Noviembre", "Diciembre");
     var Hoy = new Date();
     var Anio = Hoy.getFullYear();
     var Fecha = Dia[Hoy.getDay()] + ", " + Hoy.getDate() + " de " + Mes[Hoy.getMonth()] + " de " + Anio + ". ";

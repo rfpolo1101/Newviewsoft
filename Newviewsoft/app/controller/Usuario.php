@@ -1,134 +1,130 @@
 <?php
-    class Usuario extends Controlador
+class Usuario extends Controlador
+{
+
+    //Metodo constructor para llamar a los metodos
+    public function __construct()
+    {
+        $this->usuarioModelo = $this->modelo("User");
+
+    }
+
+    public function index()
     {
 
-        public function __construct()
-        {
-            $this->usuarioModelo = $this->modelo("User");
-
+        session_start();
+        if (isset($_SESSION['Administrador'])) {
+            $this->vista('/inicio/admtd');
         }
+        if (isset($_SESSION['Apoyo_admin'])) {
+            $this->vista('/inicio/apymd');
+        }
+        if (isset($_SESSION['Instructor'])) {
+            $this->vista('/inicio/ivtd');
+        }
+    }
 
-        public function index()
-        {
-            
-            session_start();
-            if(isset($_SESSION['Administrador'])){   
-            $this->vista('/inicio/admtd');    
-            }
-            if(isset($_SESSION['Apoyo_admin'])){   
-                $this->vista('/inicio/apymd');    
-                }    
-                if(isset($_SESSION['Instructor'])){   
-                    $this->vista('/inicio/ivtd');    
-                    }  
-            }
-        
+    public function ayuda(){
+        session_start();
+        if (!isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo_admin']) && !isset($_SESSION['Instructor']) && !isset($_SESSION["Super_admin"])) {
+            header('Location:' . RUTA_URL . '/inicio');
+        }else{
 
-        public function asignar()
-        {
-            session_start();
+            $this->vista("general/ayuda");
+        }
+    }
 
-            if(!isset($_SESSION['Administrador']))
-            {
-                $this->vista('Location: ..inicio');
-            }else{
+    //Metodo el cual permite asignar roles
+    public function asignar($tipo)
+    {
+        session_start();
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST')
-            {
+        if (!isset($_SESSION['Super_admin']) && !isset($_SESSION["Administrador"])) {
+            header('Location:' . RUTA_URL . '/inicio');
+        } else {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $datos = [
                     "tipo_documento" => $_POST["tipo_documento"],
-                    'documento' => $_POST['documento'],
-                    'cargo' => $_POST['cargo']
+                    'documento' => trim($_POST['documento']),
+                    'cargo' => trim($_POST['cargo']),
+                    'tipo' =>  trim($tipo),
                 ];
 
                 $this->usuarioModelo->documento($datos);
-             if($this->usuarioModelo->asignar($datos)){
+                if ($this->usuarioModelo->asignar($datos)) {
 
-                $_SERVER["asignar"]=true;
-                $this->vista('administrador/asignar-rol');
-            }else{
+                    $_SERVER["crear"] = true;
+                    $this->vista('superAdministrador/' . $tipo);
+                } else {
 
-                $_SEVER["asignar"]=false;
-                $this->vista('administrador/asignar-rol');
+                    $_SERVER["crear"] = false;
+                    $this->vista('superAdministrador/' . $tipo);
 
-            }
-            }else{ 
-
-                $this->vista('administrador/asignar-rol');
-            }
-          }
-        }
-
-        public function perfil()
-        {
-                session_start();
-                
-                    if(!isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo_admin']) && !isset($_SESSION['Instructor']))
-                {
-                    $this->vista('Location: ..inicio');
-                }else{
-
-                if($_SERVER['REQUEST_METHOD'] == 'POST')
-                {
-                    $datos = [
-
-                        "correo" => $_POST["correo"],
-                        "primer_nombre" => $_POST["primer_nombre"],
-                        "segundo_nombre" => $_POST["segundo_nombre"],
-                        "primer_apellido" => $_POST["primer_apellido"],
-                        "segundo_apellido" => $_POST["segundo_apellido"],
-                        "password" => $_POST["contrasena"]
-
-
-                    ];
-                    
-                    
-                if($this->usuarioModelo->actualizarPefil($datos)){
-
-                    $resul = $this->usuarioModelo->perfiles();
-
-                    $dato = [
-
-                        "datos" => $resul
-                    ];
-                    $_SERVER["crear"]=true;
-                    $_SESSION['nombre']=$datos["primer_nombre"];
-                    $_SESSION['apellido']=$datos["primer_apellido"];
-                    $this->vista('general/perfil',$dato);
-                }else{
-
-                    $resul = $this->usuarioModelo->perfiles();
-
-                    $dato = [
-
-                        "datos" => $resul
-                    ];
-                    $_SERVER["crear"]=false;
-                    $this->vista('general/perfil',$dato);
                 }
-                }else{ 
+            } else {
+
+                $this->vista('superAdministrador/' . $tipo);
+            }
+        }
+    }
+
+    //Metodo el cuale permite ver y modificar el perfil
+    public function perfil()
+    {
+        session_start();
+
+        if (!isset($_SESSION['Super_admin']) && !isset($_SESSION['Administrador']) && !isset($_SESSION['Apoyo_admin']) && !isset($_SESSION['Instructor'])) {
+            header('Location:' . RUTA_URL . '/inicio');
+        } else {
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $datos = [
+
+                    "correo" => $_POST["correo"],
+                    "primer_nombre" => $_POST["primer_nombre"],
+                    "segundo_nombre" => $_POST["segundo_nombre"],
+                    "primer_apellido" => $_POST["primer_apellido"],
+                    "segundo_apellido" => $_POST["segundo_apellido"],
+                    "password" => $_POST["contrasena"],
+
+                ];
+
+                if ($this->usuarioModelo->actualizarPefil($datos)) {
+
                     $resul = $this->usuarioModelo->perfiles();
 
                     $dato = [
 
-                        "datos" => $resul
+                        "datos" => $resul,
                     ];
-                    $_SERVER["crear"]=true;
-                    $this->vista('general/perfil',$dato);
+                    $_SERVER["crear"] = true;
+                    $_SESSION['nombre'] = $datos["primer_nombre"];
+                    $_SESSION['apellido'] = $datos["primer_apellido"];
+                    $this->vista('general/perfil', $dato);
+                } else {
 
-                }   
+                    $resul = $this->usuarioModelo->perfiles();
+
+                    $dato = [
+
+                        "datos" => $resul,
+                    ];
+                    $_SERVER["crear"] = false;
+                    $this->vista('general/perfil', $dato);
+                }
+            } else {
+                $resul = $this->usuarioModelo->perfiles();
+
+                $dato = [
+
+                    "datos" => $resul,
+                ];
+                $_SERVER["crear"] = true;
+                $this->vista('general/perfil', $dato);
+
             }
         }
-
-
-
-        public function actualizarNovedad()
-        {
-            
-
-
-        }
+    }
 
 }
-
-?>

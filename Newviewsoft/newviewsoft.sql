@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2018 a las 19:27:52
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 07-12-2018 a las 23:17:50
+-- Versión del servidor: 5.6.27-log
+-- Versión de PHP: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,19 +29,33 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `ciudad` (
-  `id_ciudad` int(11) NOT NULL,
-  `ciudad` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_ciudad` int(11) NOT NULL COMMENT 'Identificador de las ciudades',
+  `ciudad` varchar(45) DEFAULT NULL COMMENT 'Ingreso de la ciudad'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ciudad a la que pertenece cada sede';
 
 --
 -- Volcado de datos para la tabla `ciudad`
 --
 
 INSERT INTO `ciudad` (`id_ciudad`, `ciudad`) VALUES
-(0, 'Null'),
-(4, 'Barranquilla'),
-(5, 'Bogota'),
-(6, 'Medellin ');
+(1, 'Null'),
+(2, 'Barranquilla'),
+(3, 'Bogota'),
+(4, 'Medellin ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `competencias`
+--
+
+CREATE TABLE `competencias` (
+  `id_competencia` int(11) NOT NULL COMMENT 'Identificador de las competencias',
+  `competencia` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Ingreso de las competencias',
+  `trimestre_diurno` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Ingreso del trimestre en el que pertece la competencia',
+  `trimestre_especial` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Ingreso especial para las competencias que esten en 7 u 8 trimestre',
+  `fk_programa` int(11) NOT NULL COMMENT 'Llave foránea en la que se almacena el programa de formación'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de las competencias';
 
 -- --------------------------------------------------------
 
@@ -50,26 +64,33 @@ INSERT INTO `ciudad` (`id_ciudad`, `ciudad`) VALUES
 --
 
 CREATE TABLE `dato_persona` (
-  `documento` varchar(45) NOT NULL,
-  `primer_nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `segundo_nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `primer_apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `segundo_apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `correo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
-  `contrasena` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT 'Null',
-  `fk_estado` int(2) NOT NULL DEFAULT '1',
-  `fk_ficha` int(11) NOT NULL DEFAULT '0',
-  `fk_tipo_documento` bigint(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `documento` varchar(45) NOT NULL COMMENT 'Documento de identificación de los usuarios y aprendices',
+  `primer_nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Primer nombre de los usuarios y aprendices',
+  `segundo_nombre` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Segundo nombre de los usuarios y aprendices',
+  `primer_apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Primer apellido de los usuarios y aprendices',
+  `segundo_apellido` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Segundo apellido de los usuarios y aprendices',
+  `correo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Correo de los usuario y aprendices',
+  `contrasena` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT 'Null' COMMENT 'Contraseña de los usuarios',
+  `fk_estado` int(2) NOT NULL DEFAULT '1' COMMENT 'Estado en el que se encuentran los usuarios y aprendices',
+  `fk_ficha` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la ficha de formación a la que pertenecen los aprendices',
+  `fk_tipo_documento` bigint(11) NOT NULL COMMENT 'LLave foránea del tipo de documento'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Datos personales de los usuarios y aprendices';
 
 --
 -- Volcado de datos para la tabla `dato_persona`
 --
 
 INSERT INTO `dato_persona` (`documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `correo`, `contrasena`, `fk_estado`, `fk_ficha`, `fk_tipo_documento`) VALUES
-('CC1233697081', 'Rafael', 'Fernando', 'Polo', 'Cucaita', 'rfpolo5@misena.edu.co', '25f9e794323b453885f5181f1b624d0b', 1, 0, 1),
-('CC52327483', 'Mery', 'Cris', 'Melo', 'Cucaita', 'mery@gmail.com', 'Null', 2, 1438303, 1),
-('CC99121700405', 'Cristian ', 'Andres', 'Avila', 'Tejeda', 'andres@gmail.com', 'Null', 2, 1438303, 1);
+('CC010101010', 'Xddd', 'Angel', 'Pinzon', 'Xd', 'rfpolo5@misena.edu.co', 'Null', 2, 1438303, 1),
+('CC123', 'Ratonilo', 'Xioneon', 'Castro', 'Tumbalocas', 'ratonilo@misena.edu.co', 'Null', 2, 1438303, 1),
+('CC1233697081', 'Rafael', 'Fernando', 'Polo', 'Cucaita', 'Rfpolo1101@gmail.com', '25f9e794323b453885f5181f1b624d0b', 1, 0, 1),
+('CC123456789', 'Dfsdsf', 'Dsfdfs', 'Dfsdfs', 'Dfssdf', 'dfsfds@xd.com', 'Null', 2, 1438303, 1),
+('CC80427540', 'Dfsdsf', 'Xd', 'Polo', 'Ruiz', 'polo@gmail.com', 'Null', 2, 1438303, 1),
+('CC8888', 'Rafael', 'Fernando', 'Poloo', 'Cucaita', 'rfpols@gmail.com', 'Null', 2, 1438303, 1),
+('CC89121700405', 'Dfsdsf', 'Dfsdfs', 'Dfsfds', 'Dfsdfs', 'dsf@ga.co', 'Null', 2, 1438303, 1),
+('CC97875646', 'Dsjoih', 'Uug', 'Uiui', 'Gfdf', 'sfdsf@gmail.com', 'Null', 2, 1438303, 1),
+('CC99121700405', 'Rafael', 'Fernando', 'Polo', 'Cucaita', 'rfpolo1101@gmail.com', 'Null', 2, 1438303, 1),
+('CC9914217485', 'Dfssdf', 'Dfdfs', 'Fddsf', 'Dfsfds', 'dfsfds@gmail.com', 'Null', 2, 1438303, 1);
 
 -- --------------------------------------------------------
 
@@ -78,9 +99,9 @@ INSERT INTO `dato_persona` (`documento`, `primer_nombre`, `segundo_nombre`, `pri
 --
 
 CREATE TABLE `estado` (
-  `id_estado` int(2) NOT NULL,
-  `estado` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_estado` int(2) NOT NULL COMMENT 'Identificador del estado',
+  `estado` varchar(20) DEFAULT NULL COMMENT 'Ingreso del estado en el que se encuentran los usuarios y aprendices'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento del estado en el que se encuentran los aprendices y usuarios';
 
 --
 -- Volcado de datos para la tabla `estado`
@@ -97,22 +118,47 @@ INSERT INTO `estado` (`id_estado`, `estado`) VALUES
 --
 
 CREATE TABLE `ficha` (
-  `codigo_ficha` int(11) NOT NULL DEFAULT '0',
-  `fk_sede` int(11) NOT NULL DEFAULT '0',
-  `fk_jornada` int(11) NOT NULL DEFAULT '0',
-  `fk_tipo_formacion` int(11) NOT NULL DEFAULT '0',
-  `fk_modalidad` int(11) NOT NULL DEFAULT '0',
-  `fk_programa_formacion` int(11) NOT NULL DEFAULT '0',
-  `fk_trimestre` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `codigo_ficha` int(11) NOT NULL DEFAULT '0' COMMENT 'Código de la ficha a la que pertenece el aprendiz',
+  `fk_sede` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la sede en la que se encuentra el aprendiz',
+  `fk_jornada` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la jornada en la que se encuentra el aprendiz',
+  `fk_modalidad` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la modalidad en la que se encuentra el aprendiz',
+  `fk_programa_formacion` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea del programa de formación en donde se encuentra el aprendiz',
+  `fk_trimestre` int(11) NOT NULL COMMENT 'Llave foránea del trimestre en el que se encuentra el aprendiz',
+  `fk_estado` int(2) NOT NULL COMMENT 'Llave foránea del estado de la ficha'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de las fichas de los aprendices';
 
 --
 -- Volcado de datos para la tabla `ficha`
 --
 
-INSERT INTO `ficha` (`codigo_ficha`, `fk_sede`, `fk_jornada`, `fk_tipo_formacion`, `fk_modalidad`, `fk_programa_formacion`, `fk_trimestre`) VALUES
-(0, 0, 0, 0, 0, 0, 0),
-(1438303, 1, 3, 1, 2, 3, 6);
+INSERT INTO `ficha` (`codigo_ficha`, `fk_sede`, `fk_jornada`, `fk_modalidad`, `fk_programa_formacion`, `fk_trimestre`, `fk_estado`) VALUES
+(0, 1, 1, 1, 1, 1, 2),
+(1438303, 2, 2, 3, 2, 7, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial_aprendiz`
+--
+
+CREATE TABLE `historial_aprendiz` (
+  `id_historial_aprendiz` int(45) NOT NULL COMMENT 'Identificador del hitorial de cada aprendiz',
+  `documento_aprendiz` varchar(45) DEFAULT NULL COMMENT 'Documento del aprendiz',
+  `fk_sede_antigua` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la sede anterior del aprendiz',
+  `fk_jornada_antigua` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la jornada en la que se encontraba el aprendiz',
+  `fk_modalidad_antigua` int(11) NOT NULL DEFAULT '0' COMMENT 'Llave foránea de la modalidad en la que se encontraba el aprendiz',
+  `fk_trimestre_antigua` int(11) NOT NULL COMMENT 'Llave foránea del trimestre en el que se encontraba el aprendiz',
+  `fk_codigo_ficha` int(11) NOT NULL COMMENT 'Llave foránea del códigode la ficha del aprendiz'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento del historial de cada aprendiz';
+
+--
+-- Volcado de datos para la tabla `historial_aprendiz`
+--
+
+INSERT INTO `historial_aprendiz` (`id_historial_aprendiz`, `documento_aprendiz`, `fk_sede_antigua`, `fk_jornada_antigua`, `fk_modalidad_antigua`, `fk_trimestre_antigua`, `fk_codigo_ficha`) VALUES
+(1, '123456789', 2, 2, 3, 7, 1438303),
+(2, 'CC89121700405', 2, 2, 3, 7, 1438303),
+(5, 'CC97875646', 2, 2, 3, 7, 1438303);
 
 -- --------------------------------------------------------
 
@@ -121,18 +167,18 @@ INSERT INTO `ficha` (`codigo_ficha`, `fk_sede`, `fk_jornada`, `fk_tipo_formacion
 --
 
 CREATE TABLE `jornada` (
-  `id_jornada` int(11) NOT NULL,
-  `jornada` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_jornada` int(11) NOT NULL COMMENT 'Identificador de la jornada de formación del aprendiz',
+  `jornada` varchar(45) DEFAULT NULL COMMENT 'Ingreso de la jornada de formación del aprendiz'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de las jornadas de formación';
 
 --
 -- Volcado de datos para la tabla `jornada`
 --
 
 INSERT INTO `jornada` (`id_jornada`, `jornada`) VALUES
-(0, 'Null'),
-(3, 'Diurna'),
-(4, 'Nocturna');
+(1, 'Null'),
+(2, 'Diurna'),
+(3, 'Nocturna');
 
 -- --------------------------------------------------------
 
@@ -141,18 +187,18 @@ INSERT INTO `jornada` (`id_jornada`, `jornada`) VALUES
 --
 
 CREATE TABLE `modalidad` (
-  `id_modalidad` int(11) NOT NULL,
-  `modalidad` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_modalidad` int(11) NOT NULL COMMENT 'Identificador de la modalidad',
+  `modalidad` varchar(45) DEFAULT NULL COMMENT 'Ingreso de la modalidad a la que pertenece la ficha'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de la modalidad de formación de la ficha';
 
 --
 -- Volcado de datos para la tabla `modalidad`
 --
 
 INSERT INTO `modalidad` (`id_modalidad`, `modalidad`) VALUES
-(0, 'Null'),
-(1, 'Virtual'),
-(2, 'Presencial ');
+(1, 'Null'),
+(2, 'Virtual'),
+(3, 'Presencial ');
 
 -- --------------------------------------------------------
 
@@ -161,27 +207,29 @@ INSERT INTO `modalidad` (`id_modalidad`, `modalidad`) VALUES
 --
 
 CREATE TABLE `novedad` (
-  `id_novedad` int(2) NOT NULL,
-  `fecha_inicio` date DEFAULT NULL,
-  `fecha_fin` date DEFAULT NULL,
-  `motivo` text,
-  `respuesta` varchar(45) DEFAULT NULL,
-  `fallas` varchar(45) DEFAULT 'Null',
-  `fk_tipo_novedad` int(2) NOT NULL,
-  `fk_documento` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_novedad` int(2) NOT NULL COMMENT 'Identificador de la novedad',
+  `fecha_inicio` date DEFAULT NULL COMMENT 'Ingreso de la fecha de inicio de la novedad',
+  `fecha_fin` date DEFAULT NULL COMMENT 'Ingreso de la fecha fin de la novedad',
+  `motivo` varchar(45) DEFAULT 'Null' COMMENT 'Ingreso del motivo por el cual se realizó la novedad',
+  `respuesta` varchar(45) DEFAULT 'Null' COMMENT 'Ingreso de la respuesta de la novedad',
+  `fallas` varchar(45) DEFAULT 'Null' COMMENT 'Ingreso de la cantidad de fallas del aprendiz',
+  `documento_responsable` varchar(45) DEFAULT 'Null' COMMENT 'Documento del responsable de realizar la novedad',
+  `tiempo_estimado` varchar(45) DEFAULT 'Null' COMMENT 'Ingreso del tiempo estimado de la novedad',
+  `instructor_encargado` varchar(45) DEFAULT 'Null' COMMENT 'Ingreso del instructor encargado de la novedad',
+  `tamano_acta` varchar(45) DEFAULT 'Null' COMMENT 'Ingreso del tamaño que tendrá el acta',
+  `acta` varchar(200) DEFAULT 'No existe' COMMENT 'Ingreso del acta de la novedad',
+  `fk_documento` varchar(45) NOT NULL COMMENT 'Llave foránea del documento del aprendiz',
+  `fk_tipo_novedad` int(2) NOT NULL COMMENT 'Llave foránea del tipo de novedad',
+  `fk_tipo_respuesta` int(2) NOT NULL COMMENT 'Llave foránea del tipo de respuesta'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de las novedades';
 
 --
 -- Volcado de datos para la tabla `novedad`
 --
 
-INSERT INTO `novedad` (`id_novedad`, `fecha_inicio`, `fecha_fin`, `motivo`, `respuesta`, `fallas`, `fk_tipo_novedad`, `fk_documento`) VALUES
-(14, '2018-08-30', '2018-09-30', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'aavxfgfggdf', 'Null', 1, 'CC99121700405'),
-(15, '2018-09-08', '2018-09-23', 'fg', 'hgfh', 'Null', 2, 'CC99121700405'),
-(16, '2018-09-14', '2018-09-21', 'sdaf', 'dsf', 'Null', 3, 'CC99121700405'),
-(17, '2018-09-09', '2018-09-16', 'vsd', 'fdsfd', 'Null', 5, 'CC99121700405'),
-(18, '2018-09-23', '2018-09-30', 'sdffgd', 'fgdfd', 'Null', 6, 'CC99121700405'),
-(19, '2018-09-21', '2018-10-13', 'sdf', 'sfdfdssdf', '80', 4, 'CC99121700405');
+INSERT INTO `novedad` (`id_novedad`, `fecha_inicio`, `fecha_fin`, `motivo`, `respuesta`, `fallas`, `documento_responsable`, `tiempo_estimado`, `instructor_encargado`, `tamano_acta`, `acta`, `fk_documento`, `fk_tipo_novedad`, `fk_tipo_respuesta`) VALUES
+(10, '2018-12-06', '2018-12-29', 'Fsddsf', 'Dfdsf', 'Null', 'CC1233697081', 'Null', 'Null', '80487', 'ACTACOMITERETIROSVOLUNTARIOS2018.docx', 'CC99121700405', 2, 1),
+(11, '2018-12-05', '2019-01-03', 'se caso con doña cebolla', 'doña cebolla no lo acepto', 'Null', 'CC1233697081', 'Null', 'Null', '80487', 'ACTACOMITERETIROSVOLUNTARIOS2018.docx', 'CC123', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -190,36 +238,51 @@ INSERT INTO `novedad` (`id_novedad`, `fecha_inicio`, `fecha_fin`, `motivo`, `res
 --
 
 CREATE TABLE `permiso` (
-  `id_documento` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_documento` varchar(45) NOT NULL COMMENT 'Identificador de los documentos para dar permisos'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los permisos';
 
 --
 -- Volcado de datos para la tabla `permiso`
 --
 
 INSERT INTO `permiso` (`id_documento`) VALUES
-('CC1233697081'),
-('CC52327483'),
-('CC99121700405');
+('CC1233697081')
+
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `programas_formacion`
+-- Estructura de tabla para la tabla `programa_formacion`
 --
 
-CREATE TABLE `programas_formacion` (
-  `id_programa_formacion` int(11) NOT NULL,
-  `programas_formacion` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `programa_formacion` (
+  `id_programa_formacion` int(11) NOT NULL COMMENT 'Identificador del programa de formación',
+  `programa_formacion` varchar(200) DEFAULT NULL COMMENT 'Ingreso del programa de formación',
+  `proyecto` varchar(45) DEFAULT NULL COMMENT 'Ingreso del proyecto al que esta sujeto el programa de formación',
+  `fk_tipo_de_formacion` int(11) NOT NULL COMMENT 'Llave foránea de los tipos de formación'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los programas de formación';
 
 --
--- Volcado de datos para la tabla `programas_formacion`
+-- Volcado de datos para la tabla `programa_formacion`
 --
 
-INSERT INTO `programas_formacion` (`id_programa_formacion`, `programas_formacion`) VALUES
-(0, 'Null'),
-(3, 'Analisis De Desarrollo De Sistemas De Informacion');
+INSERT INTO `programa_formacion` (`id_programa_formacion`, `programa_formacion`, `proyecto`, `fk_tipo_de_formacion`) VALUES
+(1, 'Null', 'Null', 1),
+(2, 'Analisis De Desarrollo De Sistemas De Informacion', 'Null', 1),
+(3, 'Tecnico En Programacion De Software', 'Null', 1),
+(4, 'Producción Multimedia', 'Null', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `resultado_aprendizaje`
+--
+
+CREATE TABLE `resultado_aprendizaje` (
+  `id_resultado_aprendizaje` int(11) NOT NULL COMMENT 'Identifdicador del resultado de aprendizaje',
+  `resultado_aprendizaje` text COLLATE utf8_spanish_ci COMMENT 'Ingreso del resultado de aprendizaje',
+  `fk_competencia` int(11) NOT NULL COMMENT 'Llave foránea de las competencias'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Almacenamiento de los resultados de aprendizaje ';
 
 -- --------------------------------------------------------
 
@@ -228,17 +291,27 @@ INSERT INTO `programas_formacion` (`id_programa_formacion`, `programas_formacion
 --
 
 CREATE TABLE `rol` (
-  `fk_tipo_rol` int(11) NOT NULL,
-  `fk_documento` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_rol` int(11) NOT NULL COMMENT 'Identificador del rol',
+  `fk_tipo_rol` int(11) NOT NULL COMMENT 'Llave foránea del tipo de rol',
+  `fk_documento` varchar(45) NOT NULL COMMENT 'Llave foránea del documento de los usuarios'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los roles para los usuarios';
 
 --
 -- Volcado de datos para la tabla `rol`
 --
 
-INSERT INTO `rol` (`fk_tipo_rol`, `fk_documento`) VALUES
-(4, 'CC1233697081'),
-(4, 'CC99121700405');
+INSERT INTO `rol` (`id_rol`, `fk_tipo_rol`, `fk_documento`) VALUES
+(2, 4, 'CC1233697081'),
+(3, 1, 'CC99121700405'),
+(6, 2, 'CC52327483'),
+(7, 1, 'CC010101010'),
+(8, 1, 'CC80427540'),
+(9, 1, 'CC9914217485'),
+(10, 1, 'CC123'),
+(11, 1, 'CC8888'),
+(12, 1, 'CC123456789'),
+(13, 1, 'CC89121700405'),
+(14, 1, 'CC97875646');
 
 -- --------------------------------------------------------
 
@@ -247,20 +320,34 @@ INSERT INTO `rol` (`fk_tipo_rol`, `fk_documento`) VALUES
 --
 
 CREATE TABLE `sede` (
-  `id_sede` int(11) NOT NULL,
-  `sede` varchar(100) DEFAULT NULL,
-  `fk_ciudad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_sede` int(11) NOT NULL COMMENT 'Identificador de las sedes',
+  `sede` varchar(100) DEFAULT NULL COMMENT 'Almacenamiento de las sedes',
+  `fk_ciudad` int(11) NOT NULL COMMENT 'Llave foránea de las ciudades a la que pertece cada sede'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de las sedes existentes';
 
 --
 -- Volcado de datos para la tabla `sede`
 --
 
 INSERT INTO `sede` (`id_sede`, `sede`, `fk_ciudad`) VALUES
-(0, 'Null', 0),
-(1, 'Colombia', 5),
-(2, 'Complejo sur', 5),
-(5, 'Ricaurte ', 5);
+(1, 'Null', 1),
+(2, 'Colombia', 3),
+(3, 'Complejo sur', 3),
+(4, 'Ricaurte', 3));
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud`
+--
+
+CREATE TABLE `solicitud` (
+  `id_solicitud` int(11) NOT NULL COMMENT 'Identificador de la solicitud',
+  `documento_solicitud` varchar(45) DEFAULT NULL COMMENT 'Ingreso del documento de la persona que realiza la solicitud',
+  `correo_solicitud` varchar(45) DEFAULT NULL COMMENT 'Ingreso del correo de la persona que realiza la solicitud',
+  `mensaje_solicitud` varchar(45) DEFAULT NULL COMMENT 'Ingreso del mensaje de la persona que realiza la solicitud',
+  `fk_documento_administrador` varchar(45) NOT NULL COMMENT 'Llave foránea del documento del administrador'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de las solicitudes que hagan los usuarios';
 
 -- --------------------------------------------------------
 
@@ -269,17 +356,18 @@ INSERT INTO `sede` (`id_sede`, `sede`, `fk_ciudad`) VALUES
 --
 
 CREATE TABLE `tipo_de_formacion` (
-  `id_tipo_de_formacion` int(11) NOT NULL,
-  `tipo_formacion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_tipo_de_formacion` int(11) NOT NULL COMMENT 'Identificador del tipo de formación',
+  `tipo_formacion` varchar(100) DEFAULT NULL COMMENT 'Ingreso del tipo de formación'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los tipos de formación';
 
 --
 -- Volcado de datos para la tabla `tipo_de_formacion`
 --
 
 INSERT INTO `tipo_de_formacion` (`id_tipo_de_formacion`, `tipo_formacion`) VALUES
-(0, 'Null'),
-(1, 'Tecnologo');
+(1, 'Null'),
+(2, 'Tecnologo'),
+(3, 'Tecnico');
 
 -- --------------------------------------------------------
 
@@ -288,9 +376,9 @@ INSERT INTO `tipo_de_formacion` (`id_tipo_de_formacion`, `tipo_formacion`) VALUE
 --
 
 CREATE TABLE `tipo_documento` (
-  `id_tipo_documento` bigint(11) NOT NULL,
-  `tipo_documento` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_tipo_documento` bigint(11) NOT NULL COMMENT 'Identificador de los tipos de documento',
+  `tipo_documento` varchar(45) DEFAULT NULL COMMENT 'Ingreso de los tipos de documento'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los tipos de documento';
 
 --
 -- Volcado de datos para la tabla `tipo_documento`
@@ -308,22 +396,42 @@ INSERT INTO `tipo_documento` (`id_tipo_documento`, `tipo_documento`) VALUES
 --
 
 CREATE TABLE `tipo_novedad` (
-  `id_tipo_novedad` int(2) NOT NULL,
-  `tipo_novedad` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_tipo_novedad` int(2) NOT NULL COMMENT 'Identificador de los tipos de novedad',
+  `tipo_novedad` varchar(45) DEFAULT NULL COMMENT 'Ingreso de los tipos de novedad'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los tipos de novedad';
 
 --
 -- Volcado de datos para la tabla `tipo_novedad`
 --
 
 INSERT INTO `tipo_novedad` (`id_tipo_novedad`, `tipo_novedad`) VALUES
-(0, 'Null'),
-(1, 'Cambio jornada'),
-(2, 'Retiro Voluntario'),
-(3, 'Aplazamiento'),
-(4, 'Deserción '),
-(5, 'Traslado'),
-(6, 'Reintegro ');
+(1, 'Null'),
+(2, 'Cambio jornada'),
+(3, 'Retiro Voluntario'),
+(4, 'Aplazamiento'),
+(5, 'Deserción '),
+(6, 'Traslado'),
+(7, 'Reintegro ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_respuesta`
+--
+
+CREATE TABLE `tipo_respuesta` (
+  `id_tipo_respuesta` int(2) NOT NULL COMMENT 'Identificador del tipo de respuesta',
+  `tipo_respuesta` varchar(45) DEFAULT NULL COMMENT 'Ingreso del tipo de respuesta'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los tipos de respuesta';
+
+--
+-- Volcado de datos para la tabla `tipo_respuesta`
+--
+
+INSERT INTO `tipo_respuesta` (`id_tipo_respuesta`, `tipo_respuesta`) VALUES
+(1, 'Aprobada'),
+(2, 'No aprobada'),
+(3, 'Espera');
 
 -- --------------------------------------------------------
 
@@ -332,9 +440,9 @@ INSERT INTO `tipo_novedad` (`id_tipo_novedad`, `tipo_novedad`) VALUES
 --
 
 CREATE TABLE `tipo_rol` (
-  `id_tipo_rol` int(11) NOT NULL,
-  `tipo_rol` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_tipo_rol` int(11) NOT NULL COMMENT 'Identificador del tipo de rol',
+  `tipo_rol` varchar(45) DEFAULT NULL COMMENT 'Ingreso del tipo de rol existente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Almacenamiento de los roles';
 
 --
 -- Volcado de datos para la tabla `tipo_rol`
@@ -342,9 +450,10 @@ CREATE TABLE `tipo_rol` (
 
 INSERT INTO `tipo_rol` (`id_tipo_rol`, `tipo_rol`) VALUES
 (1, 'Aprendiz'),
-(2, 'Instrucotor'),
+(2, 'Instructor'),
 (3, 'Apoyo Administrativo'),
-(4, 'Administrador');
+(4, 'Administrador'),
+(5, 'Super Administrador');
 
 -- --------------------------------------------------------
 
@@ -353,16 +462,16 @@ INSERT INTO `tipo_rol` (`id_tipo_rol`, `tipo_rol`) VALUES
 --
 
 CREATE TABLE `trimestre` (
-  `id_trimestre` int(11) NOT NULL,
-  `trimestre` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `id_trimestre` int(11) NOT NULL COMMENT 'Identificador de los trimestres',
+  `trimestre` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Ingreso del trimestre'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Almacenamiento de los trimestres';
 
 --
 -- Volcado de datos para la tabla `trimestre`
 --
 
 INSERT INTO `trimestre` (`id_trimestre`, `trimestre`) VALUES
-(0, 'Null'),
+(1, 'Null'),
 (2, 'Uno'),
 (3, 'Dos'),
 (4, 'Tres'),
@@ -370,8 +479,7 @@ INSERT INTO `trimestre` (`id_trimestre`, `trimestre`) VALUES
 (6, 'Cinco'),
 (7, 'Seis'),
 (8, 'Siete'),
-(9, 'Ocho'),
-(10, 'Nueve');
+(9, 'Ocho');
 
 --
 -- Índices para tablas volcadas
@@ -382,6 +490,13 @@ INSERT INTO `trimestre` (`id_trimestre`, `trimestre`) VALUES
 --
 ALTER TABLE `ciudad`
   ADD PRIMARY KEY (`id_ciudad`);
+
+--
+-- Indices de la tabla `competencias`
+--
+ALTER TABLE `competencias`
+  ADD PRIMARY KEY (`id_competencia`),
+  ADD KEY `fk_competencias_programa_formacion_idx` (`fk_programa`);
 
 --
 -- Indices de la tabla `dato_persona`
@@ -406,10 +521,21 @@ ALTER TABLE `ficha`
   ADD PRIMARY KEY (`codigo_ficha`),
   ADD KEY `fk_Fichas_Sedes1_idx` (`fk_sede`),
   ADD KEY `fk_Fichas_Jornadas1_idx` (`fk_jornada`),
-  ADD KEY `fk_Fichas_Tipos_de_formacion2_idx` (`fk_tipo_formacion`),
   ADD KEY `fk_Fichas_Modalidades1_idx` (`fk_modalidad`),
   ADD KEY `fk_Fichas_Programas_formacion1_idx` (`fk_programa_formacion`),
-  ADD KEY `fk_ficha_trimestre1_idx` (`fk_trimestre`);
+  ADD KEY `fk_ficha_trimestre1_idx` (`fk_trimestre`),
+  ADD KEY `fk_ficha_estado1_idx` (`fk_estado`);
+
+--
+-- Indices de la tabla `historial_aprendiz`
+--
+ALTER TABLE `historial_aprendiz`
+  ADD PRIMARY KEY (`id_historial_aprendiz`),
+  ADD KEY `fk_Fichas_Sedes1_idx` (`fk_sede_antigua`),
+  ADD KEY `fk_Fichas_Jornadas1_idx` (`fk_jornada_antigua`),
+  ADD KEY `fk_Fichas_Modalidades1_idx` (`fk_modalidad_antigua`),
+  ADD KEY `fk_ficha_trimestre1_idx` (`fk_trimestre_antigua`),
+  ADD KEY `fk_historial_aprendiz_ficha1_idx` (`fk_codigo_ficha`);
 
 --
 -- Indices de la tabla `jornada`
@@ -429,7 +555,8 @@ ALTER TABLE `modalidad`
 ALTER TABLE `novedad`
   ADD PRIMARY KEY (`id_novedad`),
   ADD KEY `fk_Novedad_Tipo_novedad1_idx` (`fk_tipo_novedad`),
-  ADD KEY `fk_novedad_dato_persona1_idx` (`fk_documento`);
+  ADD KEY `fk_novedad_dato_persona1_idx` (`fk_documento`),
+  ADD KEY `fk_novedad_tipo_respuesta1_idx` (`fk_tipo_respuesta`);
 
 --
 -- Indices de la tabla `permiso`
@@ -438,17 +565,26 @@ ALTER TABLE `permiso`
   ADD PRIMARY KEY (`id_documento`);
 
 --
--- Indices de la tabla `programas_formacion`
+-- Indices de la tabla `programa_formacion`
 --
-ALTER TABLE `programas_formacion`
-  ADD PRIMARY KEY (`id_programa_formacion`);
+ALTER TABLE `programa_formacion`
+  ADD PRIMARY KEY (`id_programa_formacion`),
+  ADD KEY `fk_programa_formacion_tipo_de_formacion1_idx` (`fk_tipo_de_formacion`);
+
+--
+-- Indices de la tabla `resultado_aprendizaje`
+--
+ALTER TABLE `resultado_aprendizaje`
+  ADD PRIMARY KEY (`id_resultado_aprendizaje`),
+  ADD KEY `fk_resultado_aprendizaje_competencias1_idx` (`fk_competencia`);
 
 --
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
-  ADD KEY `fk_Permisos_Rol1_idx` (`fk_tipo_rol`),
-  ADD KEY `fk_rol_dato_persona1_idx` (`fk_documento`);
+  ADD PRIMARY KEY (`id_rol`),
+  ADD KEY `fk_rol_tipo_rol1_idx` (`fk_tipo_rol`),
+  ADD KEY `fk_rol_permiso1_idx` (`fk_documento`);
 
 --
 -- Indices de la tabla `sede`
@@ -456,6 +592,13 @@ ALTER TABLE `rol`
 ALTER TABLE `sede`
   ADD PRIMARY KEY (`id_sede`),
   ADD KEY `fk_sedes_ciudad1_idx` (`fk_ciudad`);
+
+--
+-- Indices de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD PRIMARY KEY (`id_solicitud`),
+  ADD KEY `fk_solicitud_permiso1_idx` (`fk_documento_administrador`);
 
 --
 -- Indices de la tabla `tipo_de_formacion`
@@ -474,6 +617,12 @@ ALTER TABLE `tipo_documento`
 --
 ALTER TABLE `tipo_novedad`
   ADD PRIMARY KEY (`id_tipo_novedad`);
+
+--
+-- Indices de la tabla `tipo_respuesta`
+--
+ALTER TABLE `tipo_respuesta`
+  ADD PRIMARY KEY (`id_tipo_respuesta`);
 
 --
 -- Indices de la tabla `tipo_rol`
@@ -495,77 +644,113 @@ ALTER TABLE `trimestre`
 -- AUTO_INCREMENT de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de las ciudades', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `competencias`
+--
+ALTER TABLE `competencias`
+  MODIFY `id_competencia` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de las competencias';
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `id_estado` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_estado` int(2) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del estado', AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_aprendiz`
+--
+ALTER TABLE `historial_aprendiz`
+  MODIFY `id_historial_aprendiz` int(45) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del hitorial de cada aprendiz', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `jornada`
 --
 ALTER TABLE `jornada`
-  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la jornada de formación del aprendiz', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `modalidad`
 --
 ALTER TABLE `modalidad`
-  MODIFY `id_modalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_modalidad` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la modalidad', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `novedad`
 --
 ALTER TABLE `novedad`
-  MODIFY `id_novedad` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_novedad` int(2) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la novedad', AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT de la tabla `programas_formacion`
+-- AUTO_INCREMENT de la tabla `programa_formacion`
 --
-ALTER TABLE `programas_formacion`
-  MODIFY `id_programa_formacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `programa_formacion`
+  MODIFY `id_programa_formacion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del programa de formación', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del rol', AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `id_sede` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sede` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de las sedes', AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de la solicitud';
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_de_formacion`
 --
 ALTER TABLE `tipo_de_formacion`
-  MODIFY `id_tipo_de_formacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_tipo_de_formacion` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del tipo de formación', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_documento`
 --
 ALTER TABLE `tipo_documento`
-  MODIFY `id_tipo_documento` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_tipo_documento` bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de los tipos de documento', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_novedad`
 --
 ALTER TABLE `tipo_novedad`
-  MODIFY `id_tipo_novedad` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_tipo_novedad` int(2) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de los tipos de novedad', AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_respuesta`
+--
+ALTER TABLE `tipo_respuesta`
+  MODIFY `id_tipo_respuesta` int(2) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del tipo de respuesta', AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_rol`
 --
 ALTER TABLE `tipo_rol`
-  MODIFY `id_tipo_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_tipo_rol` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador del tipo de rol', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `trimestre`
 --
 ALTER TABLE `trimestre`
-  MODIFY `id_trimestre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_trimestre` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Identificador de los trimestres', AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `competencias`
+--
+ALTER TABLE `competencias`
+  ADD CONSTRAINT `fk_competencias_programa_formacion` FOREIGN KEY (`fk_programa`) REFERENCES `programa_formacion` (`id_programa_formacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `dato_persona`
@@ -582,30 +767,59 @@ ALTER TABLE `dato_persona`
 ALTER TABLE `ficha`
   ADD CONSTRAINT `fk_Fichas_Jornadas1` FOREIGN KEY (`fk_jornada`) REFERENCES `jornada` (`id_jornada`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Fichas_Modalidades1` FOREIGN KEY (`fk_modalidad`) REFERENCES `modalidad` (`id_modalidad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Fichas_Programas_formacion1` FOREIGN KEY (`fk_programa_formacion`) REFERENCES `programas_formacion` (`id_programa_formacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Fichas_Programas_formacion1` FOREIGN KEY (`fk_programa_formacion`) REFERENCES `programa_formacion` (`id_programa_formacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_Fichas_Sedes1` FOREIGN KEY (`fk_sede`) REFERENCES `sede` (`id_sede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Fichas_Tipos_de_formacion2` FOREIGN KEY (`fk_tipo_formacion`) REFERENCES `tipo_de_formacion` (`id_tipo_de_formacion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ficha_estado1` FOREIGN KEY (`fk_estado`) REFERENCES `estado` (`id_estado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_ficha_trimestre1` FOREIGN KEY (`fk_trimestre`) REFERENCES `trimestre` (`id_trimestre`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `historial_aprendiz`
+--
+ALTER TABLE `historial_aprendiz`
+  ADD CONSTRAINT `fk_Fichas_Jornadas10` FOREIGN KEY (`fk_jornada_antigua`) REFERENCES `jornada` (`id_jornada`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Fichas_Modalidades10` FOREIGN KEY (`fk_modalidad_antigua`) REFERENCES `modalidad` (`id_modalidad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Fichas_Sedes10` FOREIGN KEY (`fk_sede_antigua`) REFERENCES `sede` (`id_sede`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_ficha_trimestre10` FOREIGN KEY (`fk_trimestre_antigua`) REFERENCES `trimestre` (`id_trimestre`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_historial_aprendiz_ficha1` FOREIGN KEY (`fk_codigo_ficha`) REFERENCES `ficha` (`codigo_ficha`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `novedad`
 --
 ALTER TABLE `novedad`
   ADD CONSTRAINT `fk_Novedad_Tipo_novedad1` FOREIGN KEY (`fk_tipo_novedad`) REFERENCES `tipo_novedad` (`id_tipo_novedad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_novedad_dato_persona1` FOREIGN KEY (`fk_documento`) REFERENCES `dato_persona` (`documento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_novedad_dato_persona1` FOREIGN KEY (`fk_documento`) REFERENCES `dato_persona` (`documento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_novedad_tipo_respuesta1` FOREIGN KEY (`fk_tipo_respuesta`) REFERENCES `tipo_respuesta` (`id_tipo_respuesta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `programa_formacion`
+--
+ALTER TABLE `programa_formacion`
+  ADD CONSTRAINT `fk_programa_formacion_tipo_de_formacion1` FOREIGN KEY (`fk_tipo_de_formacion`) REFERENCES `tipo_de_formacion` (`id_tipo_de_formacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `resultado_aprendizaje`
+--
+ALTER TABLE `resultado_aprendizaje`
+  ADD CONSTRAINT `fk_resultado_aprendizaje_competencias1` FOREIGN KEY (`fk_competencia`) REFERENCES `competencias` (`id_competencia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `rol`
 --
 ALTER TABLE `rol`
-  ADD CONSTRAINT `fk_Permisos_Rol1` FOREIGN KEY (`fk_tipo_rol`) REFERENCES `tipo_rol` (`id_tipo_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_rol_dato_persona1` FOREIGN KEY (`fk_documento`) REFERENCES `dato_persona` (`documento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_rol_permiso1` FOREIGN KEY (`fk_documento`) REFERENCES `permiso` (`id_documento`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_rol_tipo_rol1` FOREIGN KEY (`fk_tipo_rol`) REFERENCES `tipo_rol` (`id_tipo_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `sede`
 --
 ALTER TABLE `sede`
   ADD CONSTRAINT `fk_sedes_ciudad1` FOREIGN KEY (`fk_ciudad`) REFERENCES `ciudad` (`id_ciudad`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD CONSTRAINT `fk_solicitud_permiso1` FOREIGN KEY (`fk_documento_administrador`) REFERENCES `permiso` (`id_documento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

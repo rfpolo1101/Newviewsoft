@@ -1,78 +1,76 @@
 <?php require RUTA_APP . '/views/inicio/header.php'; ?><br><br>
-<div class="container">
+  <div class="container">
     <div class="table-responsive">
 
-  <?php if($datos["datos"] != null): ?>
-  <table class="table table-bordered"  class="tablas1">
-		  <thead class="thead-dark">
-		    <tr>
-        <th>Tipo Documento</th>
-          <th>Documento</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Email</th>
-          <th>Cargo</th>
-          <th>Editar</th>
-          <th>Eliminar</th>
-		    </tr>
-		  </thead>
-        <?php foreach($datos['datos'] as $datos) :
-          if($datos->tipo_rol === "Aprendiz"):?>
+      <?php if($datos["datos"] != null): ?>
 
-        <tr class="bg-primary">
-          <td><?php echo $datos->tipo_documento ?></td>
-          <td><?php echo substr($datos->documento, 2) ?></td>
-          <td><?php echo $datos->primer_nombre . " " . $datos->segundo_nombre?></td>
-          <td><?php echo $datos->primer_apellido . " " . $datos->segundo_apellido?></td>
-          <td><?php echo $datos->correo?></td>
-          <td><?php echo $datos->tipo_rol ?></td>
-          <td><a href="#" data-role="update" data-id="<?php echo $datos1->id_novedad?>" id="up-el">editar</a></td>
-          <td><a href="#" data-role="" data-id="<?php echo $datos1->id_novedad?>" id="up-el">eliminar</a></td>
-        </tr>
-        <?php endif; endforeach; ?>
-   
-         
-        </tr>
-		  </tbody>
-		</table>
-	</div>
-    <?php   
-
-        else:
-
-          echo "<br><br><br><br>";
-
-
-        endif; 
-      ?>
-    </div>  
-  </div>
+<div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="Consulta la novedad">
 </div>
-<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
 
-    <div class="col-md-4 col-xs-4 col-sm-4 col-lg-4">  
-    </div>
 
-    <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
-      <div class="container-fluid">
-        <br>
-        <nav class="pagination">
-          <li><a href="#">&laquo; Anterior</a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">&raquo; Siguente</a></li>
-        </nav>
-      </div>
-    </div>
+<table class="table table-hover table-bordered results">
+    		  <thead class="thead-active">
+    		    <tr>
+            <th class="bg-primary">Tipo Documento</th>
+            <th class="bg-primary">Documento</th>
+            <th class="bg-primary">Primer nombre</th>
+            <th class="bg-primary">Segundo nombre</th>
+            <th class="bg-primary">Primer apellido</th>
+            <th class="bg-primary">Segundo apellido</th>
+            <th class="bg-primary">Email</th>
+            <th class="bg-primary">Cargo</th>
+            <th class="bg-primary">Ficha</th>
+            <?php if (isset($_SESSION["Administrador"]) or isset($_SESSION["Super_admin"]) or isset($_SESSION["Apoyo_admin"]) ): ?><th class="bg-primary">Editar</th><?php endif?>
+              </tr>
+              <tr class="warning no-result">
+        <td colspan="4"><i class="fa fa-warning"></i> No Existe</td>
+         </tr>
+    		  </thead>
+          <tbody>
+          
+
+            <?php foreach($datos['datos'] as $datos1):
+
+                    if($datos1->fk_tipo_rol == 1 ):
+            ?>
+            <tr class="active"  id="<?php echo $datos1->documento; ?>">
+            <td data-target="tipo_documento"><?php echo $datos1->tipo_documento?></td>
+              <td class="active" data-target="documento"  scope="row"><?php echo $datos1->documento ?></td>
+              <td data-target="primer_nombre"><?php echo $datos1->primer_nombre?></td>
+              <td data-target="segundo_nombre"><?php echo $datos1->segundo_nombre ?></td>
+              <td data-target="primer_apellido"><?php echo $datos1->primer_apellido ?></td>
+              <td data-target="segundo_apellido" ><?php echo $datos1->segundo_apellido ?></td>
+              <td data-target="email"><?php echo $datos1->correo?></td>
+              <td data-target="tipo_rol"><?php echo $datos1->tipo_rol?></td>
+              <td data-target="ficha"><?php echo $datos1->fk_ficha ?></td>                                      
+                    <?php if (isset($_SESSION["Administrador"]) or isset($_SESSION["Super_admin"]) or isset($_SESSION["Apoyo_admin"]) ): ?> <td><a href="#" data-role="update" data-id="<?php echo $datos1->documento ?>" id="up-el"><img src="<?php echo RUTA_URL?>/img/editar.png" style="width:30px;" ></a></td><?php endif;?>
+              <td data-target="id_tipo_respuesta" hidden> <?php echo $datos1->id_tipo_respuesta ?></td>
+            </tr>
+                    <?php endif; endforeach; ?>
+          </tbody>
+    		</table>
+  	</div>
+  </div>  
+ 
+
 
     <div class="col-md-2 col-xs-2 col-sm-2 col-lg-2">
     	
     </div>
 </div>
-<!-- Modal -->
+<?php   
+        else:
 
+
+          echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+          <strong></strong>No hay novedades que mostrar</div></div>";
+          echo "<br><br><br><br>";
+
+
+        endif; 
+      ?>
+<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
@@ -82,160 +80,104 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Actualizar novedad</h4>
           </div>
+          <form method="post" action="<?php echo RUTA_URL  ?>/buscar/aprendices" enctype="multipart/form-data">
           <div class="modal-body">
+          
+
           <div class="form-group">
                 <label>Documento</label>
-                <input type="text" id="documento" class="form-control" disabled>
+                <input type="text" id="documento" class="form-control"  name="documento"  >
               </div>
               <div class="form-group">
-                <label>Primer nombre</label>
-                <input type="text" id="primer_nombre" class="form-control">
+                <label>Primer Nombre</label>
+                <input type="text" id="primer_nombre" name="primer_nombre"  class="form-control" >
+              </div>
+              <div class="form-group">
+                <label>Segundo Nombre</label>
+                <input type="text" id="segundo_nombre" name="segundo_nombre"  class="form-control"  >
               </div>
 
                <div class="form-group">
-                <label>Segundo nombre</label>
-                <input type="text" id="segundo_nombre" class="form-control">
+                <label>Primer Apellido</label>
+                <input type="text" id="primer_apellido" name="primer_apellido"    class="form-control">
               </div>
                 <input type="hidden" id="userId" class="form-control">
 
-                     <div class="form-group">
-                <label>Primer_apellido</label>
-                <input type="text" id="primer_apellido" class="form-control">
+                <div class="form-group">
+                <label>Segundo Apellido</label>
+                <input type="text" id="segundo_apellido"  name="segundo_apellido"  class="form-control">
               </div>
-              <div class="form-group">
-                <label>Segundo apellido</label>
-                <input type="text" id="segundo_apellido" class="form-control">
-              </div>
+                <input type="hidden" id="userId" class="form-control">
+
               <div class="form-group">
                 <label>Email</label>
-                <input type="text" id="email" class="form-control">
+                <input type="text" id="email" name="email"    class="form-control">
               </div>
 
-               <div class="form-group">
-                <label>Novedad</label>
+              <div class="form-group">
+                <label>Cargo</label>
+                <input type="text" id="tipo_rol"  readonly="readonly"  class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label>Ficha</label>
                 <select name="ficha" id="ficha" class="form-control" >
-                      <option value="0">Reintegro</option>
-                      <option value="0">Cambio jornada</option>
-                      <option value="0">Retiro voluntario</option>
-                      <option value="0">Aplazamiento</option>
-                      <option value="0">Desercion</option>
-                      <option value="0">Traslado</option>
-                      <option value="0">Reintegro</option>  
-                      </select>
+                <?php foreach($datos["dato"] as $t): if($t->codigo_ficha != 0):  ?>
+                <option value="<?php echo $t->codigo_ficha ?>" id="ficha"><?php echo $t->codigo_ficha; ?></option>
+                <?php endif;endforeach; ?>
               </div>
 
-     <div class="form-group">
-                <label>Motivo</label>
-                <textarea type="text" id="motivo" class="form-control"></textarea>
-              </div>
-              <div class="form-group">
-                <label>Respuesta</label>
-                <textarea type="text" id="respuesta" class="form-control"></textarea>
-              </div>
-
-               <div class="form-group">
-                <label>fecha inicio</label>
-                <input type="text" id="fecha_inicio" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <label>fecha final</label>
-                <input type="text" id="fecha_final" class="form-control">
-              </div>
                 <input type="hidden" id="userId" class="form-control">
-
-                
-
-
-
-              
-
-              
-              
-
 
           </div>
           <div class="modal-footer">
-            <a href="#" id="save" class="btn btn-primary pull-right">Update</a>
+          <input class="button" type="submit" name="button" id="button" value="Actualizar"/>
+          </form>
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
           </div>
         </div>
-
-      </div>
-    </div>
     
+
     <script>
   $(document).ready(function(){
 
     //  append values in input fields
       $(document).on('click','a[data-role=update]',function(){
+        
             var id  = $(this).data('id');
+            var tipo_documento = $('#' +id).children('td[data-target=tipo_documento]').text();
             var documento  = $('#'+id).children('td[data-target=documento]').text();
             var primer_nombre  = $('#'+id).children('td[data-target=primer_nombre]').text();
             var segundo_nombre  = $('#'+id).children('td[data-target=segundo_nombre]').text();
             var primer_apellido  = $('#'+id).children('td[data-target=primer_apellido]').text();
             var segundo_apellido  = $('#'+id).children('td[data-target=segundo_apellido]').text();
             var email  = $('#'+id).children('td[data-target=email]').text();
-            var novedad  = $('#'+id).children('td[data-target=novedad]').text();
-            var motivo  = $('#'+id).children('td[data-target=motivo]').text();
-            var respuesta  = $('#'+id).children('td[data-target=respuesta]').text();
-            var fecha_inicio  = $('#'+id).children('td[data-target=fecha_inicio]').text();
-            var fecha_final  = $('#'+id).children('td[data-target=fecha_final]').text();
+            var tipo_rol  = $('#'+id).children('td[data-target=tipo_rol]').text();
+            var ficha  = $('#'+id).children('td[data-target=ficha]').text();
 
+
+
+
+
+
+            
+
+            $('#tipo_documento').val(tipo_documento);
             $('#documento').val(documento);
             $('#primer_nombre').val(primer_nombre);
             $('#segundo_nombre').val(segundo_nombre);
             $('#primer_apellido').val(primer_apellido);
             $('#segundo_apellido').val(segundo_apellido);
-            $('#novedad').val(novedad);
-            $('#motivo').val(motivo);
-            $('#respuesta').val(respuesta);
-            $('#fecha_inicio').val(fecha_inicio);
-            $('#fecha_final').val(fecha_final);
             $('#email').val(email);
+            $('#tipo_rol').val(tipo_rol);
+            $('#ficha').val(parseInt(ficha));
+
+
+
+
             $('#myModal').modal('toggle');
-      });
-
-      // now create event to get data from fields and update in database 
-
-       $('#save').click(function(){
-        
-
-             var = documento = $('#documento').val(documento);
-             var = primer_nombre =  $('#primer_nombre').val(primer_nombre);
-             var = segundo_nombre =   $('#segundo_nombre').val(segundo_nombre);
-             var = primer_apellido =  $('#primer_apellido').val(primer_apellido);
-             var = segundo_apellido =  $('#segundo_apellido').val(segundo_apellido);
-             var = novedad =  $('#novedad').val(novedad);
-             var = motivo =  $('#motivo').val(motivo);
-             var = respuesta =   $('#respuesta').val(respuesta);
-             var = fecha_inicio =  $('#fecha_inicio').val(fecha_inicio);
-             var = fecha_final =   $('#fecha_final').val(fecha_final);
-             var = email =   $('#email').val(email);
-
-          $.ajax({
-              url      :  "",
-              method   : 'post', 
-              data     : {},
-              success  : function(response){
-                            // now update user record in table 
-  
-                              $('#'+id).children('td[data-target=documento]').text(documento);
-                              $('#'+id).children('td[data-target=primer_nombre]').text(primer_nombre);
-                              $('#'+id).children('td[data-target=segundo_nombre]').text(segundo_nombre);
-                              $('#'+id).children('td[data-target=primer_apellido]').text(primer_apellido);
-                              $('#'+id).children('td[data-target=segundo_apellido]').text(segundo_apellido);
-                              $('#'+id).children('td[data-target=email]').text(email);
-                              $('#'+id).children('td[data-target=novedad]').text(novedad);
-                              $('#'+id).children('td[data-target=motivo]').text(motivo);
-                              $('#'+id).children('td[data-target=respuesta]').text(respuesta);
-                              $('#'+id).children('td[data-target=fecha_inicio]').text(fecha_inicio);
-                              $('#'+id).children('td[data-target=fecha_final]').text(fecha_final);
-                              $('#myModal').modal('toggle');
-
-                         }
-          });
-       });
+          
+      });   
   });
-</script>
+</script></div></div>
 <?php require RUTA_APP . '/views/inicio/footer.php'; ?>

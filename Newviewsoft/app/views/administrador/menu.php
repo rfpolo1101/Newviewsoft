@@ -6,13 +6,13 @@
 
       <meta charset="utf-8">
       <meta name="viewpor" content="width=device-width, user-scalable=no, initial-scale=1.0, maxium-scale=1.0, minunum-scale=1.0">
-
-      <!--BOOTSTRAP HOJAS DE ESTILO-->
       <link rel="stylesheet" href="<?php echo RUTA_URL; ?>/bootstrap/css/bootstrap.min.css">
-    
-
-      <!--CONEXIÓN HOJAS DE ESTILO-->
       <link rel="stylesheet" type="text/css" href="<?php echo RUTA_URL; ?>/css/foondo.css">
+      <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/parallax.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo RUTA_URL ?>/css/redes.css" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo RUTA_URL ?>/img/logo1.png" rel="shortcut icon" type="image/x-icon" />
 
       <title>NewViewSoft</title>
 
@@ -22,13 +22,13 @@
 
   <header>
 
-    <!--Nombre y Apellido usuario-->   
+    <!--Nombre y Apellido usuario-->
    <nav class="navbar navbar-fixed-top navbar-inverse"  >
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar" aria-expanded="true">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#"></a>
         </div>
@@ -39,13 +39,13 @@
                   <div class="input-group">
                    <a href="#"><img src="<?php echo RUTA_URL; ?>/img/icono_perfil.jpg" class="img-rounded" style="width: 35px; height: 35px;"></a>
                    <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary">
-                       <span><?php if(isset($_SESSION['Administrador'])){ echo "Administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} 
-                       if(isset($_SESSION['ApoyoAdministrador'])){ echo "Administrador:  " . $_SESSION ["ApoyoAdministrador"];} if(isset($_SESSION['Invitado'])){ echo "Invitado:  " . $_SESSION ["Invitado"];}?></span></button></a>
-                  </div> 
+                       <span><?php if (isset($_SESSION['Administrador'])) {echo "Administrador:  " . $_SESSION["nombre"] . " " . $_SESSION["apellido"];}
+                        if (isset($_SESSION['ApoyoAdministrador'])) {echo "Apoyo administrador:  " . $_SESSION["ApoyoAdministrador"];}if (isset($_SESSION['Invitado'])) {echo "Invitado:  " . $_SESSION["Invitado"];}?></span></button></a>
+                  </div>
                 </div>
-                
-            </li>  
-           
+
+            </li>
+
           </ul>
           <div class="media">
                 <div >
@@ -59,7 +59,7 @@
       </div>
   </nav>
   </nav>
-    <!--INICIO IMAGENES LOGO Y SENA-->   
+    <!--INICIO IMAGENES LOGO Y SENA-->
 
     <nav class="navbar navbar-inverse">
           <div>
@@ -69,9 +69,9 @@
           <a href="http://oferta.senasofiaplus.edu.co/sofia-oferta/"><img src="<?php echo RUTA_URL ?>/img/intro.png" alt="NewViewSoft" title="NewViewSoft" style="position:absolute; width:156px; left:85%; top:60px;"></a>
           </div>
 	 </nav>
-        
 
- <!--MENU PRINCIPAL--> 
+
+<!--MENU PRINCIPAL-->
 
 
     <nav class="navbar navbar-inverse">
@@ -79,14 +79,14 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="true">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="<?php echo RUTA_URL; ?>/nvs/admtd/">MENÚ</a>
       </div>
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
-          <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
-          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/admtd"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
+          <li ><a href="<?php echo RUTA_URL; ?>/nvs/admtd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
+          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/admtd"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li>
           <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
 
@@ -105,18 +105,20 @@
           <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Opciones <span class="caret"></span></a>
 
-                  <ul class="dropdown-menu" >
-                    <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
-                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
-                    <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                   <ul class="dropdown-menu" >
+                   <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                   <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar/asignar_rol"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignardocumento"><span class="glyphicon glyphicon-briefcase"></span> Asignar Tipo Documento</a></li>
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar/asignar_permiso"><span class="glyphicon glyphicon-list-alt"></span> Asignar Permisos</a></li>
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/ayuda"><span class="glyphicon glyphicon-pushpin"></span>Ayuda</a></li>
+                    <li><a href="<?php echo RUTA_URL; ?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                   </ul>
-          </li> 
+          </li>
         </ul>
 
     <!--buscar usuarios-->
           <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
             <div class="dropdown btn-group">
-              <button type="button" class="btn btn-default">Buscador</button>
               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <span class="glyphicon glyphicon-search"></span>
                   <span class="caret"></span>
@@ -124,21 +126,27 @@
               </button>
               <ul class="dropdown-menu">
                 <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/usuarios">Usuarios</a></li>
-                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendices</a></li>
-                <li class="dropdown-submenu">
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendiz</a></li>          
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/fichas">Fichas</a></li>
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/historial">Historial</a></li>                
+                      <li class="dropdown-submenu">
+
                   <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/1">Cambio Jornada</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Retiro voluntario</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Aplazamiento</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Deserción</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Traslado</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Reintegro</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Cambio de Jornada</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Retiro voluntario</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Aplazamiento</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Deserción</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Traslado</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/7">Reintegro</a></li>
 
                   </ul>
                 </li>
               </ul>
             </div>
+            <div class="input-group">
+              <input type="text" placeholder="Buscador" class="form-control" style="border-radius: 3px 3px 3px 3px;"></input>
+             </div>
           </form>
 
         </div>
@@ -147,42 +155,47 @@
 
 </header>
 
- <!--INICIO CONTENIDO-->
+<!--INICIO CONTENIDO-->
 
   <section>
-    <div class="container col-md-12">
-        <div id="myCarousel" class="carousel slide col-md-9" data-ride="carousel">
-          
-          <!-- INDICADORES -->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-              <li data-target="#myCarousel" data-slide-to="3"></li>
-              <li data-target="#myCarousel" data-slide-to="4"></li>
-            </ol>
 
-          <!-- IMAGENES -->
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+   <div class="container col-xl-9 col-lg-9 col-md-9 col-sm-8 col-xs-8">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       <!-- INDICADORES -->
+         <ol class="carousel-indicators">
+           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+           <li data-target="#myCarousel" data-slide-to="1"></li>
+           <li data-target="#myCarousel" data-slide-to="2"></li>
+           <li data-target="#myCarousel" data-slide-to="3"></li>
+           <li data-target="#myCarousel" data-slide-to="4"></li>
+         </ol>
 
-        <div class="carousel-inner">
-             <div class="item active">
-                <img src="<?php echo RUTA_URL; ?>/img/imag6.jpg" alt="TÉCNOLOGIA" title="TÉCNOLOGIA" style="width: ; height:;" >
-             </div>
+       <!-- IMAGENES -->
 
-             <div class="item">
-                <img src="<?php echo RUTA_URL; ?>/img/imag4.png" alt="SEDE COLOMBIA" title="SEDE COLOMBIA" style="width: 100%; height: 50%;"  >
-             </div>
+       <div class="carousel-inner">
+          <div class="item active">
+             <img src="<?php echo RUTA_URL; ?>/img/imag7.jpg" alt="VANGUARDIA" title="VANGUARDIA">
+          </div>
 
-              <div class="item">
-                <img  src="<?php echo RUTA_URL; ?>/img/imag2.jpg" alt="BIENVENIDOS" title="BIENVENIDOS" style="width: 100%; height: 50%;" >
-             </div>
-             <div class="item">
-                <img  src="<?php echo RUTA_URL; ?>/img/imag8.jpg" alt="SENA" title="SENA" style="width: 100%; height: 50%;" >
-             </div>
-             <div class="item">
-                <img  src="<?php echo RUTA_URL; ?>/img/imag9.jpg" alt="FUTURO" title="FUTURO" style="width:; height: ;" >
-             </div>
-        </div>
+          <div class="item">
+             <img src="<?php echo RUTA_URL; ?>/img/imag18.jpg" alt="SEDE COLOMBIA" title="SEDE COLOMBIA">
+          </div>
+
+           <div class="item">
+             <img  src="<?php echo RUTA_URL; ?>/img/imag8.jpg" alt="BIENVENIDOS" title="BIENVENIDOS">
+          </div>
+          <div class="item">
+             <img  src="<?php echo RUTA_URL; ?>/img/imag2.jpg" alt="SENA" title="SENA">
+          </div>
+          <div class="item">
+             <img  src="<?php echo RUTA_URL; ?>/img/imag6.jpg" alt="TECNOLOGÍA" title="TECNOLOGÍA">
+          </div>
+          <div class="item">
+             <img  src="<?php echo RUTA_URL; ?>/img/imag10.jpg" alt="FUTURO" title="FUTURO">
+          </div>
+       </div>
+     </div>
 
   <!-- CONTROLES DE IZQUIERDA A DERECHA -->
 
@@ -194,21 +207,21 @@
             </a>
         </div>
 
-        <div class="col-md-3">
-        <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
-           <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/sede/"> Sede</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/ficha/">  Ficha</a></li>  
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/jornada"> Jornada</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"> Ciudad</a></li>  
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"> Modalidad</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"> Trimestre</a></li>  
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo formacion</a></li>
-            <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa formacion </a></li>  
-
-
-                  <li class="divider"></li>  
-                </ul>
+       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-4">
+           <ul class="nav nav-pills nav-stacked navbar-inverse" style="margin: 10px;">
+               <li class="active"><a href="#"><span class="glyphicon glyphicon-globe"></span> BIENVENIDO</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/sede/"> Sede</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/ficha/">  Ficha</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/jornada"> Jornada</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/ciudad"> Ciudad</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/modalidad"> Modalidad</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/trimestre"> Trimestre</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/competencias">Competencia</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo de Formación</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa Formación </a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/resultado_aprendizaje">Resultado de Aprendizaje</a></li>
+                <li class="divider"></li>
+            </ul>
             </li>
           </ul>
         </div>
@@ -218,32 +231,24 @@
 
 <!--TÉRMINO DE PÁGINA-->
 
-        <section style="margin-top: 20px; padding-top: 20px; background-color: rgba(0, 0, 0, .9); color: #fff;" class="col-md-12">
-          <div class="col-md-6">
-            <article>
-                  <ul>
-                    <li><a href="">Ayuda</a></li>            
-                    <li><a href="">Comentarios</a></li>
-                    <li><a href="">Aviso de privacidad</a></li>
-                    <li><a href="">Términos y condiciones</a></li>
-                    <li><a href="">Politica de cookies</a></li>
-                  </ul>
-            </article>
-          </div>
-          <div class="col-md-6">
-            <aside>
-                  <ul>
-                    <li><p>SIGUENOS EN:</p></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Correo</a></li>
-                  </ul>
-            </aside>
-          </div>
-        <footer style="text-align: right;">  
-        </footer>
-        </section>
+        <div>
+          <section style="margin-top: 150px; padding-top: 20px; background-color: rgba(0, 0, 0, .9); color: #fff;" class="col-md-12">
+              <div class="container">
+                    <hr />
+                        <div class="text-center center-block">
+                            <p class="txt-railway">Redes Sociales</p>
+                            <br />
+                                <a href="https://www.facebook.com/bootsnipp"><i class="fa fa-facebook-square fa-3x social"></i></a>
+                              <a href="https://twitter.com/bootsnipp"><i class="fa fa-twitter-square fa-3x social"></i></a>
+                              <a href="https://plus.google.com/+Bootsnipp-page"><i class="fa fa-google-plus-square fa-3x social"></i></a>
+                              <a href="mailto:bootsnipp@gmail.com"><i class="fa fa-envelope-square fa-3x social"></i></a>
+                </div>
+                    <hr />
+                </div>
+                <h6>Ruth Daniela Viuche Aldana/Mónica Paola Murcia Bedoya/Rafael Fernando Polo Cucaita </h6>
+              </div>
+          </section>
+        </div>
 
 
   <!--BOOTSTRAP JQUERY-->

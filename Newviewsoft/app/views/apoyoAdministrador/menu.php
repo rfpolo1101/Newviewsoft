@@ -39,8 +39,8 @@
                   <div class="input-group">
                    <a href="#"><img src="<?php echo RUTA_URL; ?>/img/icono_perfil.jpg" class="img-rounded" style="width: 35px; height: 35px;"></a>
                    <a href="#"  role="button"  class="btn btn-link" ><button class="btn btn-primary">
-                       <span><?php if(isset($_SESSION['Administrador'])){ echo "Administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} 
-                       if(isset($_SESSION['Apoyo_admin'])){ echo "Apoyo dministrador:  ". $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} if(isset($_SESSION['Invitado'])){ echo "Invitado:  " . $_SESSION ["Invitado"];}?></span></button></a>
+                       <span><?php if(isset($_SESSION['Super_admin'])){ echo "Super administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];}   if(isset($_SESSION['Administrador'])){ echo "Administrador:  " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];} 
+                       if(isset($_SESSION['Apoyo_admin'])){ echo "Apoyo administrador: " . $_SESSION ["nombre"] . " " . $_SESSION ["apellido"];}  if(isset($_SESSION['Invitado'])){ echo "Invitado:  " . $_SESSION ["Invitado"];}?></span></button></a>
                   </div> 
                 </div>
                 
@@ -86,7 +86,7 @@
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
           <li ><a href="<?php echo RUTA_URL; ?>/nvs/apymd/"><span class="glyphicon glyphicon-home"></span> Inicio</a></li> 
-          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li> 
+          <li><a href="<?php echo RUTA_URL; ?>/aprendices/crear/"><span class="glyphicon glyphicon-pencil"></span> Crear Aprendices</a></li>
           <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Novedades <span class="caret"></span></a>
 
@@ -107,36 +107,42 @@
 
                   <ul class="dropdown-menu" >
                     <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
+                    <li><a href="<?php echo RUTA_URL; ?>/usuario/ayuda"><span class="glyphicon glyphicon-book"></span> ayuda</a></li>
                     <li><a href="<?php echo RUTA_URL;?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                   </ul>
           </li> 
         </ul>
 
-    <!--buscar usuarios-->
-          <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
+  <!--buscar usuarios-->
+  <form class="navbar-form navbar-right" role="search" action="<?php echo RUTA_URL ?>/buscar/usuarios" method="POST">
             <div class="dropdown btn-group">
-              <button type="button" class="btn btn-default">Buscador</button>
               <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <span class="glyphicon glyphicon-search"></span>
                   <span class="caret"></span>
                   <span class="sr-only">Buscador</span>
               </button>
               <ul class="dropdown-menu">
-                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendices</a></li>
-                <li class="dropdown-submenu">
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendiz</a></li>          
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/fichas">Fichas</a></li>
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/historial">Historial</a></li>                
+                      <li class="dropdown-submenu">
+
                   <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/1">Cambio Jornada</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Retiro voluntario</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Aplazamiento</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Deserción</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Traslado</a></li>
-                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Reintegro</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/2">Cambio de Jornada</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/3">Retiro voluntario</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/4">Aplazamiento</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/5">Deserción</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/6">Traslado</a></li>
+                    <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/novedades/7">Reintegro</a></li>
 
                   </ul>
                 </li>
               </ul>
             </div>
+            <div class="input-group">
+              <input type="text" placeholder="Buscador" class="form-control" style="border-radius: 3px 3px 3px 3px;"></input>
+             </div>
           </form>
 
         </div>
@@ -193,7 +199,6 @@
         </div>
 
         <div class="col-md-3">
-   
             </li>
           </ul>
         </div>

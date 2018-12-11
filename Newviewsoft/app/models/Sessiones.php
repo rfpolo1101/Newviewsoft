@@ -24,13 +24,11 @@ class Sessiones
         $azar = [
             0 => "1234567890",
             1 => "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",
-            2 => "!$%&/()=?¿*^_:;*.@",
         ];
 
         for ($i = 1; $i < 5; $i++) {
             $codigo .= $azar[0]{rand(0, 9)};
             $codigo .= $azar[1]{rand(0, 50)};
-            $codigo .= $azar[2]{rand(0, 17)};
         }
 
         $this->codigo = $codigo;
@@ -49,8 +47,8 @@ class Sessiones
         $head .= "Content-type: text/html; charset=iso-8859-1\r\n";
         $head .= "From: codigo usuarios < newviews >\r\n";
         //texto con lo que se envia
-        $text = "<h3>Bienvenido a Newviewsoft<h3><br><br><a><img src='logo.png' width='50px' /></a><br><br>
-        <b> tu codigo es:  <b>$this->codigo<b><br><br> por favor ingresar a esta direccion y verificar que todo este correcto http://localhost:8080/proyecto/ <br><br> gracias por usar nuestro sistema de informacion";
+        $text = "<h3>Bienvenido a Newviewsoft<h3><br><br><a></a><br>
+        <b> tu codigo es:  <b>$this->codigo<br>Puedes regresar al sistema <br><br> Gracias por usar nuestro sistema de informacion";
 
         //se pasan a variables globales
         $this->asunto = $asun;
@@ -193,9 +191,9 @@ class Sessiones
             $this->db->bind(8, strip_tags($this->identificador));
             $resul = $this->db->execute();
 
-            //registro de usuario   
+            //registro de usuario
             if ($resul == true) {
-                
+
                 $exito = mail($datos["correo"], $this->asunto, $this->texto, $this->heade);
 
                 //if del email
@@ -222,39 +220,72 @@ class Sessiones
     /*******************METODO RECUPERAR CONTRASEÑA***************************/
     public function recuperarCodigo($datos)
     {
+        if(isset($_SESSION["ddocumentoss"]) and isset($_SESSION["emails"])){
+            $documento = $_SESSION["ddocumentoss"];
+            $email = $_SESSION["emails"];
+            $codigos = $_SESSION["codigoActual"];
+         }else{
+             $documento = "";
+             $email = "";
+             $codigos = "";
+         }
+ 
+        if($codigos == $datos["codigo"]){
+
+            $this->db->query("UPDATE dato_persona SET contrasena= :codigo WHERE documento= :documento AND correo= :email");
+                
+                    $this->db->bind(':codigo', md5($datos["contrasena"]));  
+                     $this->db->bind(':documento',  $documento);
+                     $this->db->bind(':email', strip_tags(trim($email)));
+                     $this->db->execute();
+                     $resul = $this->db->rowCount();
+                     if ($resul == 1) {
+
+                        return true;     
+        
+                    } else {
+                        return false;
+                    } //else resul*/
+            
+        }else{
+        return false;
+        }
+    }
+
+
+
+    public function Codigos($datos)
+    {
+        session_start();
         $correo = $datos['correo'];
-        $this->db->query("SELECT * FROM dato_persona  WHERE   fk_tipo_documento= ?  AND documento= ?  ");
+        $this->db->query("SELECT * FROM dato_persona  WHERE   fk_tipo_documento= ?  AND documento= ?  AND correo = ?");
         $this->db->bind(1, $this->identificador);
         $this->db->bind(2, $this->documento);
+        $this->db->bind(3, $correo);
         $this->db->execute();
         $busca = $this->db->rowCount();
         if ($busca == 1) {
-            $this->db->query("UPDATE dato_persona SET contrasena= :codigo WHERE
-                fk_tipo_documento= :tdoc AND documento= :documento AND correo= :email");
-            $this->db->bind(':tdoc', $this->identificador);
-            $this->db->bind(':documento', $this->documento);
-            $this->db->bind(':email', strip_tags(trim($datos['correo'])));
-            $this->db->bind(':codigo', md5($this->codigo));
-            $this->db->execute();
-            $resul = $this->db->rowCount();
-            if ($resul == 1) {
-                return true;
-                $exito = mail($datos["email"], $this->asunto, $this->texto, $this->heade);
+            $_SESSION["ddocumentoss"] = $this->documento;
+            $_SESSION["codigoActual"] = "A6T66FC46T123A4G1Y6V89T1A23C51";
+            $_SESSION["emails"] = $correo;
+            $text = "<h3>Bienvenido a Newviewsoft<h3><br><br><a></a><br>
+            <b> tu codigo es:  <b>A6T66FC46T123A4G1Y6V89T1A23C51<br>Puedes regresar al sistema <br><br> Gracias por usar nuestro sistema de informacion";
+            $exito = mail($datos["correo"], $this->asunto, $tex, $this->heade);
+            //if del email
+            if ($exito == true) {
 
-                if ($exito == true) {
-                    return true;
-
-                } else {return false;} //else correo
-
+              
             } else {
+
                 return false;
-            } //else resul
+            }
+
+             //else resul
         } else {
             return false;
         } //else busca
 
     }
-
     public function SolitaPermiso($datos){
 
         $this->db->query("INSERT INTO solicitud (documento_solicitud,correo_solicitud,
@@ -268,8 +299,7 @@ class Sessiones
         $resul = $this->db->rowCount();
         if ($resul == 1) {
             return true;
-           
-
+    
         } else {
             return false;
         } //else resul

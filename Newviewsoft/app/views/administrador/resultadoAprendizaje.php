@@ -10,43 +10,32 @@
 
 <!--**************************FROM*************************************-->
 
-<form action="<?php echo RUTA_URL; ?>/crear/competencias"  method="post">
+<form action="<?php echo RUTA_URL; ?>/crear/resultadoAprendizaje"  method="post">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="col-xl-3 col-lg-3 col-md-3 col-sm-0 col-xs-0" >
       </div>
 
       <div class="clase col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6" style="margin: 80px 0px 0px 0px;">
           <div  class="titulo">
-              Competencia
+          resultado Aprendizaje
           </div>
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top: 20px;">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
-                    <label  for="competencias" class="sr-only" >Competencia</label>
+                    <label  for="resultado" class="sr-only" >resultado</label>
                       <div class="">
-                      <textarea type="text" id="competencias" name="competencia" autocomplete="OFF"  placeholder="Ejemplo: Análisis de Levantamiento de Información"  class="form-control" required=""></textarea>
+                      <textarea type="text" id="resultado" name="resultado" autocomplete="OFF"  placeholder="Ingresar el resultado"  class="form-control" required=""></textarea>
                       </div>
                   </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="form-group">
-                    <label  for="trimestre_diurno" class="sr-only" >Trimestre Diurno</label>
+                    <label  for="competencia" class="sr-only" >Competencia</label>
                       <div class="">
-                      <select name="trimestre_diurno" id="trimestre_diurno" class="form-control" >
+                      <select name="competencia" id="competencia" class="form-control" >
                  
-                        </select>                        </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" >
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="form-group">
-                    <label  for="trimestre_especial" class="sr-only" >Trimestre Especial</label>
-                      <div class="">
-                      <select name="trimestre_especial" id="trimestre_especial" class="form-control" >
-
-                        </select>  
-                    </div>
+                        </select>                       
+                     </div>
                   </div>
                 </div>
               </div>
@@ -104,30 +93,16 @@ $(document).ready(function(){
     var dato = new FormData();
     dato.append("programa_formacion", documento);
     $.ajax({
-        url: "../../Newviewsoft/AjaxV/validarTtimestres",
+        url: "../../Newviewsoft/AjaxV/validarResultados",
         method: "POST",
         data: dato,
         cache: false,
         contentType: false,
         processData: false,
         success: function(respuesta) {
-            if (respuesta == 24) {
-                $("#trimestre_diurno").empty();
-                $("#trimestre_diurno").append('<option disabled selected value="">Seleccione Trimestre</option> <option value="1">Primero</option> <option value="2">Segundo</option>');
-                //$("#trimestre").append('<option value="2">Segundo</option>');
-            }
-            if (respuesta == 24) {
-                $("#trimestre_especial").empty();
-                $("#trimestre_especial").append('<option disabled selected value="">Seleccione Trimestre</option> <option value="1">Primero</option> <option value="2">Segundo</option> <option value="3">Tercero</option> <option value="4">Cuarto</option>');
-            }
-            if (respuesta == 68) {
-                $("#trimestre_diurno").empty();
-                $("#trimestre_diurno").append('<option disabled selected value="">Seleccione Trimestre</option> <option value="1">Primero</option> <option value="2">Segundo</option> <option value="3">Tercero</option> <option value="4">Cuarto</option> <option value="5">Quinto</option> <option value="6">Sexto</option>');
-            }
-            if (respuesta == 68) {
-                $("#trimestre_especial").empty();
-                $("#trimestre_especial").append('<option disabled selected value="">Seleccione Trimestre</option> <option value="1">Primero</option> <option value="2">Segundo</option> <option value="3">Tercero</option> <option value="4">Cuarto</option> <option value="5">Quinto</option> <option value="6">Sexto</option> <option value="7">Septimo</option> <option value="8">Octavo</option>');
-            }
+    
+                $("#competencia").empty();
+                $("#competencia").append(respuesta);            
         }
       });
 

@@ -1,16 +1,12 @@
 
 <?php require RUTA_APP . '/views/inicio/header.php';?>
 
-<?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($_SERVER["crear"] == true) {
-        echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
-        <strong>Correcto: </strong>La Novedad fue registrada exitosamente</div></div>";}
-
-    if ($_SERVER["crear"] == false) {
-        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
-        <strong>Error: </strong>El Aprendiz ya se encuentra con una novedad</div></div>";}
-
-}?>
+<!--INICIO CONTENIDO-->
+<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+          echo $_SESSION["crear"];
+      
+    } ?>
 
 <!--***************************************FROM**************************************-->
   <form action="<?php echo RUTA_URL ?>/aprendices/novedades/reintegro"  method="post" enctype="multipart/form-data" >

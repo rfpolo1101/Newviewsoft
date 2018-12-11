@@ -1,14 +1,10 @@
 <?php require RUTA_APP . '/views/inicio/header.php'; ?>
+<!--INICIO CONTENIDO-->
 <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if ($_SERVER["crear"]==true){
-      echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-      <strong>Registrado: </strong> la ficha fue creada</div></div>";    }
-
-      if ($_SERVER["crear"]==false){
-        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>la ficha ya existe</div></div>";      }
-
-    } ?>
+          
+          echo $_SESSION["crear"];
+      
+    } ?>x
 <form action="<?php echo RUTA_URL; ?>/crear/ficha"  method="post"> 
     <div class="col-md-12">
       <div class="col-md-3">
@@ -35,7 +31,7 @@
                       <div class="">    
 
                        <select name="sede" id="sede" class="form-control" >
-                      <option value="0">Seleccione Sede</option>
+                      <option value="">Seleccione Sede</option>
 
                       <?php foreach($datos["sede"] as $datos1):
                             if($datos1->sede != "Null" ):
@@ -53,7 +49,7 @@
                    <label for="jornada"  class="sr-only">Jornada</label> 
                       <div class="">   
                       <select name="jornada" id="jornada" class="form-control" >
-                      <option value="0">Seleccione Jornada</option>
+                      <option value="">Seleccione Jornada</option>
 
                       <?php foreach($datos["jornada"] as $datos1):
                             if($datos1->jornada != "Null"):
@@ -75,7 +71,7 @@
                       <div class="">    
 
                        <select name="trimestre" id="trimestre" class="form-control" >
-                      <option value="0">Seleccione Trimestre</option>
+                      <option value="">Seleccione Trimestre</option>
 
                       <?php foreach($datos["trimestre"] as $datos1):
                             if($datos1->trimestre != "Null"):
@@ -93,7 +89,7 @@
                    <label for="modalidad"  class="sr-only">Modalidad</label> 
                       <div class="">   
                       <select name="modalidad" id="modalidad" class="form-control" >
-                      <option value="0">Seleccione Modalidad</option>
+                      <option value="">Seleccione Modalidad</option>
 
                       <?php foreach($datos["modalidad"] as $datos1):
                             if($datos1->modalidad  != "Null"):
@@ -115,7 +111,7 @@
                       <div class="">    
 
                      <select name="tipo_formacion" id="tipo_formacion" class="form-control" >
-                      <option value="0">Seleccione Modalidad</option>
+                      <option value="">Seleccione Modalidad</option>
 
                       <?php foreach($datos["tipo_formacion"] as $datos1):
                             if($datos1->tipo_formacion  != "Null"):
@@ -135,7 +131,7 @@
                    <label for="programa_formacion"  class="sr-only">Programa Formación</label> 
                       <div class="">   
                       <select name="programa_formacion" id="programa_formacion" class="form-control" >
-                      <option value="0">Seleccione Programa Formación</option>
+                      <option value="">Seleccione Programa Formación</option>
 
                       <?php foreach($datos["programa_formacion"] as $datos1):
                             if($datos1->programa_formacion != "Null"):
@@ -171,7 +167,7 @@
                 <li><a href="<?php echo RUTA_URL; ?>/crear/competencias">Competencia</a></li>
                 <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo de Formación</a></li>
                 <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa Formación </a></li>
-                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/resultado_aprendizaje">Resultado de Aprendizaje</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/resultadoAprendizaje">Resultado de Aprendizaje</a></li>
                 <li class="divider"></li>
             </ul>
           </div>

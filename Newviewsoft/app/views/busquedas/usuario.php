@@ -32,7 +32,7 @@
 
             <?php foreach($datos['datos'] as $datos1):
 
-                    if($datos1->fk_tipo_rol != 1):
+                    if($datos1->fk_tipo_rol != 1 && $datos1->fk_tipo_rol !=5):
             ?>
             <tr class="active"  id="<?php echo $datos1->documento; ?>">
             <td data-target="tipo_documento"><?php echo $datos1->tipo_documento?></td>

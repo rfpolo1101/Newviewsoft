@@ -134,11 +134,12 @@
 
 </header>
 
- <!--INICIO CONTENIDO-->
+ 
+<!--INICIO CONTENIDO-->
 
   <section>
-    <div class="container col-md-12">
-        <div id="myCarousel" class="carousel slide col-md-9" data-ride="carousel">
+    <div class="container col-md-15">
+        <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel">
           
           <!-- INDICADORES -->
             <ol class="carousel-indicators">
@@ -149,7 +150,7 @@
               <li data-target="#myCarousel" data-slide-to="4"></li>
             </ol>
 
-    <!-- IMAGENES -->
+        <!-- IMAGENES -->
 
        <div class="carousel-inner">
           <div class="item active">
@@ -173,6 +174,7 @@
              <img  src="<?php echo RUTA_URL; ?>/img/imag10.jpg" alt="FUTURO" title="FUTURO">
           </div>
        </div>
+     
 
   <!-- CONTROLES DE IZQUIERDA A DERECHA -->
 
@@ -183,13 +185,6 @@
               <span class="glyphicon glyphicon-chevron-right"></span>
             </a>
         </div>
-
-        <div class="col-md-3">
-   
-            </li>
-          </ul>
-        </div>
-
     </div>
   </section>
 

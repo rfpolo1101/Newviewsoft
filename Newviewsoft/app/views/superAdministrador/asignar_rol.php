@@ -1,15 +1,10 @@
 <?php require RUTA_APP . '/views/inicio/header.php';?>
-<?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($_SERVER["crear"] == true) {
-        echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
-        <strong>Correcto</strong>rol asignado</div></div>";}
-
-    if ($_SERVER["crear"] == false) {
-        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
-        <strong>Error: </strong>el rol no fue asignado</div></div>";}
-
-}?>
-
+<!--INICIO CONTENIDO-->
+<?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+          echo $_SESSION["crear"];
+      
+    } ?>
 <form action="<?php echo RUTA_URL ?>/usuario/asignar/asignar_rol"  method="post">
     <div class="col-md-12">
       <div class="col-md-4">

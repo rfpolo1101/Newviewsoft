@@ -68,7 +68,9 @@ class Aprendices extends Controlador
                 if ($this->crearModelo->crear($datos)) {
 
                     //Session para alerta que todo salio correcto
-                    $_SERVER['crear'] = true;
+                    $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Correcto:  </strong>El registro se realizo con exito</div></div>";
+
 
                     //Se colsultan las fichas existentes
                     $ddatos = $this->crearModelo->consultaFicha();
@@ -87,7 +89,9 @@ class Aprendices extends Controlador
                     //Se guardan lo que devuelve la colsulta en la variable "datos" 
                     $datos = ["datos2" => $ddatos];
                     //Se crea para sacar alerta de incorrecto
-                    $_SERVER['crear'] = false;  
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>No se puede registrar por favor vuelva a intentarlo</div></div>";
+    
                     //Se retorna a la vista con lo que tenga la variable "datos"
                     $this->vista("administrador/crearAprendiz",$datos);
 
@@ -100,7 +104,6 @@ class Aprendices extends Controlador
                  //Se guardan lo que devuelve la colsulta en la variable "datos" 
                  $datos = ["datos2" => $ddatos];
                  //Se crea para sacar alerta de incorrecto
-                 $_SERVER['crear'] = false;  
                  //Se retorna a la vista con lo que tenga la variable "datos"
                 $this->vista("administrador/crearAprendiz",$datos);
             }
@@ -212,9 +215,7 @@ class Aprendices extends Controlador
                         $acta           = trim($_FILES['acta']['name']); //Eliminamos los espacios en blanco
                         $nombrefinal = str_replace(" ", "", $acta); //Sustituye una expresión regular
                         $nombre_fichero =  RUTA_APP . "/archivos/$nombrefinal";
-                        echo $nombrefinal;
-    
-                       
+                
                         if (file_exists($nombre_fichero)) {
                             $nombrefinal = str_replace(" ", "", $nameArchivo);
                         }else{
@@ -231,12 +232,16 @@ class Aprendices extends Controlador
                             move_uploaded_file($_FILES['acta']['tmp_name'], $archivos); 
                         }
                         //Se devuelve una alerta de exito y se llama a la vista correspondiente
-                        $_SERVER["crear"] = true;
+                        $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Correcto:  </strong>La novedad fue registrada</div></div>";
+
                         $this->vista("administrador/" . $tipos);
                 //Si devuelve false 
                 } else {
                     //Se devuelve una alerta de error Y se llama a la vista correspondiente
-                    $_SERVER["crear"] = false;
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>No se pudo registrar por favor vuelva a intentarlo</div></div>";
+
                     $this->vista("administrador/" . $tipos);
                 }
            
@@ -328,8 +333,6 @@ class Aprendices extends Controlador
                         $acta           = trim($_FILES['acta']['name']); //Eliminamos los espacios en blanco
                         $nombrefinal = str_replace(" ", "", $acta); //Sustituye una expresión regular
                         $nombre_fichero =  RUTA_APP . "/archivos/$nombrefinal";
-                        echo $nombrefinal;
-    
                        
                         if (file_exists($nombre_fichero)) {
                             $nombrefinal = str_replace(" ", "", $nameArchivo);
@@ -347,20 +350,21 @@ class Aprendices extends Controlador
                             move_uploaded_file($_FILES['acta']['tmp_name'], $archivos); 
                         }
                         //Se devuelve una alerta de exito y se llama a la vista correspondiente
-                        $_SERVER["crear"] = true;
+                        $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                        <strong>Correcto:  </strong>La novedad fue registrada</div></div>";
                         $this->vista("administrador/" . $tipos);
 
                 //Si devuelve false 
                 } else {
                     //Se devuelve una alerta de error Y se llama a la vista correspondiente
-                    $_SERVER["crear"] = false;
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>No se pudo registrar por favor vuelva a intentarlo</div></div>";
                     $this->vista("administrador/" . $tipos);
 
 
                 }
             //Si no viene de metodo post de llama la vista correspondiente
                 
-                  
             } else {
 
                 $this->vista("administrador/" . $tipos);

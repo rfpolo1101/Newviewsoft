@@ -5,6 +5,7 @@
   <head>
 
       <meta charset="utf-8">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="viewpor" content="width=device-width, user-scalable=no, initial-scale=1.0, maxium-scale=1.0, minunum-scale=1.0">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -122,7 +123,6 @@
                 <ul class="dropdown-menu" >
                     <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                     <?php if (isset($_SESSION["Administrador"]) or isset($_SESSION["Super_admin"])): ?> <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar/asignar_rol"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
-                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignardocumento"><span class="glyphicon glyphicon-briefcase"></span> Asignar Tipo Documento</a></li>
 <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar/asignar_permiso"><span class="glyphicon glyphicon-list-alt"></span> Asignar Permisos</a></li><?php endif; ?>
                     <li><a href="<?php echo RUTA_URL; ?>/usuario/ayuda"><span class="glyphicon glyphicon-pushpin"></span>Ayuda</a></li>
                     <li><a href="<?php echo RUTA_URL; ?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
@@ -144,7 +144,11 @@
               <?php if (isset($_SESSION["Administrador"]) or isset($_SESSION["Super_admin"])): ?>  <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/usuarios">Usuarios</a></li> <?php endif?>
                 <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendiz</a></li>          
                 <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/fichas">Fichas</a></li>
-<?php if (isset($_SESSION["Administrador"]) or isset($_SESSION["Super_admin"]) or isset($_SESSION["Apoyo_admin"]) ): ?> <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/historial">Historial</a></li><?php endif;?>             
+                
+<?php if (isset($_SESSION["Administrador"]) or isset($_SESSION["Super_admin"]) or isset($_SESSION["Apoyo_admin"]) ): ?> <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/historial">Historial</a></li>
+<li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/programas">Programa de Formacion</a></li>                
+
+<?php endif;?>             
                       <li class="dropdown-submenu">
 
                   <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>

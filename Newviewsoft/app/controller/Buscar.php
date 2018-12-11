@@ -182,8 +182,6 @@ class Buscar extends Controlador
                     $acta           = trim($_FILES['acta']['name']); //Eliminamos los espacios en blanco
                     $nombrefinal = str_replace(" ", "", $acta); //Sustituye una expresión regular
                     $nombre_fichero =  RUTA_APP . "/archivos/$nombrefinal";
-                    echo $nombrefinal;
-
                    
                     if (file_exists($nombre_fichero)) {
                         $nombrefinal = str_replace(" ", "", $nameArchivo);
@@ -202,7 +200,7 @@ class Buscar extends Controlador
                     }
                     
                 }else{
-                    
+                    echo "xd";
                 }
 
             }
@@ -304,6 +302,27 @@ class Buscar extends Controlador
         }
     }
 
+
+    public function programas()
+    {
+        session_start();
+
+        //Si no existe ninguna de estas sessiones se devuelve a la vista error.
+        if (!isset($_SESSION["Apoyo_admin"]) and !isset($_SESSION["Administrador"]) and  !isset($_SESSION["Super_admin"])) {
+
+            header("Location:" . RUTA_URL . "/inicio");
+        
+        //Si existe alguna session
+        } else {
+
+            //Se llama al metodo que busca los usuarios
+            $resul = $this->buscarModelo->devuelveProgramas();
+            //Se guarda lo que devuelve en el array "datos"
+            $datos = ['datos' => $resul];
+            //Se retorna a la vista
+            $this->vista('busquedas/programasFormacion', $datos);
+        }
+    }
 
     
 }

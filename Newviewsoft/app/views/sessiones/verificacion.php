@@ -20,7 +20,12 @@
     <nav class="navbar" style="padding-top: 60px;">
    </nav>
         
-
+ <!--INICIO CONTENIDO-->
+ <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+          echo $_SESSION["crear"];
+      
+  } ?>
 
   <!--MENU PRINCIPAL--> 
 
@@ -47,14 +52,6 @@
     </nav>
                       
 </header>
-
- <!--INICIO CONTENIDO-->
- <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          
-          echo $_SESSION["crear"];
-      
-    } ?>
-
   <section> 
 
     <div class="col-md-12">
@@ -62,64 +59,62 @@
       </div>     
       
 
-      <form action="<?php  echo RUTA_URL; ?>/Inicio/login"   method="post">   
+      <form action="<?php  echo RUTA_URL; ?>/Inicio/olvidoCodigo"   method="post">   
 
 
           <div class="col-md-4 clase">
           
                 
               <div  class="titulo">
-                  Iniciar Sesión
+              Codigo de verificacion
                    
               </div>     
                    
                 <div class="formulario form-group" >
-                
-                  <div class="radio" style="padding-bottom: 50px;">                   
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">               
-                            <input type="radio" name="tipo_documento" id="cedulac" value="CC" required=""  >
-                            <label for="cedulac"  >Cédula Ciudadanía</label>
-                    </div>                                         
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4"> 
-                            <input type="radio" name="tipo_documento" id="tarjeta" value="TI"  required="" >
-                            <label for="tarjeta"  >Tarjeta Identidad</label>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">                
-                            <input type="radio" name="tipo_documento" id="cedulae" value="CE" required="" >
-                            <label for="cedulae">Cédula Extranjería</label>
-                    </div>
+                  <div class="radio" style="padding-bottom: 10px;">                   
                   </div>
                 </div>
                   <div class="col-md-12">
                     <div class="col-md-12">  
                         <div class="form-group">
-                          <label  for="documento" class="sr-only" >Documento</label> 
+                          <label  for="documento" class="sr-only" >Codigo de verificacion</label> 
                             <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" id="documento" name="documento" autocomplete="OFF"  onkeypress="return numeros(event)"  minlength="8" maxlength="15" placeholder="Documento"  class="form-control" required="">
+                            <input type="text" id="codigov" name="codigov" autocomplete="OFF"  placeholder="Codigo Verificacion"  class="form-control" required="">
                             </div>
                         </div>
                     </div> 
                   </div>
                   <div class="col-md-12">
-                       <div class="col-md-12">  
-                        <div class="form-group">                          
-                          <label  for="codigo" class="sr-only" >Password</label>
+                    <div class="col-md-12">  
+                        <div class="form-group">
+                          <label  for="documento" class="sr-only" >Contraseña</label> 
                             <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" id="password" name="password" autocomplete="OFF"  placeholder="Password"  class="form-control"   required="">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="passoword" id="contrasena" name="contrasena" autocomplete="OFF"  placeholder="Nueva Contraseña"  class="form-control" required="">
                             </div>
                         </div>
+                    </div> 
+                  </div>
+                  <div class="col-md-12">
+                    <div class="col-md-12">  
+                        <div class="form-group">
+                          <label  for="documento" class="sr-only" >Verificar Contraseña</label> 
+                            <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="passoword" id="contrasenav" name="contrasenav" autocomplete="OFF"  placeholder="Verificar Contraseña"  class="form-control" required="">
+                            </div>
+                        </div>
+                    </div> 
                   </div>
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="input-group">
-                          <a href="" lass="btn" data-toggle="modal" data-target="#myModal">¿Olvido Su Contraseña?</a>
                         </div>
                     </div>
                   </div> 
-                  <div class="col-md-4 col-md-offset-4" style="padding-bottom: 25px;"> 
-                    <input type="submit" name="enviar" id="" value="Ingresar"  class="btn btn-primary btn-block" >
+                  <div class="col-md-6 col-md-offset-3" style="padding-bottom: 25px;"> 
+                    <input type="submit" name="enviar" id="" value="Cambiar Contraseña"  class="btn btn-primary btn-block" >
                   </div>        
              </div>        
       </form>
@@ -130,56 +125,6 @@
   </section>
 
 
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-  
-<div class="modal-dialog">
-
-<!-- Modal content-->
-<div class="modal-content">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Olvido contraseña</h4>
-  </div>
-  <div class="modal-body">
-
-  <form action="<?php  echo RUTA_URL; ?>/Inicio/CodigoVerificacion"  method="post">   
-  <div class="formulario form-group" >
-                  <div class="radio" style="padding-bottom: 50px;">                   
-                    <div class="col-md-4 col-sm-4 col-xs-4">               
-                            <input type="radio" name="tipo_documen" id="cedulacc" value="CC" required="" >
-                            <label for="cedulacc"  >Cédula Ciudadanía</label>
-                    </div>                                         
-                    <div class="col-md-4 col-sm-4 col-xs-4"> 
-                            <input type="radio" name="tipo_documen" id="tarjetaii" value="TI"  required="" >
-                            <label for="tarjetaii"  >Tarjeta Identidad</label>
-                    </div>
-                    <div class="col-md-4 col-sm-4 col-xs-4">                
-                            <input type="radio" name="tipo_documen" id="cedulaee" value="CE" required="">
-                            <label for="cedulaee">Cédula Extranjería</label>
-                    </div>
-                  </div>
-  <div class="form-group">
-        <label>Documento</label>
-        <input type="text" name="documento" autocomplete="OFF" id="ddocumento" class="form-control" >
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="text" name="correo" autocomplete="OFF" id="eemail" class="form-control" >
-      </div>
-     
-        <input type="hidden" id="userId" class="form-control">
-  </div>
-  <div class="modal-footer">
-  <input class="button" type="submit" name="button" id="button" value="Siguiente"/>
-  </form>
-    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-  </div>
-   </div>
-  </div>
-    </div>
-    <!--Fin modal--> 
 
   </div>
 </div>

@@ -49,17 +49,12 @@
 </header>
 
  <!--INICIO CONTENIDO-->
- <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+ <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+          echo $_SESSION["crear"];
+      
+    } ?>
 
-    if ($_SERVER["inicio"] == false) {
-        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
-        <strong>Error:  </strong>datos invalidos o no tiene permiso para ingresar</div></div>";}else{
-
-          echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
-          <strong>Error:  </strong>Registro correcto, su contraseña se le envio al correo</div></div>";
-        }
-
-}?>
 
   <section>
 

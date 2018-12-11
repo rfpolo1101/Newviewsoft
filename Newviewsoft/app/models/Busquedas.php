@@ -68,10 +68,8 @@ class Busquedas
         $this->db->bind(":respuesta", strip_tags(ucwords(strtolower($datos["respuesta"]))));
         $this->db->bind(":tipo_respuesta", strtolower($datos["tipo_respuesta"]));
         $this->db->bind(":doc", $datos["documento"]);
-        
-        $this->db->execute();
-        $busca = $this->db->rowCount();
-        if($busca == 1){
+        $resultado = $this->db->execute();
+        if($resultado == true){
 
             return true;
         }else{
@@ -209,6 +207,18 @@ class Busquedas
         $respuesta = $this->db->objetos();
         return $respuesta;
     }
+
+    public function devuelveProgramas(){
+
+        $this->db->query("SELECT * FROM competencias as compe 
+        INNER JOIN programa_formacion as programas ON compe.fk_programa = programas.id_programa_formacion
+        INNER JOIN resultado_aprendizaje as resultado ON resultado.fk_competencia = compe.id_competencia
+                          WHERE id_competencia LIKE '%%' ");
+        $this->db->execute();
+        $respuesta = $this->db->objetos();
+        return $respuesta;
+    }
+
 
     
 }

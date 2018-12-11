@@ -31,3 +31,33 @@
 [14-Sep-2018 16:08:13 America/Bogota] PHP Warning:  require_once(librerias/Core.php): failed to open stream: No such file or directory in /home/newviews/public_html/Newviewsoft/app/iniciador.php on line 16
 [14-Sep-2018 16:08:13 America/Bogota] PHP Fatal error:  require_once(): Failed opening required 'librerias/Core.php' (include_path='.:/opt/cpanel/ea-php70/root/usr/share/pear') in /home/newviews/public_html/Newviewsoft/app/iniciador.php on line 16
 [08-Nov-2018 10:44:02 America/Bogota] PHP Warning:  Missing argument 1 for Crear::tipo(), called in /home/newviews/public_html/Newviewsoft/app/librerias/Core.php on line 64 and defined in /home/newviews/public_html/Newviewsoft/app/controller/Crear.php on line 18
+[10-Dec-2018 19:02:28 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function herder() in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php:22
+Stack trace:
+#0 /home/newviews/public_html/Newviewsoft/app/librerias/Core.php(59): Nvs->sdmtd()
+#1 /home/newviews/public_html/Newviewsoft/public/index.php(8): Core->__construct()
+#2 {main}
+  thrown in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php on line 22
+[10-Dec-2018 19:02:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function herder() in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php:22
+Stack trace:
+#0 /home/newviews/public_html/Newviewsoft/app/librerias/Core.php(59): Nvs->sdmtd()
+#1 /home/newviews/public_html/Newviewsoft/public/index.php(8): Core->__construct()
+#2 {main}
+  thrown in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php on line 22
+[10-Dec-2018 19:02:30 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function herder() in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php:22
+Stack trace:
+#0 /home/newviews/public_html/Newviewsoft/app/librerias/Core.php(59): Nvs->sdmtd()
+#1 /home/newviews/public_html/Newviewsoft/public/index.php(8): Core->__construct()
+#2 {main}
+  thrown in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php on line 22
+[10-Dec-2018 19:02:31 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function herder() in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php:22
+Stack trace:
+#0 /home/newviews/public_html/Newviewsoft/app/librerias/Core.php(59): Nvs->sdmtd()
+#1 /home/newviews/public_html/Newviewsoft/public/index.php(8): Core->__construct()
+#2 {main}
+  thrown in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php on line 22
+[10-Dec-2018 19:02:32 America/Bogota] PHP Fatal error:  Uncaught Error: Call to undefined function herder() in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php:22
+Stack trace:
+#0 /home/newviews/public_html/Newviewsoft/app/librerias/Core.php(59): Nvs->sdmtd()
+#1 /home/newviews/public_html/Newviewsoft/public/index.php(8): Core->__construct()
+#2 {main}
+  thrown in /home/newviews/public_html/Newviewsoft/app/controller/Nvs.php on line 22

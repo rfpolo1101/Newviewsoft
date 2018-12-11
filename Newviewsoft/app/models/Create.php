@@ -99,6 +99,36 @@ class Create
 
     }
 
+    public function crearCompetencia($datos){
+
+        $this->db->query("INSERT INTO competencias (competencia,trimestre_diurno,trimestre_especial,fk_programa) VALUES (?,?,?,?)");
+        $this->db->bind(1, strip_tags($datos["competencia"]));
+        $this->db->bind(2, strip_tags($datos["trimestre_dia"]));
+        $this->db->bind(3, strip_tags($datos["trimestre_noche"]));
+        $this->db->bind(4, strip_tags($datos["programa"]));
+        $this->db->execute();
+        $resul = $this->db->rowCount();
+        if($resul == 1){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    public function crearResultado($datos){
+
+        $this->db->query("INSERT INTO resultado_aprendizaje (resultado_aprendizaje,fk_competencia) VALUES (?,?)");
+        $this->db->bind(1, strip_tags($datos["resultado"]));
+        $this->db->bind(2, strip_tags($datos["competencia"]));
+        $this->db->execute();
+        $resul = $this->db->rowCount();
+        if($resul == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /* Metodo que  consulta distintas tablas al mismo tiempo 
     
     * Sede, jornada, tipos de formacion, modalidades,  programas de formacion, trimestre y ciudad.

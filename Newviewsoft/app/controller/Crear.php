@@ -45,13 +45,16 @@ class Crear extends Controlador
                 if ($this->crearModelos->tiposCrear($datos)) {
 
                     //Si retorna true se envia una alerta de correcto y se llama la vista
-                    $_SERVER['crear'] = true;
+                    $_SESSION   ["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                <strong>Correcto:  </strong>El realizo el registro con exito</div></div>";
+
                     $this->vista('administrador/' . $datos_ficha);
                 
                 //Si retorna false
                 } else {
                     //Si retorna true se envia una alerta de error y se llama la vista
-                    $_SERVER['crear'] = false;
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>Error al registrar intente de nuevo</div></div>";
                     $this->vista('administrador/' . $datos_ficha);
                 }
             
@@ -90,20 +93,24 @@ class Crear extends Controlador
 
                 if ($this->crearModelos->ficha($guardar)) {
 
-                    $_SERVER['crear'] = true;
+                    $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Correcto:  </strong>El registro se realizo con exito</div></div>";
+    
                     $resul = $this->crearModelos->consulta();
 
                     $datos = $resul;
 
                     $this->vista("administrador/ficha", $datos);
-                } else {
-                    $_SERVER['crear'] = false;
+                }else{
+                    $_SESSION["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>Error al registrar intente de nuevo</div></div>";
 
                     $resul = $this->crearModelos->consulta();
 
                     $datos = $resul;
 
-                    $this->vista("administrador/ficha", $datos);}
+                    $this->vista("administrador/ficha", $datos);
+                }
 
             } else {
                 $resul = $this->crearModelos->consulta();
@@ -140,14 +147,16 @@ class Crear extends Controlador
 
                 if ($this->crearModelos->sede($guardar)) {
 
-                    $_SERVER['crear'] = true;
+                    $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Correcto:  </strong>El registro se realizo con exito</div></div>";
                     $resul = $this->crearModelos->consulta();
 
                     $datos = $resul;
 
                     $this->vista("administrador/sede", $datos);
                 } else {
-                    $_SERVER['crear'] = false;
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>Error al registrar intente de nuevo</div></div>";
 
                     $resul = $this->crearModelos->consulta();
 
@@ -166,19 +175,97 @@ class Crear extends Controlador
         }
     }
 
-
     public function competencias(){
         session_start();
         if (!isset($_SESSION['Administrador']) and !isset($_SESSION['Super_admin'])) {
             header("Location:" . RUTA_URL . "/inicio");
-
-
         }else{
 
-            $resul = $this->crearModelos->consulta();
+            if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+
+                $datos = [
+
+                    "competencia" => $_POST["competencia"],
+                    "trimestre_dia" => $_POST["trimestre_diurno"],
+                    "trimestre_noche" => $_POST["trimestre_especial"],
+                    "programa" => $_POST["programa_formacion"],
+                ];
+
+                if ($this->crearModelos->crearCompetencia($datos)){
+
+                    $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Correcto:  </strong>El registro se realizo con exito</div></div>";
+                    $resul = $this->crearModelos->consulta();
+                    $datos = $resul;
+           
+
+                    $this->vista("administrador/competencias", $datos);
+
+                }else{
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>Error al registrar intente de nuevo</div></div>";
+                    $resul = $this->crearModelos->consulta();
+                    $datos = $resul;
+                     $this->vista("administrador/competencias", $datos);
+
+                }
+
+
+            }else{
+
+                $resul = $this->crearModelos->consulta();
             $datos = $resul;
 
-            $this->vista("administrador/competencias", $datos);        }
+            $this->vista("administrador/competencias", $datos);
+            }
+            
+        
+        }
+    }
+
+    public function resultadoAprendizaje(){
+        session_start();
+        if (!isset($_SESSION['Administrador']) and !isset($_SESSION['Super_admin'])) {
+            header("Location:" . RUTA_URL . "/inicio");
+        }else{
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+
+                $datos = [
+
+                    "resultado" => $_POST["resultado"],
+                    "competencia" => $_POST["competencia"],
+                ];
+
+                if ($this->crearModelos->crearResultado($datos)){
+
+                    $_SESSION["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Correcto:  </strong>El registro se realizo con exito</div></div>";
+                    $resul = $this->crearModelos->consulta();
+                    $datos = $resul;
+           
+
+                    $this->vista("administrador/resultadoAprendizaje", $datos);
+
+                }else{
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>Error al registrar intente de nuevo</div></div>";
+                    $resul = $this->crearModelos->consulta();
+                    $datos = $resul;
+                    $this->vista("administrador/resultadoAprendizaje", $datos);
+
+                }
+
+            }else{
+
+                $resul = $this->crearModelos->consulta();
+            $datos = $resul;
+
+            $this->vista("administrador/resultadoAprendizaje", $datos);
+            }
+            
+        
+        }
     }
 
 }

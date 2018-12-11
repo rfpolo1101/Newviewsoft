@@ -2,7 +2,11 @@
   <div class="container">
     <div class="table-responsive">
 
-      <?php if($datos["datos"] != null): ?>
+      <?php 
+        if(!isset($datos["datos"])){
+          $datos["datos"]=null;
+        }
+      if($datos["datos"] != null): ?>
 
 <div class="form-group pull-right">
     <input type="text" class="search form-control" placeholder="Consulta la novedad">
@@ -94,7 +98,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Actualizar novedad</h4>
           </div>
-          <form method="post" action="<?php echo RUTA_URL  ?>/buscar/novedades/2" enctype="multipart/form-data">
+          <form method="post" action="<?php echo RUTA_URL . '/buscar/novedades/' . $datos["xd"]; ?>" enctype="multipart/form-data">
           <div class="modal-body">
           <div class="form-group">
                 <label>Documento</label>

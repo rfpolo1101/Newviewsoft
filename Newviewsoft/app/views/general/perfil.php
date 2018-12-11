@@ -1,14 +1,10 @@
 <?php require RUTA_APP . '/views/inicio/header.php' ?>
 
+<!--INICIO CONTENIDO-->
 <?php  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if ($_SERVER["crear"]==true){
-      echo "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-      <strong>Registrado: </strong> Datos actualizados</div></div>";    }
-
-      if ($_SERVER["crear"]==false){
-        echo "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
-        <strong>Error: </strong>No se pudo actualizar los datos</div></div>";      }
-
+          
+          echo $_SESSION["crear"];
+      
     } ?>
 
 <form action="<?php echo RUTA_URL; ?>/usuario/perfil"  method="POST">   
@@ -102,7 +98,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12"> 
                   <div class="form-group ">
                       <div class="input-group">
-                      <a hrft="">Cambiar contraseña</a>
+                      <a href="" lass="btn" data-toggle="modal" data-target="#myModal">¿Olvido Su Contraseña?</a>
                       </div>                    
                   </div>
                 </div>
@@ -115,5 +111,49 @@
             </div>
     </div>
   </form>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  
+  <div class="modal-dialog">
+  
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Cambiar contraseña</h4>
+    </div>
+    <div class="modal-body">
+  
+    <form action="<?php  echo RUTA_URL; ?>/usuario/actualizarContrasena"  method="post">   
+    <div class="formulario form-group" >
+                    <div class="radio" style="padding-bottom: 10px;">                   
+                     
+                    </div>
+    <div class="form-group">
+          <label>Contraseña Actual</label>
+          <input type="password" name="contrasenan" id="contrasenan" class="form-control" >
+    </div>
+    <div class="form-group">
+          <label>Nueva Contraseña </label>
+          <input type="password" name="contrasena" id="contraseña" class="form-control" >
+        </div>
+        <div class="form-group">
+          <label>Confirmar Contraseña</label>
+          <input type="password" name="contrasenav" id="contraseñav" class="form-control" >
+        </div>
+       
+          <input type="hidden" id="userId" class="form-control">
+    </div>
+    <div class="modal-footer">
+    <input class="button" type="submit" name="button" id="button" value="Cambiar"/>
+    </form>
+      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+    </div>
+     </div>
+    </div>
+      </div>
+      <!--Fin modal--> 
 
 <?php require RUTA_APP . '/views/inicio/footer.php' ?>

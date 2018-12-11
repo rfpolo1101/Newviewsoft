@@ -152,4 +152,30 @@ class User
 
     }
 
+    public function cambiarContraseña($datos){
+            $this->db->query("SELECT * FROM dato_persona WHERE contrasena = ? ");
+            $this->db->bind(1, md5($datos["codigo"]));
+            $this->db->execute();
+            $busca = $this->db->rowCount();
+        if($busca == 1){
+            if($datos["contrasena"] == $datos["contrasenav"]){
+                $this->db->query("UPDATE dato_persona SET contrasena= :codigo WHERE documento= :documento");       
+                $this->db->bind(':codigo', md5($datos["contrasena"]));  
+                $this->db->bind(':documento',  $_SESSION["ddocumento"]);
+                $this->db->execute();
+                $resul = $this->db->rowCount();
+                if ($resul == 1) {
+                    return true;     
+                } else {
+                    return false;
+                } //else resul*/
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+
+    }
+
 }

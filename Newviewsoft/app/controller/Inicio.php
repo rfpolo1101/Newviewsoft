@@ -23,7 +23,7 @@ class Inicio extends Controlador
         session_start();
 
         /*1*/if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+            
             $datos = [
 
                 'tipo_documento' => trim($_POST['tipo_documento']),
@@ -64,13 +64,13 @@ class Inicio extends Controlador
                 }
 
                 /*10*/} else {
-                $_SERVER["inicio"] = false;
+                    $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                    <strong>Error:  </strong>datos invalidos o no tiene permiso para ingresar</div></div>";
                 $this->vista('sessiones/login');
-
             }
             /*12*/} else {
 
-            $_SERVER["inicio"] = false;
+  
             /*13*/$this->vista('sessiones/login');
         }
 
@@ -88,7 +88,6 @@ class Inicio extends Controlador
             $azar = [
                 0 => "1234567890",
                 1 => "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",
-                2 => "!$%&/()@=?¿*^_:;*.",
 
             ];
 
@@ -96,7 +95,6 @@ class Inicio extends Controlador
 
                 $cod .= $azar[0]{rand(0, 8)};
                 $cod .= $azar[1]{rand(0, 50)};
-                $cod .= $azar[2]{rand(0, 17)};
             }
 
             $this->usuarioModelo->setpassword($cod);
@@ -118,12 +116,15 @@ class Inicio extends Controlador
             //si este metodo existe en el modelo entoces...
             if ($this->usuarioModelo->registro($datos)) {
 
-                $_SERVER['inicio'] = true;
+                $_SESSION ["crear"] =  "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                          <strong>Correcto:  </strong>Registro correcto, su contraseña se le envio al correo</div></div>";
+                
                 $this->vista('sessiones/registro');
 
             } else {
 
-                $_SERVER['inicio'] = false;
+                $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                <strong>Error:  </strong>datos invalidos intentelo o no tiene permiso para registrarse</div></div>";
                 $this->vista('sessiones/registro');
 
             }
@@ -140,27 +141,51 @@ class Inicio extends Controlador
     ingreso */
     public function olvidoCodigo()
     {
+        session_start();
         //verifica si los envíos de formulario se realizaron correctamente
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $cod = false;
-            $azar = [
+            $datos = [
 
-                0 => "1234567890",
-                1 => "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",
-                2 => "!$%&/()@=?¿*^_:;*.",
+                'codigo' => trim($_POST['codigov']),
+                'contrasena' => trim($_POST['contrasena']),
+                'contrasenav' => trim($_POST['contrasenav']),
             ];
 
-            for ($i = 1; $i < 5; $i++) {
+          
+            if ($this->usuarioModelo->recuperarCodigo($datos)) {
+                
+                $_SESSION["validacionv"] =  "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                <strong>Correcto:  </strong>La contraseña se cambio correctamente</div></div>";
+                $this->vista('sessiones/verificacion');
 
+            } else {
+                $_SESSION["validacionv"] ="<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span> 
+                <strong>Error:  </strong>introduca un codigo valido</div></div>";
+                $this->vista('sessiones/verificacion');
+            }
+
+        }else {
+
+            $this->vista('sessiones/login');
+        }
+
+    }
+
+    public function CodigoVerificacion(){
+        //verifica si los envíos de formulario se realizaron correctamente
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $cod = false;
+            $azar = [
+                0 => "1234567890",
+                1 => "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",];
+
+            for ($i = 1; $i < 5; $i++){
                 $cod .= $azar[0]{rand(0, 8)};
                 $cod .= $azar[1]{rand(0, 50)};
-                $cod .= $azar[2]{rand(0, 17)};
             }
 
             $this->usuarioModelo->setpassword($cod);
-            $this->usuarioModelo->correo();
-
             $datos = [
 
                 'tipo_documento' => trim($_POST['tipo_documen']),
@@ -169,25 +194,24 @@ class Inicio extends Controlador
             ];
 
             $this->usuarioModelo->documentos($datos);
-            //si este metodo existe en el modelo entoces...
-            if ($this->usuarioModelo->recuperarCodigo($datos)) {
-                $_SERVER['inicio'] = true;
-                $this->vista('sessiones/login');
 
-            } else {
-                $_SERVER['inicio'] = false;
-                $this->vista('sessiones/login');
+            if($this->usuarioModelo->Codigos($datos)){
+                
+                $this->vista('sessiones/verificacion');
 
+                
+            }else{
+                $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                <strong>Error:  </strong>datos invalidos intentelo de nuevo</div></div>";
+                $this->vista('sessiones/login');
             }
 
-        } else {
-
+        }else {
+            
             $this->vista('sessiones/login');
-
         }
 
     }
-
 
     public function solitudPermiso(){
 
@@ -202,11 +226,14 @@ class Inicio extends Controlador
 
 
             if ($this->usuarioModelo->SolitaPermiso($datos)) {
-                $_SERVER['inicio'] = true;
+                $_SESSION   ["crear"] = "<div align='center'><div class='correctos'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                <strong>Correcto:  </strong>La solicitud fue enviada con exito</div></div>";
+        
                 $this->vista('sessiones/registro');
 
             }else{
-                $_SERVER['inicio'] = true;
+                $_SESSION   ["crear"] =  "<div align='center'><div class='errores'><span class='closebtn' onclick=this.parentElement.style.display='none';>&times;</span>
+                <strong>Error:  </strong>No se pudo enviar su solicitud intente de nuevo</div></div>";
                 $this->vista("sessiones/registro");
 
             }

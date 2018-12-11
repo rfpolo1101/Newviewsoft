@@ -25,7 +25,7 @@ class Base
         try {
 
             $this->bdh = new PDO($dsn, $this->usuario, $this->password);
-            $this->bdh->exec("set names utf8");
+            $this->bdh->exec("SET CHARACTER SET utf8");
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
             echo $this->error;

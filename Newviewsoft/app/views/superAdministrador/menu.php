@@ -107,7 +107,6 @@
                   <ul class="dropdown-menu" >
                    <li><a href="<?php echo RUTA_URL; ?>/usuario/perfil"><span class="glyphicon glyphicon-user"></span> Perfil</a></li>
                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar/asignar_rol"><span class="glyphicon glyphicon-book"></span> Asignar Rol</a></li>
-                    <li><a href="<?php echo RUTA_URL; ?>/usuario/asignardocumento"><span class="glyphicon glyphicon-briefcase"></span> Asignar Tipo Documento</a></li>
                     <li><a href="<?php echo RUTA_URL; ?>/usuario/asignar/asignar_permiso"><span class="glyphicon glyphicon-list-alt"></span> Asignar Permisos</a></li>
                     <li><a href="<?php echo RUTA_URL; ?>/usuario/ayuda"><span class="glyphicon glyphicon-pushpin"></span>Ayuda</a></li>
                     <li><a href="<?php echo RUTA_URL; ?>/nvs/cerrar"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
@@ -126,7 +125,8 @@
                 <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/usuarios">Usuarios</a></li>
                 <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/aprendices">Aprendiz</a></li>          
                 <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/fichas">Fichas</a></li>
-                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/historial">Historial</a></li>                
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/historial">Historial</a></li>    
+                <li><a tabindex="-1" href="<?php echo RUTA_URL ?>/buscar/programas">Programa de Formacion</a></li>                            
                       <li class="dropdown-submenu">
 
                   <a class="test" tabindex="-1" href="">Novedad<span class="caret"></span></a>
@@ -216,7 +216,7 @@
                 <li><a href="<?php echo RUTA_URL; ?>/crear/competencias">Competencia</a></li>
                 <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/tipo_de_formacion"> Tipo de Formación</a></li>
                 <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/programas_formacion"> Programa Formación </a></li>
-                <li><a href="<?php echo RUTA_URL; ?>/crear/tipo/resultado_aprendizaje">Resultado de Aprendizaje</a></li>
+                <li><a href="<?php echo RUTA_URL; ?>/crear/resultadoAprendizaje">Resultado de Aprendizaje</a></li>
                 <li class="divider"></li>
             </ul>
             </li>
